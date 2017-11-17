@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/!main/1gametitle/TitleScene.unity
+- path: Assets/asuka/scenes/Asuka_Test.unity
   isLoaded: 1
   isActive: 1
