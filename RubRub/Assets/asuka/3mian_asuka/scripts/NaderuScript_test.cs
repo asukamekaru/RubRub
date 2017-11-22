@@ -1,8 +1,14 @@
-﻿using System.Collections;
+﻿//===================================
+// GameMainScene <= 撫でる判定
+// AsukaMekaru
+// 2017/11/20
+//===================================
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class getmosue : MonoBehaviour
+public class NaderuScript_test : MonoBehaviour
 {
 
     int status;

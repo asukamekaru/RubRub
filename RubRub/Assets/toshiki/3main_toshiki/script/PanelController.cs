@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class PanelController : MonoBehaviour
 {
-    int PanelStatus;                //現在の処理進行度
+    private enum PANEL_STATUS { _PANEL_STAY_, _GAME_SCALEUP_, _GAME_SCALEDOWN_};//ゲームの状態
+    private PANEL_STATUS PanelStatus;
+
+    //現在の処理進行度
     public GameObject Panel;        //panelとの関係付け
     public bool RubRubFlg;          //とりあえず使うかもで作ったフラグ（使っていない）
     float PanelSizeX, PanelSizeY;   //変更するサイズのX,Y
@@ -38,16 +41,18 @@ public class PanelController : MonoBehaviour
     {
         switch (PanelStatus)
         {
-            case 0:
+            case PANEL_STATUS._PANEL_STAY_:
                 //サイズ拡大トリガー
                 if (Input.GetMouseButtonDown(0))
                 {
                     RubRubFlg = true;
-                    PanelStatus = 1;
+                    PanelStatus = PANEL_STATUS._GAME_SCALEUP_;
+
+                    MainManager.ChangeStatus(MainManager.STATUS._GAME_RUB_);//ゲームモードを撫でるパネルに変える
                 }
                 break;
 
-            case 1:
+            case PANEL_STATUS._GAME_SCALEUP_:
                 //サイズ拡大-----------------------------
                 if (PanelSizeX < PanelFulSizeX)
                 {
@@ -81,11 +86,13 @@ public class PanelController : MonoBehaviour
                 if (Input.GetMouseButtonUp(0))
                 {
                     RubRubFlg = false;
-                    PanelStatus = 2;
+                    PanelStatus = PANEL_STATUS._GAME_SCALEDOWN_;
+
+                    MainManager.ChangeStatus(MainManager.STATUS._GAME_PLAY_);//ゲームモードをプレイに変える
                 }
                 break;
 
-            case 2:
+            case PANEL_STATUS._GAME_SCALEDOWN_:
                 //サイズ縮小------------------------------
                 if (PanelSizeX > 0.0f)
                 {

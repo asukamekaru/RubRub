@@ -31,6 +31,7 @@ public class MouseController : MonoBehaviour
         status = 0;
         MouseVector_Total = MouseVector_Total_X = MouseVector_Total_Y = 0.0f;
         MouseX_UpFlg = MouseX_DownFlg = MouseY_UpFlg = MouseY_DownFlg = false;
+        Debug.Log("init");
     }
 
     void Update()

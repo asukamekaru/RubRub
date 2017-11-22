@@ -24,6 +24,7 @@ public class CubeControl : MonoBehaviour {
     void Start()
     {
         rigidBody = gameObject.GetComponent<Rigidbody>();
+        endPosition.z = this.transform.position.z;
 
     }
 
