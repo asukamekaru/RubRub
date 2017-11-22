@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/hikaru/hikau_Scene.unity
+- path: Assets/toshiki/Onaga.unity
   isLoaded: 1
   isActive: 1
