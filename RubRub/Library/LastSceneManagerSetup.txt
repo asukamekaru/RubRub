@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/asuka/scenes/Asuka_Test.unity
+- path: Assets/hikaru/hikau_Scene.unity
   isLoaded: 1
   isActive: 1
