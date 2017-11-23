@@ -96,14 +96,17 @@ public class MouseController : MonoBehaviour
                     MouseY_DownFlg && MouseVector_Total > 30.0f)
                 {
                     Debug.Log("丸判定");
+                    MainManager.IFCreateCall();
                 }
                 else if (MouseVector_Total_X > MouseVector_Total_Y && MouseVector_Total > 30.0f)
                 {
                     Debug.Log("横判定");
+                    MainManager.IFCreateCall();
                 }
                 else if (MouseVector_Total > 30.0f)
                 {
                     Debug.Log("縦判定");
+                    MainManager.IFCreateCall();
                 }
                 Start();
                 break;

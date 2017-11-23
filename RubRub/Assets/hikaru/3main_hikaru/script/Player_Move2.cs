@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Move2 : MonoBehaviour {
+public class Player_Move2 : MonoBehaviour
+{
 
     //------------------------------
     [SerializeField]
@@ -17,8 +18,9 @@ public class Player_Move2 : MonoBehaviour {
     Animator WalkAnimator;
     //------------------------------
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
 
         //角度
         rb = this.GetComponent<Rigidbody>();
@@ -26,29 +28,38 @@ public class Player_Move2 : MonoBehaviour {
         //
         this.WalkAnimator = GetComponent<Animator>();
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
 
         //プレイヤー移動、角度調整
-        if (Input.GetAxis("Horizontal") < 0)
+        if (Input.GetAxis("Horizontal") < 0)//左入力
         {
+            MainManager.LastKey = MainManager.LAST_KEY._KEY_LEFT_;//最後のキー（左）入力を渡す
+
             moveX = Input.GetAxis("Horizontal") * Time.deltaTime * movement;
             WalkAnime(true);
         }
-        else if (Input.GetAxis("Horizontal") > 0)
+        else if (Input.GetAxis("Horizontal") > 0)//右入力
         {
+            MainManager.LastKey = MainManager.LAST_KEY._KEY_RIGHT_;//最後のキー（右）入力を渡す
+
             moveX = Input.GetAxis("Horizontal") * Time.deltaTime * movement;
             WalkAnime(true);
         }
-        else if (Input.GetAxis("Vertical") > 0)
+        else if (Input.GetAxis("Vertical") > 0)//上入力
         {
+            MainManager.LastKey = MainManager.LAST_KEY._KEY_UP_;//最後のキー（上）入力を渡す
+
             moveZ = Input.GetAxis("Vertical") * Time.deltaTime * movement;
             WalkAnime(true);
         }
-        else if (Input.GetAxis("Vertical") < 0)
+        else if (Input.GetAxis("Vertical") < 0)//下入力
         {
+            MainManager.LastKey = MainManager.LAST_KEY._KEY_UP_;//最後のキー（上）入力を渡す
+
             moveZ = Input.GetAxis("Vertical") * Time.deltaTime * movement;
             WalkAnime(true);
         }
@@ -68,7 +79,7 @@ public class Player_Move2 : MonoBehaviour {
         }
 
         //アニメーション管理
-        
+
     }
 
     void WalkAnime(bool bChange)
