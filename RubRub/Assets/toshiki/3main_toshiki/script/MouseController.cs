@@ -25,13 +25,14 @@ public class MouseController : MonoBehaviour
     public bool MouseY_UpFlg;      //マウスポジションYの累積値に加算処理があったか
     public bool MouseY_DownFlg;    //減算処理があったか
 
+    bool RubRubFlg;
     void Start()
     {
         //初期化
         status = 0;
+        RubRubFlg = false;
         MouseVector_Total = MouseVector_Total_X = MouseVector_Total_Y = 0.0f;
         MouseX_UpFlg = MouseX_DownFlg = MouseY_UpFlg = MouseY_DownFlg = false;
-        Debug.Log("init");
     }
 
     void Update()
@@ -43,12 +44,15 @@ public class MouseController : MonoBehaviour
         switch (status)
         {
             case 0://ポジション計測へのトリガー
-                if (Input.GetMouseButtonDown(0))
+                if (RubRubFlg)
                 {
-                    status = 1;//撫に移動
-                    mouse_position_x = mousePosition.x;
-                    mouse_position_y = mousePosition.y;
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        status = 1;//撫に移動
+                        mouse_position_x = mousePosition.x;
+                        mouse_position_y = mousePosition.y;
 
+                    }
                 }
                 break;
 
@@ -111,5 +115,10 @@ public class MouseController : MonoBehaviour
                 Start();
                 break;
         }
+    }
+
+    public void MBottonDown()
+    {
+        RubRubFlg = true;
     }
 }
