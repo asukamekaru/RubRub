@@ -10,7 +10,7 @@ public class PanelController : MonoBehaviour
 
     //現在の処理進行度
     public GameObject Panel;        //panelとの関係付け
-    public bool RubRubFlg;          //とりあえず使うかもで作ったフラグ（使っていない）
+    public bool RubRubFlg;          //ボタンが押されたときのフラグ
     float PanelSizeX, PanelSizeY;   //変更するサイズのX,Y
     float Color_Alpha;              //Color(R,G,B,A)-
     float red, green, blue;         //---------------
@@ -43,9 +43,8 @@ public class PanelController : MonoBehaviour
         {
             case PANEL_STATUS._PANEL_STAY_:
                 //サイズ拡大トリガー
-                if (Input.GetMouseButtonDown(0))
+                if (RubRubFlg)
                 {
-                    RubRubFlg = true;
                     PanelStatus = PANEL_STATUS._GAME_SCALEUP_;
 
                     MainManager.ChangeStatus(MainManager.STATUS._GAME_RUB_);//ゲームモードを撫でるパネルに変える
@@ -117,5 +116,10 @@ public class PanelController : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    public void PBottonDown()   //ボタンを押されたときに呼び出す関数
+    {
+        RubRubFlg = true;
     }
 }

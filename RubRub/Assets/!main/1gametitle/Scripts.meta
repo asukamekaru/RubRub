@@ -1,7 +1,11 @@
 fileFormatVersion: 2
 guid: dc88f9b6820d3964f89e5c5ccbe28150
 folderAsset: yes
+<<<<<<< HEAD:RubRub/Assets/!main/1gametitle/Scripts.meta
 timeCreated: 1511828841
+=======
+timeCreated: 1512011015
+>>>>>>> master:RubRub/Assets/!main/1gametitle/Scripts.meta
 licenseType: Free
 DefaultImporter:
   userData: 
