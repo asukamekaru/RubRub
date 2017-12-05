@@ -68,8 +68,6 @@ public class Player_Move2 : MonoBehaviour
             WalkAnime(false);
         }
 
-
-
         Vector3 direction = new Vector3(moveX, 0, moveZ);
         if (direction.magnitude > 0.01f)
         {
