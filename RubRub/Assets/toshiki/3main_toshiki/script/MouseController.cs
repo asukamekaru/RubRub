@@ -26,6 +26,9 @@ public class MouseController : MonoBehaviour
     public bool MouseY_DownFlg;    //減算処理があったか
 
     bool RubRubFlg;
+
+    int[] WallType = new int[] { 0, 0, 0 }; //0.通常壁　1.火吸収＆放出　2.水吸収＆放出
+
     void Start()
     {
         //初期化
@@ -100,17 +103,20 @@ public class MouseController : MonoBehaviour
                     MouseY_DownFlg && MouseVector_Total > 30.0f)
                 {
                     Debug.Log("丸判定");
-                    MainManager.IFCreateCall();
+                    OMainManager.IFCreateCall();
+                    WallType[0] = 1;
                 }
                 else if (MouseVector_Total_X > MouseVector_Total_Y && MouseVector_Total > 30.0f)
                 {
                     Debug.Log("横判定");
-                    MainManager.IFCreateCall();
+                    OMainManager.IFCreateCall();
+                    WallType[1] = 1;
                 }
                 else if (MouseVector_Total > 30.0f)
                 {
                     Debug.Log("縦判定");
-                    MainManager.IFCreateCall();
+                    OMainManager.IFCreateCall();
+                    WallType[2] = 1;
                 }
                 Start();
                 break;
