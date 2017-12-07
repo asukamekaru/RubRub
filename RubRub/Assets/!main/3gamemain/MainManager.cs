@@ -11,13 +11,10 @@ using UnityEngine;
 
 public class MainManager : MonoBehaviour
 {
-
-
-
     public enum LAST_KEY { _KEY_RIGHT_, _KEY_LEFT_, _KEY_UP_, _KEY_DOWN_ };//ゲームの状態
     public static LAST_KEY LastKey;
 
-    public enum STATUS { _GAME_PLAY_, _GAME_RUB_, _GAME_POSE_, _GAME_CLEAR_ };//ゲームの状態
+    public enum STATUS { _GAME_PLAY_, _GAME_RUB_, _GAME_POSE_, _GAME_CLEAR_, _GAME_OVER_ };//ゲームの状態
     public static STATUS NowStatus;
 
     public static string sNowGround, sNowGroundTag, sCreateGroundName;//今立っている地面 - 今立っている地面のタグ - 作りたい場所の地面
@@ -45,6 +42,12 @@ public class MainManager : MonoBehaviour
                 break;
 
             case STATUS._GAME_CLEAR_:
+                break;
+
+            case STATUS._GAME_OVER_:
+
+               
+
                 break;
         }
     }
@@ -76,6 +79,12 @@ public class MainManager : MonoBehaviour
                 Time.timeScale = 1;//時間をすすめる
                 MainManager.NowStatus = CHANGE;
                 break;
+
+            case STATUS._GAME_OVER_:
+                Time.timeScale = 1;//時間をすすめる
+                MainManager.NowStatus = CHANGE;
+                break;
+
         }
     }
 
