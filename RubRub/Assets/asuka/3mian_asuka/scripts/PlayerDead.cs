@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class PlayerDead : MonoBehaviour {
 
-    Animator _animator;
-
+    static Animator _animator;
+        
 	// Use this for initialization
 	void Start () {
-        this._animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
 	}
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Enemy") _animator.SetBool("Dead", true);
+        if (collision.gameObject.tag == "Enemy")
+        {
+            _animator.SetBool("Dead", true);
+           MainManager.NowStatus = MainManager.STATUS._GAME_OVER_;
+           
+        }
     } 
 }

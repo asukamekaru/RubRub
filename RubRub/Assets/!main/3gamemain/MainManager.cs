@@ -11,9 +11,6 @@ using UnityEngine;
 
 public class MainManager : MonoBehaviour
 {
-
-
-
     public enum LAST_KEY { _KEY_RIGHT_, _KEY_LEFT_, _KEY_UP_, _KEY_DOWN_ };//ゲームの状態
     public static LAST_KEY LastKey;
 
@@ -48,6 +45,8 @@ public class MainManager : MonoBehaviour
                 break;
 
             case STATUS._GAME_OVER_:
+
+               
 
                 break;
         }
