@@ -83,9 +83,10 @@ public class OMainManager : MonoBehaviour
     //============================================
     public static void IFCreateCall()
     {
+        Debug.Log("呼び出された");
         if (sNowGround != sCreateGroundName)//立っている地面と作りたい地面が別か？
         {
-            Debug.Log("アクティブ");
+            
             switch (LastKey)//最後に入力したキーと立っている地面のタグ（方向）が合理するか？
             {
                 case LAST_KEY._KEY_RIGHT_:
