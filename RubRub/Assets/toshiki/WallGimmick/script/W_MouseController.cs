@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MouseController : MonoBehaviour
+public class W_MouseController : MonoBehaviour
 {
 
-    int status; //現在の撫でる動作の進行度
+    public int status; //現在の撫でる動作の進行度
 
     float mouse_x_delta;    //マウス移動情報X
     float mouse_y_delta;    //マウス移動情報Y
@@ -109,15 +109,16 @@ public class MouseController : MonoBehaviour
                 else if (MouseVector_Total_X > MouseVector_Total_Y && MouseVector_Total > 30.0f)
                 {
                     Debug.Log("横判定");
-                    MainManager.IFCreateCall();
+                    OMainManager.IFCreateCall();
                     WallType[1] = 1;
                 }
                 else if (MouseVector_Total > 30.0f)
                 {
                     Debug.Log("縦判定");
-                    MainManager.IFCreateCall();
+                    OMainManager.IFCreateCall();
                     WallType[2] = 1;
                 }
+                Debug.Log("丸、横、縦以外の判定");
                 Start();
                 break;
         }
