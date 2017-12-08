@@ -10,13 +10,13 @@ public class Player_Move : MonoBehaviour
     const float cfMOVE_SPEED = 0.05f;        //移動加速速度
 
     Transform tTarget;
-    float fRotspeed = 500f;     //回転速度
+    const float cfRotspeed = 750f;     //回転速度
 
     //プレイヤーの向き
-    const float cDIRE_UP = 0.0f;
-    const float cDIRE_DOWN = 180.0f;
-    const float cDIRE_RIGHT = 90.0f;
-    const float cDIRE_LEFT = 270.0f;
+    const float cfDIRE_UP = 0.0f;
+    const float cfDIRE_DOWN = 180.0f;
+    const float cfDIRE_RIGHT = 90.0f;
+    const float cfDIRE_LEFT = 270.0f;
 
     Animator WalkAnimator;      //アニメーション宣言
 
@@ -34,36 +34,36 @@ public class Player_Move : MonoBehaviour
         if ((Input.GetKey(KeyCode.W)) || (Input.GetKey(KeyCode.UpArrow)))   //上移動
         {
             fMoveZ += cfMOVE_SPEED;
-            float step = fRotspeed * Time.deltaTime;
+            float fStep = cfRotspeed * Time.deltaTime * 2;
             //指定した方向にゆっくり回転する場合
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, cDIRE_UP, 0), step);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, cfDIRE_UP, 0), fStep);
             WalkAnime(true);
         }
 
         else if ((Input.GetKey(KeyCode.S)) || (Input.GetKey(KeyCode.DownArrow)))    //下移動
         {
             fMoveZ -= cfMOVE_SPEED;
-            float step = fRotspeed * Time.deltaTime;
+            float fStep = cfRotspeed * Time.deltaTime;
             //指定した方向にゆっくり回転する場合
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, cDIRE_DOWN, 0), step);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, cfDIRE_DOWN, 0), fStep);
             WalkAnime(true);
         }
 
         else if ((Input.GetKey(KeyCode.D)) || (Input.GetKey(KeyCode.RightArrow)))   //右移動
         {
             fMoveX += cfMOVE_SPEED;
-            float step = fRotspeed * Time.deltaTime;
+            float fStep = cfRotspeed * Time.deltaTime;
             //指定した方向にゆっくり回転する場合
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, cDIRE_RIGHT, 0), step);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, cfDIRE_RIGHT, 0), fStep);
             WalkAnime(true);
         }
 
         else if ((Input.GetKey(KeyCode.A)) || (Input.GetKey(KeyCode.LeftArrow)))    //左移動
         {
             fMoveX -= cfMOVE_SPEED;
-            float step = fRotspeed * Time.deltaTime;
+            float fStep = cfRotspeed * Time.deltaTime;
             //指定した方向にゆっくり回転する場合
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, cDIRE_LEFT, 0), step);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, cfDIRE_LEFT, 0), fStep);
             WalkAnime(true);
         }
         else // キー入力無し
