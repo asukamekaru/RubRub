@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerDead : MonoBehaviour {
 
     static Animator _animator;
+
+    cameraScript camerascript;
         
 	// Use this for initialization
 	void Start () {
@@ -16,8 +18,8 @@ public class PlayerDead : MonoBehaviour {
         if (collision.gameObject.tag == "Enemy")
         {
             _animator.SetBool("Dead", true);
-           MainManager.NowStatus = MainManager.STATUS._GAME_OVER_;
-           
+
+            cameraScript.UPCAMERA(1);
         }
     } 
 }
