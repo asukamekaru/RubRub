@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/toshiki/WallGimmick/WallGimmik.unity
+- path: Assets/hikaru/3main_hikaru/scene/Game_Title.unity
   isLoaded: 1
   isActive: 1

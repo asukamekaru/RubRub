@@ -7,7 +7,8 @@ public class Player_Move : MonoBehaviour
 
     float fMoveX = 0;       //初期位置_Ｘ座標
     float fMoveZ = 0;       //初期位置_Ｚ座標
-    const float cfMOVE_SPEED = 0.05f;        //移動加速速度
+    float fPLAYER_HEIGHT = 1.51f;    //プレイヤーの
+    const float cfMOVE_SPEED = 0.015f;        //移動加速速度
 
     Transform tTarget;
     const float cfRotspeed = 750f;     //回転速度
@@ -71,7 +72,7 @@ public class Player_Move : MonoBehaviour
             WalkAnime(false);
         }
         //移動値代入
-        transform.position = new Vector3(fMoveX, 0, fMoveZ); 
+        transform.position = new Vector3(fMoveX, fPLAYER_HEIGHT, fMoveZ); 
     }
 
     //Animation管理
