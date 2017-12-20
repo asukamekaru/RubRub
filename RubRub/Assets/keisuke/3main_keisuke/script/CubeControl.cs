@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeControl : MonoBehaviour {
-
+public class CubeControl : WallBase
+{
     [SerializeField, Range(0, 10)]
     float time = 1;
 
@@ -24,7 +24,7 @@ public class CubeControl : MonoBehaviour {
     void Start()
     {
         rigidBody = gameObject.GetComponent<Rigidbody>();
-        endPosition = new Vector3(this.transform.position.x, 1 , this.transform.position.z); 
+        endPosition = new Vector3(this.transform.position.x, 1, this.transform.position.z);
 
     }
 
@@ -43,6 +43,24 @@ public class CubeControl : MonoBehaviour {
 
     void Update()
     {
+        //翁長君が触った所------------------------------------------
+        if(WallType != -1)
+        {
+            WallTagChange(WallType, this.gameObject);
+            if (WallType > 0)
+            {
+                if (NearObjectRetrieval(this.gameObject, TagName[WallType -1]))//TagNameの要素が２つしかないため　WallType - 1
+                {
+                    NearTriggerObject = WallType;
+                }
+            }
+            ObjectCreate(this.gameObject, WallName[WallType - 1], NearTriggerObject);
+            WallType = -1;
+            //Debug.Log("NearTriggerObject " + NearTriggerObject);
+        }
+
+
+        //----------------------------------------------------------
         var diff = Time.timeSinceLevelLoad - startTime;
         if (diff > time)
         {
@@ -56,6 +74,8 @@ public class CubeControl : MonoBehaviour {
         transform.position = Vector3.Lerp(startPosition, endPosition, rate);
         //transform.position = Vector3.Lerp (startPosition, endPosition, pos);
     }
+
+
 
     void OnDrawGizmosSelected()
     {
