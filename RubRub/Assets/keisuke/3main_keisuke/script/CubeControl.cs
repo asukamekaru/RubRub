@@ -53,8 +53,9 @@ public class CubeControl : WallBase
                 {
                     NearTriggerObject = WallType;
                 }
+                ObjectCreate(this.gameObject, WallName[WallType - 1], NearTriggerObject);
             }
-            ObjectCreate(this.gameObject, WallName[WallType - 1], NearTriggerObject);
+           
             WallType = -1;
             //Debug.Log("NearTriggerObject " + NearTriggerObject);
         }
