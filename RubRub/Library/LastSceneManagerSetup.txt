@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/asuka/2home_asuka/scene/home_test_asuka.unity
+- path: C:/Users/Asuka.M/Documents/GameCamp/GameCamp/Assets/Title-ogimi/wawawa~.unity
   isLoaded: 1
   isActive: 1

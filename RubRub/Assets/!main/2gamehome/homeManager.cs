@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tempLRButton : MonoBehaviour {
+public class homeManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
