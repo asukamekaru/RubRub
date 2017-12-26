@@ -8,6 +8,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MouseController;
 
 public class MainManager : MonoBehaviour
 {
@@ -46,7 +47,7 @@ public class MainManager : MonoBehaviour
 
             case STATUS._GAME_OVER_:
 
-               
+
 
                 break;
         }
@@ -101,6 +102,13 @@ public class MainManager : MonoBehaviour
                     if (sNowGroundTag == "Ground_Hori")
                     {
                         CreateGround.enabled = true;//壁になーれ
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (MouseController.MouseController.WallType[i] == 1)
+                            {
+                                CreateGround.WallType = i;
+                            }
+                        }
                     }
                     break;
 
@@ -108,6 +116,13 @@ public class MainManager : MonoBehaviour
                     if (sNowGroundTag == "Ground_Hori")
                     {
                         CreateGround.enabled = true;//壁になーれ
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (MouseController.MouseController.WallType[i] == 1)
+                            {
+                                CreateGround.WallType = i;
+                            }
+                        }
                     }
                     break;
 
@@ -115,6 +130,13 @@ public class MainManager : MonoBehaviour
                     if (sNowGroundTag == "Ground_Vert")
                     {
                         CreateGround.enabled = true;//壁になーれ
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (MouseController.MouseController.WallType[i] == 1)
+                            {
+                                CreateGround.WallType = i;
+                            }
+                        }
                     }
                     break;
 
@@ -122,6 +144,13 @@ public class MainManager : MonoBehaviour
                     if (sNowGroundTag == "Ground_Vert")
                     {
                         CreateGround.enabled = true;//壁になーれ
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (MouseController.MouseController.WallType[i] == 1)
+                            {
+                                CreateGround.WallType = i;
+                            }
+                        }
                     }
                     break;
             }
