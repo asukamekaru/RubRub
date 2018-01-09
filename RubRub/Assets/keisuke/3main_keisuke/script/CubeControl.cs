@@ -20,6 +20,8 @@ public class CubeControl : WallBase
     public Vector3 force = new Vector3(0, 10, 0);
     public ForceMode forceMode = ForceMode.VelocityChange;
 
+    //翁長君作成変数
+    bool MoveEnd;
     // Use this for initialization
     void Start()
     {
@@ -43,30 +45,12 @@ public class CubeControl : WallBase
 
     void Update()
     {
-        //翁長君が触った所------------------------------------------
-        if(WallType != -1)
-        {
-            WallTagChange(WallType, this.gameObject);
-            if (WallType > 0)
-            {
-                if (NearObjectRetrieval(this.gameObject, TagName[WallType -1]))//TagNameの要素が２つしかないため　WallType - 1
-                {
-                    NearTriggerObject = WallType;
-                }
-                ObjectCreate(this.gameObject, WallName[WallType - 1], NearTriggerObject);
-            }
-           
-            WallType = -1;
-            //Debug.Log("NearTriggerObject " + NearTriggerObject);
-        }
-
-
-        //----------------------------------------------------------
         var diff = Time.timeSinceLevelLoad - startTime;
         if (diff > time)
         {
             transform.position = endPosition;
-            enabled = false;
+            //enabled = false;
+            MoveEnd = true;
         }
 
         var rate = diff / time;
@@ -74,6 +58,26 @@ public class CubeControl : WallBase
 
         transform.position = Vector3.Lerp(startPosition, endPosition, rate);
         //transform.position = Vector3.Lerp (startPosition, endPosition, pos);
+
+        //翁長君が触った所-------------------------------------------------------------------
+        if (MoveEnd)
+        {
+            if (WallType != -1)
+            {
+                WallTagChange(WallType, this.gameObject);
+                if (WallType > 0)
+                {
+                    if (NearObjectRetrieval(this.gameObject, TagName[WallType - 1]))//TagNameの要素が２つしかないため　WallType - 1
+                    {
+                        NearTriggerObject = WallType;
+                    }
+                    ObjectCreate(this.gameObject, WallName[WallType - 1], NearTriggerObject);
+                }
+
+                WallType = -1;
+            }
+            enabled = false;
+        }
     }
 
 
@@ -95,5 +99,4 @@ public class CubeControl : WallBase
 
         Gizmos.DrawLine(startPosition, endPosition);
     }
-
 }
