@@ -16,7 +16,9 @@ public class controllerManager : MonoBehaviour
     public Button getControllerUp;//取得する上ボタンなど
     public Button getControllerDown;//取得する下ボタンなど
 
-    public GameObject setController;//動かすオブジェクト
+    [SerializeField]
+    private homeManager homemanager;
+
 
     // Use this for initialization
     void Start()
@@ -30,15 +32,44 @@ public class controllerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void Left()
     {
-        if (SceneManager.GetActiveScene().name == "HomeScene") ;
-        setController
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "HomeScene":
+                homemanager.getControll("left");
+                break;
+        }
     }
-    private void Right() { Debug.Log("RIGHT"); }
-    private void Up() { Debug.Log("UP"); }
-    private void Down() { Debug.Log("DOWN"); }
+
+    private void Right()
+    {
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "HomeScene":
+                homemanager.getControll("right");
+                break;
+        }
+    }
+
+    private void Up()
+    {
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "HomeScene":
+                break;
+        }
+    }
+    
+    private void Down()
+    {
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "HomeScene":
+                break;
+        }
+    }
 }
