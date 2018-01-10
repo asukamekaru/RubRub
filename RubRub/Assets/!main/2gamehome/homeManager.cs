@@ -8,7 +8,7 @@ public class homeManager : MonoBehaviour
     ////////////////////////////////////// 変数シンボル //////////////////////////////////////
     selectUIScript selectUiScript;
 
-    public readonly int MAXSTAGE;
+    readonly int MAXSTAGE = 3;
 
     [SerializeField]
     [Header("ステージを選ぶボタン")]
@@ -18,7 +18,7 @@ public class homeManager : MonoBehaviour
     public Vector3 DefCenterButtonPosi;//x0 y-120 z0 ボタンの中央の位置
 
     ////////////////////////////////////// 変数 //////////////////////////////////////
-    private int iNowSelectStage = 1;//ボタンを押したら飛ばされるステージの番号
+    private int iNowSelectStage = 0;//ボタンを押したら飛ばされるステージの番号
 
     // Use this for initialization
     void Start()
@@ -28,7 +28,7 @@ public class homeManager : MonoBehaviour
             Stagebtn[i].gameObject.GetComponent<selectUIScript>().getMyNum(i);//飛ばされるステージ番号の初期化
             Stagebtn[i].gameObject.GetComponent<Button>().onClick.AddListener(BTN);//ボタンをクリックしたときの処理
         }
-        
+
     }
 
     // Update is called once per frame
@@ -41,12 +41,21 @@ public class homeManager : MonoBehaviour
 
     public void getControll(string s)
     {
-        if (s == "right" && iNowSelectStage != MAXSTAGE) ++iNowSelectStage;//右ボタンを押し、かつ最大ステージでなければ増やす
-        if (s == "left" && iNowSelectStage != -MAXSTAGE) --iNowSelectStage;//左ボタンを押し、かつ最大ステージでなければ減らす
+        if (s == "right")
+        {
+            ++iNowSelectStage;//右ボタンを押し、かつ最大ステージでなければ増やす
+        }
+
+        if (s == "left")
+        {
+            --iNowSelectStage;//左ボタンを押し、かつ最大ステージでなければ減らす
+        }
+
+        Debug.Log(iNowSelectStage);
 
         for (int i = 0; i < MAXSTAGE; i++)
         {
-            Stagebtn[i].gameObject.GetComponent<selectUIScript>().getMyNum(iNowSelectStage);//飛ばされるステージ番号の初期化
+            Stagebtn[i].gameObject.GetComponent<selectUIScript>().getMyNum(iNowSelectStage + i);
         }
     }
 }

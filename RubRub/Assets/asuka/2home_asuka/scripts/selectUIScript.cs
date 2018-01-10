@@ -10,6 +10,8 @@ using UnityEngine;
 
 public class selectUIScript : MonoBehaviour
 {
+    [SerializeField]
+    private homeManager homemanager;
 
     int iMyNowNum;
 
@@ -22,7 +24,8 @@ public class selectUIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        this.transform.localPosition = 
+            new Vector3(homemanager.DefCenterButtonPosi.x - iMyNowNum * -250, homemanager.DefCenterButtonPosi.y, homemanager.DefCenterButtonPosi.z);
     }
 
     public void getMyNum(int i)

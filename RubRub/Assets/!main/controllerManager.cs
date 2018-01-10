@@ -40,6 +40,7 @@ public class controllerManager : MonoBehaviour
         switch (SceneManager.GetActiveScene().name)
         {
             case "HomeScene":
+            case "home_test_asuka":
                 homemanager.getControll("left");
                 break;
         }
@@ -50,6 +51,7 @@ public class controllerManager : MonoBehaviour
         switch (SceneManager.GetActiveScene().name)
         {
             case "HomeScene":
+            case "home_test_asuka":
                 homemanager.getControll("right");
                 break;
         }
