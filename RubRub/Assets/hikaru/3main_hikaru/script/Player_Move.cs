@@ -7,7 +7,7 @@ public class Player_Move : MonoBehaviour
 
     float fMoveX = 0;       //初期位置_Ｘ座標
     float fMoveZ = 0;       //初期位置_Ｚ座標
-    float fPLAYER_HEIGHT = 1.51f;    //プレイヤーの
+    float fPLAYER_HEIGHT = 0.5f;    //プレイヤーの
     const float cfMOVE_SPEED = 0.015f;        //移動加速速度
 
     Transform tTarget;
