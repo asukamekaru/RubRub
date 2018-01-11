@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/asuka/2home_asuka/scene/home_test_asuka.unity
-=======
-- path: Assets/asuka/3mian_asuka/scenes/Asuka_main_test.unity
->>>>>>> hikaru
+- path: Assets/!main/3gamemain/GameMainScene.unity
   isLoaded: 1
   isActive: 1
