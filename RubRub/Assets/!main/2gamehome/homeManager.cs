@@ -18,10 +18,17 @@ public class homeManager : MonoBehaviour
     [Header("ステージを選ぶボタン")]
     public GameObject[] Stagebtn = new GameObject[MAXSTAGE];
 
-    [Header("中央ボタンの位置")]
-    public Vector3 CenterButtonPosi;//x0 y-120 z0 ボタンの中央の位置
+    [Header("中央のボタンの位置")]
+    public Vector3 CenterButtonPosi;
     [Header("中央以外のボタンの位置")]
-    public Vector3 OtherButtonPosi;//x0 y-120 z0 ボタンの中央の位置
+    public Vector3 OtherButtonPosi;
+    [Header("中央のボタンの大きさ")]
+    public float CenterButtonSize;
+    [Header("中央以外のボタンの大きさ")]
+    public float OtherButtonSize;
+
+    [Header("ボタンがスクロールする速さ")]
+    public float ButtonScrollSpeed;
 
 
     ////////////////////////////////////// 変数 //////////////////////////////////////
@@ -41,13 +48,15 @@ public class homeManager : MonoBehaviour
     void Update()
     {
 
+
+
     }
 
     public void getControll(string s)
     {
-        if (s == "right") ++iNowSelectStage;//右ボタンを押し、かつ最大ステージでなければ増やす
+        if (s == "right" && iNowSelectStage < MAXSTAGE - 1) ++iNowSelectStage;//右ボタンを押し、かつ最大ステージでなければ増やす
 
-        if (s == "left" ) --iNowSelectStage;//左ボタンを押し、かつ最大ステージでなければ減らす
+        if (s == "left" && iNowSelectStage > 0) --iNowSelectStage;//左ボタンを押し、かつ最大ステージでなければ減らす
 
         Debug.Log(iNowSelectStage);
 
