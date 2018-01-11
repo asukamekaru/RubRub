@@ -1,5 +1,13 @@
 sceneSetups:
+<<<<<<< HEAD
+<<<<<<< HEAD
 - path: Assets/!main/3gamemain/GameMainScene.unity
+=======
+- path: Assets/hikaru/3main_hikaru/scene/hikau_Scene.unity
+>>>>>>> hikaru
+=======
+- path: Assets/!main/3gamemain/GameMainScene.unity
+>>>>>>> onaga
   isLoaded: 1
   isActive: 1
 - path: Assets/keisuke/3main_keisuke/scene/Keiuske_Debug.unity
