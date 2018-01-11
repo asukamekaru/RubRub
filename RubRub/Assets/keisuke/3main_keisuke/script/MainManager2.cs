@@ -1,27 +1,19 @@
-﻿//=================================================
-// GameMainScene <= 関数とか状態を管理するスクリプト
-// AsukaMekaru
-// 2017/11/22
-//=================================================
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MouseController;
 
-public class MainManager : MonoBehaviour
-{
+public class MainManager2 : MonoBehaviour {
+
     public enum LAST_KEY { _KEY_RIGHT_, _KEY_LEFT_, _KEY_UP_, _KEY_DOWN_ };//ゲームの状態
     public static LAST_KEY LastKey;
 
-    public enum STATUS { _GAME_PLAY_, _GAME_RUB_, _GAME_POSE_, _GAME_CLEAR_, _GAME_OVER_ };//ゲームの状態
+    public enum STATUS { _GAME_PLAY_, _GAME_RUB_, _GAME_POSE_, _GAME_CLEAR_ };//ゲームの状態
     public static STATUS NowStatus;
 
     public static string sNowGround, sNowGroundTag, sCreateGroundName;//今立っている地面 - 今立っている地面のタグ - 作りたい場所の地面
 
-    public static CubeControl CreateGround;
-    public EnemyWarp enemyWarp;
+    public static CubeControl2 CreateGround;
 
     // Use this for initialization
     void Start()
@@ -45,12 +37,6 @@ public class MainManager : MonoBehaviour
 
             case STATUS._GAME_CLEAR_:
                 break;
-
-            case STATUS._GAME_OVER_:
-
-
-
-                break;
         }
     }
 
@@ -64,29 +50,23 @@ public class MainManager : MonoBehaviour
         {
             case STATUS._GAME_PLAY_:
                 Time.timeScale = 1;//時間をすすめる
-                MainManager.NowStatus = CHANGE;
+                NowStatus = CHANGE;
                 break;
 
             case STATUS._GAME_RUB_:
                 Time.timeScale = 0;//時間を止める
-                MainManager.NowStatus = CHANGE;
+                NowStatus = CHANGE;
                 break;
 
             case STATUS._GAME_POSE_:
                 Time.timeScale = 0;//時間を止める
-                MainManager.NowStatus = CHANGE;
+                NowStatus = CHANGE;
                 break;
 
             case STATUS._GAME_CLEAR_:
                 Time.timeScale = 1;//時間をすすめる
-                MainManager.NowStatus = CHANGE;
+                NowStatus = CHANGE;
                 break;
-
-            case STATUS._GAME_OVER_:
-                Time.timeScale = 1;//時間をすすめる
-                MainManager.NowStatus = CHANGE;
-                break;
-
         }
     }
 
@@ -103,14 +83,6 @@ public class MainManager : MonoBehaviour
                     if (sNowGroundTag == "Ground_Hori")
                     {
                         CreateGround.enabled = true;//壁になーれ
-                        for (int i = 0; i < 3; i++)
-                        {
-                            if (MouseController.MouseController.WallType[i] == 1)
-                            {
-                                CreateGround.WallType = i;
-                                //enemyWarp.WallType = i;
-                            }
-                        }
                     }
                     break;
 
@@ -118,14 +90,6 @@ public class MainManager : MonoBehaviour
                     if (sNowGroundTag == "Ground_Hori")
                     {
                         CreateGround.enabled = true;//壁になーれ
-                        for (int i = 0; i < 3; i++)
-                        {
-                            if (MouseController.MouseController.WallType[i] == 1)
-                            {
-                                CreateGround.WallType = i;
-                                //enemyWarp.WallType = i;
-                            }
-                        }
                     }
                     break;
 
@@ -133,14 +97,6 @@ public class MainManager : MonoBehaviour
                     if (sNowGroundTag == "Ground_Vert")
                     {
                         CreateGround.enabled = true;//壁になーれ
-                        for (int i = 0; i < 3; i++)
-                        {
-                            if (MouseController.MouseController.WallType[i] == 1)
-                            {
-                                CreateGround.WallType = i;
-                                //enemyWarp.WallType = i;
-                            }
-                        }
                     }
                     break;
 
@@ -148,17 +104,10 @@ public class MainManager : MonoBehaviour
                     if (sNowGroundTag == "Ground_Vert")
                     {
                         CreateGround.enabled = true;//壁になーれ
-                        for (int i = 0; i < 3; i++)
-                        {
-                            if (MouseController.MouseController.WallType[i] == 1)
-                            {
-                                CreateGround.WallType = i;
-                                //enemyWarp.WallType = i;
-                            }
-                        }
                     }
                     break;
             }
         }
     }
+
 }

@@ -1,0 +1,113 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using GroundC;
+
+
+public class CubeControl2 : MonoBehaviour {
+
+    [SerializeField, Range(0, 10)]
+    float time = 1; //移動時間
+
+    [SerializeField]
+    float posY;
+
+    private Vector3 endPosition;
+
+    //[SerializeField]
+    //AnimationCurve curve;
+
+    private float startTime;
+    private Vector3 startPosition;
+
+    private bool mode = true;   //trueなら壁を上げてfalseなら下げる
+    public GameObject up;
+    public GameObject down;
+
+    Rigidbody rigidBody;
+    public Vector3 force = new Vector3(0, 10, 0);
+    public ForceMode forceMode = ForceMode.VelocityChange;
+
+    // Use this for initialization
+    void Start()
+    {
+        rigidBody = gameObject.GetComponent<Rigidbody>();
+        endPosition = new Vector3(this.transform.position.x, posY, this.transform.position.z);
+
+    }
+    //このスクリプトがtrueになったとき1度のみ行う処理
+    void OnEnable()
+    {
+
+        if (mode)
+        {
+            posY = 1;
+            this.transform.parent = up.transform;   //upの子オブジェクトに登録
+        }
+        else
+        {
+            posY = -1;
+            this.transform.parent = down.transform;   //upの子オブジェクトに登録
+        }
+
+        endPosition = new Vector3(this.transform.position.x, posY, this.transform.position.z);
+
+        //timeが0より小さい場合
+        //ポジションを一気にエンドポジションまで持っていき
+        //このスクリプトをfalseにする。
+        if (time <= 0)
+        {
+            transform.position = endPosition;
+            //GroundC.GroundCount.GCFlg = true;
+            mode = !mode;//modeのflagを反転
+            //this.transform.parent = up.transform;   //upの子オブジェクトに登録
+            enabled = false;    //このスクリプトをfalseに
+
+            return;
+        }
+
+        startTime = Time.timeSinceLevelLoad;
+        startPosition = transform.position;
+    }
+
+    void Update()
+    {
+       
+        var diff = Time.timeSinceLevelLoad - startTime;
+        if (diff > time)
+        {
+            transform.position = endPosition;
+            mode = !mode;
+            //GroundC.GroundCount.GCFlg = true;
+            //this.transform.parent = up.transform;   //upの子オブジェクトに登録
+            enabled = false;    //このスクリプトをfalseに
+            
+        }
+
+        var rate = diff / time;
+        //var pos = curve.Evaluate(rate);
+
+        transform.position = Vector3.Lerp(startPosition, endPosition, rate);
+        //transform.position = Vector3.Lerp (startPosition, endPosition, pos);
+    }
+
+    //ギズモ(移動ポインタ)の描画
+    void OnDrawGizmosSelected()
+    {
+#if UNITY_EDITOR
+
+        if (!UnityEditor.EditorApplication.isPlaying || enabled == false)
+        {
+            startPosition = transform.position;
+        }
+
+        UnityEditor.Handles.Label(endPosition, endPosition.ToString());
+        UnityEditor.Handles.Label(startPosition, startPosition.ToString());
+#endif
+        Gizmos.DrawSphere(endPosition, 0.1f);
+        Gizmos.DrawSphere(startPosition, 0.1f);
+
+        Gizmos.DrawLine(startPosition, endPosition);
+    }
+
+}
