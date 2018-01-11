@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/hikaru/3main_hikaru/scene/Game_Title.unity
+- path: Assets/keisuke/3main_keisuke/scene/Keiuske_Debug.unity
   isLoaded: 1
   isActive: 1
