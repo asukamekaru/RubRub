@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/!main/3gamemain/GameMainScene.unity
+=======
+- path: Assets/hikaru/3main_hikaru/scene/hikau_Scene.unity
+>>>>>>> hikaru
   isLoaded: 1
   isActive: 1
