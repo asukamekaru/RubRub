@@ -60,8 +60,7 @@ abstract public class WallBase : MonoBehaviour
         //近いオブジェクトがあるか否かを返す
         return TriggerObjectNear;
     }
-
-
+    
     //インスタンスを生成
     public void ObjectCreate(GameObject thisGameObject/*自身のオブジェクト*/, string TagName/*タグの名前*/
         , int ObjectCreateFlg/*近くにあるオブジェクト　-1 何もなし, 0　fire, 1 enemy*/)
@@ -133,8 +132,7 @@ abstract public class WallBase : MonoBehaviour
             Debug.Log("差が同じにより初期値０となります。");
         }
         //-----------------------------------------------------------------------------------
-        Debug.Log("DifferenceX" + DifferenceX);
-        Debug.Log("DifferenceZ" + DifferenceZ);
+
         //検索結果が自分のオブジェクトではなく、同じタグのオブジェクトが2つ以上存在しており
         //自身の周りには対象のトリガーオブジェクトがない
         if (thisGameObject != TriggerObject && ObjectCount >= 2 && ObjectCreateFlg == -1)
