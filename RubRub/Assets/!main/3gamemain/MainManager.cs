@@ -21,7 +21,7 @@ public class MainManager : MonoBehaviour
     public static string sNowGround, sNowGroundTag, sCreateGroundName;//今立っている地面 - 今立っている地面のタグ - 作りたい場所の地面
 
     public static CubeControl CreateGround;
-    public EnemyWarp enemyWarp;
+    public static EnemyWarp enemyWarp;
 
     // Use this for initialization
     void Start()

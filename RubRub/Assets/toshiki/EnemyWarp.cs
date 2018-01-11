@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyWarp : WallBase
 { 
-    string TagName = "Enemy";
-    string WallTagName = "EnemyWall";
+    //string TagName = "Enemy";
+    //string WallTagName = "EnemyWall";
     bool EnemyCollisionFlg;
     GameObject Enemy = null;
 
@@ -13,11 +13,11 @@ public class EnemyWarp : WallBase
     {
         if(EnemyCollisionFlg)
         {
-            //if (NearObjectRetrieval(this.gameObject, TagName[WallType - 1]))//TagNameの要素が２つしかないため　WallType - 1
-            //{
-            //    NearTriggerObject = WallType;
-            //}
-            //EnemyWarp(this.gameObject, WallName[WallType - 1], NearTriggerObject);
+            if (NearObjectRetrieval(this.gameObject, TagName[WallType - 1]))//TagNameの要素が２つしかないため　WallType - 1
+            {
+                NearTriggerObject = WallType;
+            }
+            EnemyWarp(this.gameObject, WallName[WallType - 1], NearTriggerObject);
         }
     }
 
