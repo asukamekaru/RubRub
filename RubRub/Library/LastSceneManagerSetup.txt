@@ -2,3 +2,6 @@ sceneSetups:
 - path: Assets/!main/3gamemain/GameMainScene.unity
   isLoaded: 1
   isActive: 1
+- path: Assets/keisuke/3main_keisuke/scene/Keiuske_Debug.unity
+  isLoaded: 0
+  isActive: 0
