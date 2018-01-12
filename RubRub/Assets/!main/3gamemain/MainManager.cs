@@ -108,7 +108,7 @@ public class MainManager : MonoBehaviour
                             if (MouseController.MouseController.WallType[i] == 1)
                             {
                                 CreateGround.WallType = i;
-                                //enemyWarp.WallType = i;
+                                enemyWarp.WallType = i;
                             }
                         }
                     }
@@ -123,7 +123,7 @@ public class MainManager : MonoBehaviour
                             if (MouseController.MouseController.WallType[i] == 1)
                             {
                                 CreateGround.WallType = i;
-                                //enemyWarp.WallType = i;
+                                enemyWarp.WallType = i;
                             }
                         }
                     }
@@ -138,7 +138,7 @@ public class MainManager : MonoBehaviour
                             if (MouseController.MouseController.WallType[i] == 1)
                             {
                                 CreateGround.WallType = i;
-                                //enemyWarp.WallType = i;
+                                enemyWarp.WallType = i;
                             }
                         }
                     }
@@ -153,7 +153,7 @@ public class MainManager : MonoBehaviour
                             if (MouseController.MouseController.WallType[i] == 1)
                             {
                                 CreateGround.WallType = i;
-                                //enemyWarp.WallType = i;
+                                enemyWarp.WallType = i;
                             }
                         }
                     }

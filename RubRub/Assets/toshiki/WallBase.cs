@@ -7,7 +7,7 @@ abstract public class WallBase : MonoBehaviour
     public int WallType = -1;    //0、普通の壁　1、ファイアウォール　2、エネミーウォール
     public int NearTriggerObject = -1; //近くにあるオブジェクト -1、なし　1、ファイア　2、エネミー
     public string[] TagName = new string[] { "Fire", "Enemy" };
-    public string[] WallName = new string[] { "FireWall", "FireWall" };
+    public string[] WallName = new string[] { "FireWall", "EnemyWall" };
 
 
     //各タイプごとにタグを変更
@@ -60,7 +60,7 @@ abstract public class WallBase : MonoBehaviour
         //近いオブジェクトがあるか否かを返す
         return TriggerObjectNear;
     }
-    
+
     //インスタンスを生成
     public void ObjectCreate(GameObject thisGameObject/*自身のオブジェクト*/, string TagName/*タグの名前*/
         , int ObjectCreateFlg/*近くにあるオブジェクト　-1 何もなし, 0　fire, 1 enemy*/)
@@ -141,38 +141,28 @@ abstract public class WallBase : MonoBehaviour
             Instantiate(AttackFirePrefab, thisGameObject.transform.position, AttackFireRote);
         }
     }
-    public void EnemyWarp(GameObject thisGameObject/*自身のオブジェクト*/, string TagName/*タグの名前*/
-       , int ObjectCreateFlg/*近くにあるオブジェクト　-1 何もなし, 0　fire, 1 enemy*/)
+
+    //当たった壁以外の壁を検索しエネミーをそこへワープさせる
+    public void EnemyWarp(GameObject thisGameObject/*自身のオブジェクト*/, string TagName/*タグの名前*/,
+        GameObject Enemy)
     {
         GameObject Player = GameObject.FindGameObjectWithTag("Player");
 
-        //生成するインスタンスをPrefabで取得＆生成オブジェクトの角度を設定
-        //壁が燃えている方のPrefab
-        Quaternion BigFireRote = Quaternion.Euler(-90.0f, 0.0f, 0.0f);
-        GameObject BigFirePrefab = (GameObject)Resources.Load("Prefab/BigFire");
-        //プレイヤーの反対方向に噴出する方のPrefab
-        Quaternion AttackFireRote = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-        GameObject AttackFirePrefab = (GameObject)Resources.Load("Prefab/Fire");
-
         CubeControl obsTriggerNear;//検索対象オブジェクトの<CubeControl>一時的保管場所
-        int ObjectCount = 0;
         GameObject TriggerObject = null; //検索結果のオブジェクトを入れるやつ
 
         foreach (GameObject obs in GameObject.FindGameObjectsWithTag(TagName))
         {
-            ObjectCount++;
-            obsTriggerNear = obs.GetComponent<CubeControl>();
-            if (obsTriggerNear.NearTriggerObject != -1)
+            if (obs != thisGameObject)
             {
                 TriggerObject = obs;
             }
         }
         //検索結果が自分のオブジェクトではなく、同じタグのオブジェクトが2つ以上存在しており
         //自身の周りには対象のトリガーオブジェクトがない
-        if (thisGameObject != TriggerObject && ObjectCount >= 2 && ObjectCreateFlg == -1)
+        if (TriggerObject != null)
         {
-            Instantiate(BigFirePrefab, thisGameObject.transform.position, BigFireRote);
-            Instantiate(AttackFirePrefab, thisGameObject.transform.position, AttackFireRote);
+            Debug.Log("ワープするよー");
         }
     }
 }

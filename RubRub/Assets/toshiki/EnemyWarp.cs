@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyWarp : WallBase
-{ 
+{
     //string TagName = "Enemy";
     //string WallTagName = "EnemyWall";
     bool EnemyCollisionFlg;
@@ -11,17 +11,13 @@ public class EnemyWarp : WallBase
 
     void Update()
     {
-        if(EnemyCollisionFlg)
+        Debug.Log("WallType" + WallType);
+        if (EnemyCollisionFlg)
         {
-            if (NearObjectRetrieval(this.gameObject, TagName[WallType - 1]))//TagNameの要素が２つしかないため　WallType - 1
-            {
-                NearTriggerObject = WallType;
-            }
-            EnemyWarp(this.gameObject, WallName[WallType - 1], NearTriggerObject);
+            EnemyWarp(this.gameObject, WallName[WallType - 1], Enemy);
         }
     }
 
-   
     //オブジェクトが衝突したとき
     public void OnCollisionEnter(Collision collision)
     {
@@ -29,6 +25,7 @@ public class EnemyWarp : WallBase
         {
             if (collision.gameObject.tag == "Enemy")
             {
+                Enemy = collision.gameObject;
                 EnemyCollisionFlg = true;
             }
         }
