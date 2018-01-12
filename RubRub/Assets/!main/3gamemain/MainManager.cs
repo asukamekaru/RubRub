@@ -12,10 +12,17 @@ using MouseController;
 
 public class MainManager : MonoBehaviour
 {
+    ////////////////////////////////////// 変数シンボル //////////////////////////////////////
+
+    [SerializeField]
+    private float fSTARTTIMER;
+    public cameraScript camerascript;
+
+    ////////////////////////////////////// 変数 //////////////////////////////////////
     public enum LAST_KEY { _KEY_RIGHT_, _KEY_LEFT_, _KEY_UP_, _KEY_DOWN_ };//ゲームの状態
     public static LAST_KEY LastKey;
 
-    public enum STATUS { _GAME_PLAY_, _GAME_RUB_, _GAME_POSE_, _GAME_CLEAR_, _GAME_OVER_ };//ゲームの状態
+    public enum STATUS { _GAME_START_, _GAME_PLAY_, _GAME_RUB_, _GAME_POSE_, _GAME_CLEAR_, _GAME_OVER_ };//ゲームの状態
     public static STATUS NowStatus;
 
     public static string sNowGround, sNowGroundTag, sCreateGroundName;//今立っている地面 - 今立っている地面のタグ - 作りたい場所の地面
@@ -23,10 +30,13 @@ public class MainManager : MonoBehaviour
     public static CubeControl CreateGround;
     public static EnemyWarp enemyWarp;
 
+    public static float fCount;//停止中のタイマー
+
     // Use this for initialization
     void Start()
     {
-        ChangeStatus(STATUS._GAME_PLAY_);
+        //NowStatus = STATUS._GAME_START_;
+        ChangeStatus(STATUS._GAME_START_);
     }
 
     // Update is called once per frame
@@ -34,6 +44,10 @@ public class MainManager : MonoBehaviour
     {
         switch (NowStatus)
         {
+            case STATUS._GAME_START_:
+                if (++fCount > fSTARTTIMER) ChangeStatus(STATUS._GAME_PLAY_);//fSTARTTIMERミリ秒後スタート
+                break;
+
             case STATUS._GAME_PLAY_:
                 break;
 
@@ -48,7 +62,7 @@ public class MainManager : MonoBehaviour
 
             case STATUS._GAME_OVER_:
 
-
+                camerascript.UPCAMERA(1);
 
                 break;
         }
@@ -62,6 +76,12 @@ public class MainManager : MonoBehaviour
     {
         switch (CHANGE)
         {
+            case STATUS._GAME_START_:
+                fCount =
+                Time.timeScale = 0;//時間をとめる
+                MainManager.NowStatus = CHANGE;
+                break;
+
             case STATUS._GAME_PLAY_:
                 Time.timeScale = 1;//時間をすすめる
                 MainManager.NowStatus = CHANGE;
@@ -78,12 +98,12 @@ public class MainManager : MonoBehaviour
                 break;
 
             case STATUS._GAME_CLEAR_:
-                Time.timeScale = 1;//時間をすすめる
+                Time.timeScale = 0;//時間を止める
                 MainManager.NowStatus = CHANGE;
                 break;
 
             case STATUS._GAME_OVER_:
-                Time.timeScale = 1;//時間をすすめる
+                Time.timeScale = 1;//時間を止める
                 MainManager.NowStatus = CHANGE;
                 break;
 
