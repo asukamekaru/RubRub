@@ -6,7 +6,7 @@ public class FireController : MonoBehaviour
 {
     string TargetTagName = "FireWall";//= new string { "FireWall" };
     const float LifeLimit = 50.0f;
-    public float LifeTimeCoun;
+    public float LifeTimeCoun = 0.0f;
 
     void Update()
     {
