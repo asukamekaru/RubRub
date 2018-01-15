@@ -108,21 +108,18 @@ namespace MouseController
                         MouseX_UpFlg && MouseX_DownFlg && MouseY_UpFlg &&
                         MouseY_DownFlg && MouseVector_Total > 30.0f)
                     {
-                        Debug.Log("丸判定 通常");
                         WallType[0] = 1;
                         MainManager.IFCreateCall();
                         
                     }
                     else if (MouseVector_Total_X > MouseVector_Total_Y && MouseVector_Total > 30.0f)
                     {
-                        Debug.Log("横判定 火の壁");
                         WallType[1] = 1;
                         MainManager.IFCreateCall();
                        
                     }
                     else if (MouseVector_Total > 30.0f)
                     {
-                        Debug.Log("縦判定 敵の壁");
                         WallType[2] = 1;
                         MainManager.IFCreateCall();
                         

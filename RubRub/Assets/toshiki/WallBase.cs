@@ -137,8 +137,10 @@ abstract public class WallBase : MonoBehaviour
         //自身の周りには対象のトリガーオブジェクトがない
         if (thisGameObject != TriggerObject && ObjectCount >= 2 && ObjectCreateFlg == -1)
         {
-            Instantiate(BigFirePrefab, thisGameObject.transform.position, BigFireRote);
-            Instantiate(AttackFirePrefab, thisGameObject.transform.position, AttackFireRote);
+            GameObject BigFire = (GameObject)Instantiate(BigFirePrefab, thisGameObject.transform.position, BigFireRote);
+            GameObject Fire = (GameObject)Instantiate(AttackFirePrefab, thisGameObject.transform.position, AttackFireRote);
+            BigFire.transform.parent = transform;
+            Fire.transform.parent = transform;
         }
     }
 
@@ -150,7 +152,7 @@ abstract public class WallBase : MonoBehaviour
 
         CubeControl obsTriggerNear;//検索対象オブジェクトの<CubeControl>一時的保管場所
         GameObject TriggerObject = null; //検索結果のオブジェクトを入れるやつ
-
+        
         foreach (GameObject obs in GameObject.FindGameObjectsWithTag(TagName))
         {
             if (obs != thisGameObject)
@@ -162,7 +164,88 @@ abstract public class WallBase : MonoBehaviour
         //自身の周りには対象のトリガーオブジェクトがない
         if (TriggerObject != null)
         {
-            Debug.Log("ワープするよー");
+            //ワープ先から近いエネミーを検索用変数
+            float NearEnemyDistance = 3.0f;
+            float tmpDistance = 0.0f;           //距離用一時変数
+            float nearDistance = 0.0f;          //最も近いオブジェクトの距離
+            GameObject TargetEnemy = null;
+
+            //移動先の壁の周囲のエネミーを検索し、エネミーの位置により移動先を少しずらす（移動先の壁に接触しないように）
+            foreach (GameObject obs in GameObject.FindGameObjectsWithTag("Enemy"))
+            {
+                //自身と取得したオブジェクトの距離を取得
+                tmpDistance = Vector3.Distance(obs.transform.position, TriggerObject.transform.position);
+
+                //オブジェクトの距離が近いか、距離0であればオブジェクト名を取得
+                //一時変数に距離を格納
+                if (nearDistance == 0.0f || nearDistance > tmpDistance)
+                {
+                    nearDistance = tmpDistance;
+                    TargetEnemy = obs;
+                }
+            }
+            if(TargetEnemy != null && nearDistance != 0.0f && nearDistance <= NearEnemyDistance)
+            {
+                float DifferenceX;
+                float DifferenceZ;
+                //壁との接触を避けるため少し移動ポイントをずらす
+                float WapePoint = 1.5f;
+                //X軸、Z軸のプレイヤーと壁の座標の差を取得
+                //差のより大きい方を優先とし向きを設定
+                DifferenceX = TargetEnemy.transform.position.x - TriggerObject.transform.position.x;
+                DifferenceZ = TargetEnemy.transform.position.z - TriggerObject.transform.position.z;
+                //負の数を正の数へ変更
+                if (DifferenceX < 0)
+                {
+                    DifferenceX *= -1;
+                }
+                if (DifferenceZ < 0)
+                {
+                    DifferenceZ *= -1;
+                }
+
+                if (DifferenceX < DifferenceZ)
+                {
+                    if (Player.transform.position.z > TriggerObject.transform.position.z)
+                    {
+                        //Debug.Log("下");
+                        //180
+                        //Enemy.transform.position = new Vector3(6.0f,1.0f,7.0f);
+                        Enemy.transform.position = new Vector3(TriggerObject.transform.position.x,
+                            TriggerObject.transform.position.y, TriggerObject.transform.position.z - WapePoint);
+                    }
+                    else
+                    {
+                        //Debug.Log("上");
+                        //Enemy.transform.position = new Vector3(6.0f, 1.0f, 7.0f);
+                        Enemy.transform.position = new Vector3(TriggerObject.transform.position.x,
+                            TriggerObject.transform.position.y, TriggerObject.transform.position.z + WapePoint);
+                    }
+                }
+                else if (DifferenceX > DifferenceZ)
+                {
+                    if (Player.transform.position.x > TriggerObject.transform.position.x)
+                    {
+                        //Debug.Log("左");
+                        //Enemy.transform.position = new Vector3(6.0f, 1.0f, 7.0f);
+                        Enemy.transform.position = new Vector3(TriggerObject.transform.position.x - WapePoint,
+                            TriggerObject.transform.position.y, TriggerObject.transform.position.z);
+                    }
+                    else
+                    {
+                        //Debug.Log("右");
+                        //Enemy.transform.position = new Vector3(6.0f, 1.0f, 7.0f);
+                        Enemy.transform.position = new Vector3(TriggerObject.transform.position.x + WapePoint,
+                            TriggerObject.transform.position.y, TriggerObject.transform.position.z);
+                    }
+                }
+                else
+                {
+                    Debug.Log("差が同じにより初期値０となります。");
+                }
+                //わーぷ
+                Debug.Log(Enemy.transform.position);
+            }
         }
     }
 }

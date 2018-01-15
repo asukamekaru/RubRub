@@ -11,22 +11,23 @@ public class EnemyWarp : WallBase
 
     void Update()
     {
-        Debug.Log("WallType" + WallType);
         if (EnemyCollisionFlg)
         {
-            EnemyWarp(this.gameObject, WallName[WallType - 1], Enemy);
+           
         }
     }
 
     //オブジェクトが衝突したとき
     public void OnCollisionEnter(Collision collision)
     {
-        if (this.tag == "EnemyWall")
+        if (this.gameObject.tag == "EnemyWall")
         {
             if (collision.gameObject.tag == "Enemy")
             {
                 Enemy = collision.gameObject;
+
                 EnemyCollisionFlg = true;
+                EnemyWarp(this.gameObject, WallName[WallType - 1], collision.gameObject);
             }
         }
 
