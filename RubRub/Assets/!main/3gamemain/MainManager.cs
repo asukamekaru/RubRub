@@ -15,12 +15,29 @@ public class MainManager : MonoBehaviour
 {
     ////////////////////////////////////// 変数シンボル //////////////////////////////////////
 
+    //時間
     [SerializeField]
-    [Header("ゲームが始まるまでの時間")]
-    private float fSTARTTIMER;
+    [Header("ゲームが始まるまでのインターバル")]
+    private float fSTARTINTERVAL;
+    [SerializeField]
+    [Header("ゴールしてシーン以降するまでのインターバル")]
+    private float fGOALINTERVAL;
+    [SerializeField]
+    [Header("死んでシーン以降するまでのインターバル")]
+    private float fDEADINTERVAL;
+
+    //数字
+    [SerializeField]
+    [Header("ゴールの範囲")]
+    private int iClearPoint = 1;
+
+    //スクリプト
     [Header("カメラスクリプト")]
     public cameraScript camerascript;
+    [Header("プレイヤー死亡スクリプト")]
+    public PlayerDead playerdead;
 
+    //ポイント
     [SerializeField]
     [Header("スタートのポイント")]
     private GameObject StartPoint;
@@ -28,6 +45,7 @@ public class MainManager : MonoBehaviour
     [Header("ゴールのポイント")]
     private GameObject GoalPoint;
 
+    //オブジェクト
     [SerializeField]
     [Header("プレイヤーオブジェクト")]
     private GameObject Player;
@@ -59,11 +77,18 @@ public class MainManager : MonoBehaviour
         switch (NowStatus)
         {
             case STATUS._GAME_START_:
-                if (++fCount > fSTARTTIMER) ChangeStatus(STATUS._GAME_PLAY_);//fSTARTTIMERミリ秒後スタート
+                if (++fCount > fSTARTINTERVAL) ChangeStatus(STATUS._GAME_PLAY_);//fSTARTTIMERミリ秒後スタート
                 break;
 
             case STATUS._GAME_PLAY_:
-               if (Player.transform.position == GoalPoint.transform.position)  ChangeStatus(STATUS._GAME_CLEAR_);
+                //ゴール範囲に入ればクリア
+                if (Player.transform.position.x >= GoalPoint.transform.position.x - iClearPoint &&
+                    Player.transform.position.x <= GoalPoint.transform.position.x + iClearPoint &&
+                    Player.transform.position.y >= GoalPoint.transform.position.y - iClearPoint &&
+                    Player.transform.position.y <= GoalPoint.transform.position.y + iClearPoint &&
+                    Player.transform.position.z >= GoalPoint.transform.position.z - iClearPoint &&
+                    Player.transform.position.z <= GoalPoint.transform.position.z + iClearPoint) ChangeStatus(STATUS._GAME_CLEAR_);
+
                 break;
 
             case STATUS._GAME_RUB_:
@@ -73,12 +98,13 @@ public class MainManager : MonoBehaviour
                 break;
 
             case STATUS._GAME_CLEAR_:
-               if (++fCount > fSTARTTIMER) SceneManager.LoadScene("GameClear");
+                if (++fCount > fGOALINTERVAL) SceneManager.LoadScene("GameClear");
                 break;
 
             case STATUS._GAME_OVER_:
 
                 camerascript.UPCAMERA(1);
+                if (playerdead.DEAD()) if (++fCount > fDEADINTERVAL) SceneManager.LoadScene("GameOver");
 
                 break;
         }

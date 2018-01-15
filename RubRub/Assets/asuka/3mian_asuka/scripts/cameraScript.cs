@@ -29,7 +29,7 @@ public class cameraScript : MonoBehaviour
         iCameraView = CAMERA_SCALE_INIT;
     }
 
-    public void UPCAMERA(int i)
+    public bool UPCAMERA(int i)
     {
         if (iCameraView != CAMERA_SCALE_DEAD)
         {
@@ -38,9 +38,9 @@ public class cameraScript : MonoBehaviour
         }
         else
         {
-            MainManager.NowStatus = MainManager.STATUS._GAME_OVER_;
+            return false;
         }
-        Debug.Log(iCameraView);
+        return false;
     }
 
     // 各フレームで、Update の後に LateUpdate が呼び出されます。
