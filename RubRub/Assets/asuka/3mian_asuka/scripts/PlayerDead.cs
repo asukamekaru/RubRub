@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerDead : MonoBehaviour
 {
 
-    static Animator _animator;
+    Animator _animator;
+    AnimatorStateInfo animInfo;
 
     [SerializeField]
     public cameraScript camerascript;
@@ -15,23 +16,26 @@ public class PlayerDead : MonoBehaviour
     void Start()
     {
         _animator = GetComponent<Animator>();
+        animInfo = _animator.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
     }
 
     public bool DEAD()
     {
         if (camerascript.iCameraView <= camerascript.CAMERA_SCALE_DEAD) _animator.SetBool("Dead", true);
 
-        AnimatorStateInfo animInfo = _animator.GetCurrentAnimatorStateInfo(0);
 
-        if (animInfo.IsName("GoDown"))
+        if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))    // ここに到達直後はnormalizedTimeが"Default"の経過時間を拾ってしまうので、Resultに遷移完了するまではreturnする。
+            return false;
+        if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)    // 待機時間を作りたいならば、ここの値を大きくする。
+            return false;
+        if (animInfo.normalizedTime <= 1.0f)
         {
-
             Debug.Log("DEAD");
-            return true;
+           // return true;
         }
         else
         {
-            Debug.Log("NONDEAD");
+            Debug.Log("DEAD");
         }
         return false;
     }
