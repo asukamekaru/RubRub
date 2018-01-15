@@ -21,23 +21,26 @@ public class PlayerDead : MonoBehaviour
 
     public bool DEAD()
     {
-        if (camerascript.iCameraView <= camerascript.CAMERA_SCALE_DEAD) _animator.SetBool("Dead", true);
+        /*if (camerascript.iCameraView <= camerascript.CAMERA_SCALE_DEAD)*/ _animator.SetBool("Dead", true);
 
-
-        if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))    // ここに到達直後はnormalizedTimeが"Default"の経過時間を拾ってしまうので、Resultに遷移完了するまではreturnする。
-            return false;
-        if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)    // 待機時間を作りたいならば、ここの値を大きくする。
-            return false;
-        if (animInfo.normalizedTime <= 1.0f)
+        // ここに到達直後はnormalizedTimeが"Default"の経過時間を拾ってしまうので、Resultに遷移完了するまではreturnする。
+        if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("GoDown"))
         {
-            Debug.Log("DEAD");
-           // return true;
+            Debug.Log("1");
+            return false;
+        }
+        // 待機時間を作りたいならば、ここの値を大きくする。
+        if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+        {
+            Debug.Log("2");
+            return false;
         }
         else
         {
-            Debug.Log("DEAD");
+            Debug.Log("3");
+            return true;
         }
-        return false;
+        //return false;
     }
 
     void OnCollisionEnter(Collision collision)

@@ -67,7 +67,7 @@ public class MainManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //NowStatus = STATUS._GAME_START_;
+        Player.transform.position = StartPoint.transform.position;
         ChangeStatus(STATUS._GAME_START_);
     }
 
