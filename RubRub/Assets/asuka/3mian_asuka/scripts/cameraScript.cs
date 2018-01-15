@@ -15,9 +15,10 @@ public class cameraScript : MonoBehaviour
     private Vector3 offset;         //プレイヤーとカメラ間のオフセット距離を格納する Public 変数
 
     private const int CAMERA_SCALE_INIT = 60;//カメラの初期の拡大率
-    private const int CAMERA_SCALE_DEAD = 20;//カメラのプレイヤーが死んだときの拡大率
+    public readonly int CAMERA_SCALE_DEAD = 20;//カメラのプレイヤーが死んだときの拡大率
 
-    static int iCameraView;    //カメラの拡大の数字
+    [HideInInspector]
+    public int iCameraView;    //カメラの拡大の数字
 
     // イニシャライゼーションに使用ます。
     void Start()
@@ -28,7 +29,7 @@ public class cameraScript : MonoBehaviour
         iCameraView = CAMERA_SCALE_INIT;
     }
 
-    public static void UPCAMERA(int i)
+    public void UPCAMERA(int i)
     {
         if (iCameraView != CAMERA_SCALE_DEAD)
         {
@@ -40,8 +41,6 @@ public class cameraScript : MonoBehaviour
             MainManager.NowStatus = MainManager.STATUS._GAME_OVER_;
         }
         Debug.Log(iCameraView);
-
-
     }
 
     // 各フレームで、Update の後に LateUpdate が呼び出されます。
