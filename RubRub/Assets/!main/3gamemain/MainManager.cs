@@ -8,6 +8,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using MouseController;
 
 public class MainManager : MonoBehaviour
@@ -15,8 +16,21 @@ public class MainManager : MonoBehaviour
     ////////////////////////////////////// 変数シンボル //////////////////////////////////////
 
     [SerializeField]
+    [Header("ゲームが始まるまでの時間")]
     private float fSTARTTIMER;
+    [Header("カメラスクリプト")]
     public cameraScript camerascript;
+
+    [SerializeField]
+    [Header("スタートのポイント")]
+    private GameObject StartPoint;
+    [SerializeField]
+    [Header("ゴールのポイント")]
+    private GameObject GoalPoint;
+
+    [SerializeField]
+    [Header("プレイヤーオブジェクト")]
+    private GameObject Player;
 
     ////////////////////////////////////// 変数 //////////////////////////////////////
     public enum LAST_KEY { _KEY_RIGHT_, _KEY_LEFT_, _KEY_UP_, _KEY_DOWN_ };//ゲームの状態
@@ -49,6 +63,7 @@ public class MainManager : MonoBehaviour
                 break;
 
             case STATUS._GAME_PLAY_:
+               if (Player.transform.position == GoalPoint.transform.position)  ChangeStatus(STATUS._GAME_CLEAR_);
                 break;
 
             case STATUS._GAME_RUB_:
@@ -58,6 +73,7 @@ public class MainManager : MonoBehaviour
                 break;
 
             case STATUS._GAME_CLEAR_:
+               if (++fCount > fSTARTTIMER) SceneManager.LoadScene("GameClear");
                 break;
 
             case STATUS._GAME_OVER_:
@@ -67,7 +83,6 @@ public class MainManager : MonoBehaviour
                 break;
         }
     }
-
 
     //============================================
     // 状態を変える時に通過する関数　
@@ -98,6 +113,7 @@ public class MainManager : MonoBehaviour
                 break;
 
             case STATUS._GAME_CLEAR_:
+                fCount =
                 Time.timeScale = 0;//時間を止める
                 MainManager.NowStatus = CHANGE;
                 break;
