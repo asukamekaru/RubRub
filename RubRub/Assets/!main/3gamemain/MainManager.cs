@@ -98,16 +98,27 @@ public class MainManager : MonoBehaviour
                 break;
 
             case STATUS._GAME_CLEAR_:
-                if (++fCount > fGOALINTERVAL) SceneManager.LoadScene("GameClear");
+                if (++fCount > fGOALINTERVAL) ChangeScene("GameClear", 1);
                 break;
 
             case STATUS._GAME_OVER_:
 
-                camerascript.UPCAMERA(1);
-                if (playerdead.DEAD()) if (++fCount > fDEADINTERVAL) SceneManager.LoadScene("GameOver");
-
+                camerascript.UPCAMERA(1);//カメラズームイン
+                if (playerdead.DEAD() && ++fCount > fDEADINTERVAL)//死んだアニメーションが流され、指定の時間に到達した時シーンを以降させる
+                {
+                    ChangeScene("GameOver", 1);//シーンを変える
+                }
                 break;
         }
+    }
+
+    //===============================================================================================
+    // シーンを変える時に通過する関数　(シーン名と時間の流れを指定 1 = 時間を進める 2 = 時間を止める)
+    //===============================================================================================
+    public void ChangeScene(string SceneName,int time)
+    {
+        Time.timeScale = time;
+        SceneManager.LoadScene(SceneName);
     }
 
     //============================================

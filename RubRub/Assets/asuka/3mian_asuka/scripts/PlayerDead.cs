@@ -37,6 +37,7 @@ public class PlayerDead : MonoBehaviour
         }
         else
         {
+            Time.timeScale = 0;//時間を止める
             Debug.Log("3");
             return true;
         }

@@ -44,21 +44,25 @@ public class Yuko_Move : MonoBehaviour {
         //transform.Rotate(0, moveX * RotateSpeed, 0);
         if (fMoveX > 0)  //右移動
         {
+            MainManager.LastKey = MainManager.LAST_KEY._KEY_RIGHT_;
             float fStep = cfRotspeed * Time.deltaTime;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, cfDIRE_RIGHT, 0), fStep);
         }
         else if (fMoveX < 0) //左
         {
+            MainManager.LastKey = MainManager.LAST_KEY._KEY_LEFT_;
             float fStep = cfRotspeed * Time.deltaTime;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, cfDIRE_LEFT, 0), fStep);
         }
         else if (fMoveZ > 0) //上
         {
+            MainManager.LastKey = MainManager.LAST_KEY._KEY_UP_;
             float fStep = cfRotspeed * Time.deltaTime;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, cfDIRE_UP, 0), fStep);
         }
         else if (fMoveZ < 0) //下
         {
+            MainManager.LastKey = MainManager.LAST_KEY._KEY_DOWN_;
             float fStep = cfRotspeed * Time.deltaTime;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, cfDIRE_DOWN, 0), fStep);
         }
