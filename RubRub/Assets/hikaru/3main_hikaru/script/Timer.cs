@@ -13,7 +13,9 @@ public class Timer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	}
+        pf_totalTime += 1;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -21,6 +23,7 @@ public class Timer : MonoBehaviour {
         if (pf_totalTime < 0)
         {
             pf_totalTime = 0;
+            MainManager.NowStatus = MainManager.STATUS._GAME_OVER_;
             Debug.Log("終了");
         }
         i_Seconds = (int)pf_totalTime / 60;

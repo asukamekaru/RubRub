@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿//=================================================
+// GameMainScene <= 壁を透過させるスクリプト
+// AsukaMekaru
+// 2017/01/16
+//=================================================
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
