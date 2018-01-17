@@ -24,7 +24,6 @@ public class DeadEnemy : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(DeadAnime);
         switch (DeadAnime)
         {
             case LAST_KEY._NONE://生きてる間

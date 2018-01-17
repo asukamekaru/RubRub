@@ -87,7 +87,6 @@ public class Mummy_Move : MonoBehaviour
 
         if (_angle <= sightAngle)
         {
-            Debug.Log("Target In SightAngle");
 
             gazeRay1.origin = lineOfSight1.position;
             gazeRay1.direction = target.position - lineOfSight1.position;

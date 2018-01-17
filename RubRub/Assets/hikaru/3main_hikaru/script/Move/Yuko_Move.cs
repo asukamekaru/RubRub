@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Yuko_Move : MonoBehaviour {
+public class Yuko_Move : MonoBehaviour
+{
+
+
 
     public float fSpeed = 3f;
     //float RotateSpeed = 2f;
     float fMoveX = 0f;
     float fMoveZ = 0f;
+
     //float fAngle = 1f;
     Rigidbody rb;
 
@@ -19,19 +23,17 @@ public class Yuko_Move : MonoBehaviour {
 
     Animator WalkAnimator;      //アニメーション宣言
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
 
         rb = GetComponent<Rigidbody>();
         this.WalkAnimator = GetComponent<Animator>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
 
-        // キャラ移動処理
-        fMoveX = Input.GetAxis("Horizontal") * fSpeed;
-        fMoveZ = Input.GetAxis("Vertical") * fSpeed;
+    // Update is called once per frame
+    void Update()
+    {
 
         //斜め移動阻止処理
         if (fMoveX != 0) fMoveZ = 0;
@@ -76,8 +78,19 @@ public class Yuko_Move : MonoBehaviour {
         {
             WalkAnime(false);
         }
-		
-	}
+
+    }
+
+    public void getControll(Vector3 v)
+    {
+        float backupx = v.x;
+        float buckupz = v.y;
+
+        
+
+    }
+
+    
 
     //回転処理
     void FixedUpdate()

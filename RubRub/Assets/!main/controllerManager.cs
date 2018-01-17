@@ -17,8 +17,11 @@ public class controllerManager : MonoBehaviour
     public Button getControllerDown;//取得する下ボタンなど
 
     [SerializeField]
+    [Header("ホームシーンならココにホームマネージャーを入れる")]
     private homeManager homemanager;
-
+    [SerializeField]
+    [Header("メインシーンならココにプレイヤーキャラを入れる")]
+    private Yuko_Move yukomove;
 
     // Use this for initialization
     void Start()
@@ -27,21 +30,28 @@ public class controllerManager : MonoBehaviour
         getControllerRight.onClick.AddListener(Right);
         getControllerUp.onClick.AddListener(Up);
         getControllerDown.onClick.AddListener(Down);
+
+        getControllerLeft.onClick.AddListener(Update);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void Left()
     {
         switch (SceneManager.GetActiveScene().name)
         {
+            //ホームシーンなら
             case "HomeScene":
             case "home_test_asuka":
                 homemanager.getControll("left");
+                break;
+            //ゲームメインシーンなら
+            case "GameMainScene":
+               // yukomove.getControll("left");
                 break;
         }
     }
@@ -50,9 +60,15 @@ public class controllerManager : MonoBehaviour
     {
         switch (SceneManager.GetActiveScene().name)
         {
+            //ホームシーンなら
             case "HomeScene":
             case "home_test_asuka":
                 homemanager.getControll("right");
+                break;
+
+            //ゲームメインシーンなら
+            case "GameMainScene":
+                //yukomove.getControll("right");
                 break;
         }
     }
@@ -61,16 +77,29 @@ public class controllerManager : MonoBehaviour
     {
         switch (SceneManager.GetActiveScene().name)
         {
+            //ホームシーンなら
             case "HomeScene":
+                //何もしない
+                break;
+
+            case "GameMainScene":
+               // yukomove.getControll("up");
                 break;
         }
     }
-    
+
     private void Down()
     {
         switch (SceneManager.GetActiveScene().name)
         {
+            //ホームシーンなら
             case "HomeScene":
+                //何もしない
+                break;
+
+            //ゲームメインシーンなら
+            case "GameMainScene":
+               // yukomove.getControll("down");
                 break;
         }
     }
