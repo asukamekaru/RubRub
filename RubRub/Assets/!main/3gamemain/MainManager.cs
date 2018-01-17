@@ -49,6 +49,9 @@ public class MainManager : MonoBehaviour
     [SerializeField]
     [Header("プレイヤーオブジェクト")]
     private GameObject Player;
+    [SerializeField]
+    [Header("ブラックアウトするパネル")]
+    private GameObject BlackOutPanel;
 
     ////////////////////////////////////// 変数 //////////////////////////////////////
     public enum LAST_KEY { _KEY_RIGHT_, _KEY_LEFT_, _KEY_UP_, _KEY_DOWN_ };//ゲームの状態
@@ -57,8 +60,10 @@ public class MainManager : MonoBehaviour
     public enum STATUS { _GAME_START_, _GAME_PLAY_, _GAME_RUB_, _GAME_POSE_, _GAME_CLEAR_, _GAME_OVER_ };//ゲームの状態
     public static STATUS NowStatus;
 
-    public static string sNowGround, sNowGroundTag, sCreateGroundName;//今立っている地面 - 今立っている地面のタグ - 作りたい場所の地面
+    public enum BLACKOUT_COLOR { _BLACK_, _WHITE_ = 255 };//ブラックアウト時の色
 
+    public static string sNowGround, sNowGroundTag, sCreateGroundName;//今立っている地面 - 今立っている地面のタグ - 作りたい場所の地面
+    
     public static CubeControl CreateGround;
     public static EnemyWarp enemyWarp;
 
@@ -77,7 +82,17 @@ public class MainManager : MonoBehaviour
         switch (NowStatus)
         {
             case STATUS._GAME_START_:
-                if (++fCount > fSTARTINTERVAL) ChangeStatus(STATUS._GAME_PLAY_);//fSTARTTIMERミリ秒後スタート
+
+                BlackOutPanel.gameObject.SetActive(true);//パネルを出すついでに操作できなくする
+
+                if (BlackOutPanel.gameObject.GetComponent<BlackOut>().GameBlackOut((int)BLACKOUT_COLOR._BLACK_, "start"))
+                {
+                    if (++fCount > fSTARTINTERVAL)
+                    {
+                        BlackOutPanel.gameObject.SetActive(false);//パネルを消す
+                        ChangeStatus(STATUS._GAME_PLAY_);//fSTARTTIMERミリ秒後スタート
+                    }
+                }
                 break;
 
             case STATUS._GAME_PLAY_:
@@ -98,19 +113,32 @@ public class MainManager : MonoBehaviour
                 break;
 
             case STATUS._GAME_CLEAR_:
-                if (++fCount > fGOALINTERVAL) ChangeScene("GameClear", 1);
+
+                BlackOutPanel.gameObject.SetActive(true);//パネルを出すついでに操作できなくする
+
+                if (++fCount > fGOALINTERVAL)
+                {
+                    if (BlackOutPanel.gameObject.GetComponent<BlackOut>().GameBlackOut((int)BLACKOUT_COLOR._WHITE_ , "end")) ChangeScene("GameClear", 1);
+                }
                 break;
 
             case STATUS._GAME_OVER_:
 
+                BlackOutPanel.gameObject.SetActive(true);//パネルを出すついでに操作できなくする
+
                 camerascript.UPCAMERA(1);//カメラズームイン
+
                 if (playerdead.DEAD() && ++fCount > fDEADINTERVAL)//死んだアニメーションが流され、指定の時間に到達した時シーンを以降させる
                 {
-                    ChangeScene("GameOver", 1);//シーンを変える
+                    if(BlackOutPanel.gameObject.GetComponent<BlackOut>().GameBlackOut((int)BLACKOUT_COLOR._BLACK_ , "end")) ChangeScene("GameOver", 1);//シーンを変える
                 }
                 break;
         }
     }
+
+    //============================================
+    // ブラックアウトさせる関数
+    //============================================
 
     //===============================================================================================
     // シーンを変える時に通過する関数　(シーン名と時間の流れを指定 1 = 時間を進める 2 = 時間を止める)
@@ -176,6 +204,8 @@ public class MainManager : MonoBehaviour
                     if (sNowGroundTag == "Ground_Hori")
                     {
                         CreateGround.enabled = true;//壁になーれ
+                        CreateGround.MoveEnd = false;
+                        CreateGround.endPosition = new Vector3(CreateGround.transform.position.x, 1, CreateGround.transform.position.z);
                         for (int i = 0; i < 3; i++)
                         {
                             if (MouseController.MouseController.WallType[i] == 1)
@@ -191,6 +221,8 @@ public class MainManager : MonoBehaviour
                     if (sNowGroundTag == "Ground_Hori")
                     {
                         CreateGround.enabled = true;//壁になーれ
+                        CreateGround.MoveEnd = false;
+                        CreateGround.endPosition = new Vector3(CreateGround.transform.position.x, 1, CreateGround.transform.position.z);
                         for (int i = 0; i < 3; i++)
                         {
                             if (MouseController.MouseController.WallType[i] == 1)
@@ -206,6 +238,8 @@ public class MainManager : MonoBehaviour
                     if (sNowGroundTag == "Ground_Vert")
                     {
                         CreateGround.enabled = true;//壁になーれ
+                        CreateGround.MoveEnd = false;
+                        CreateGround.endPosition = new Vector3(CreateGround.transform.position.x, 1, CreateGround.transform.position.z);
                         for (int i = 0; i < 3; i++)
                         {
                             if (MouseController.MouseController.WallType[i] == 1)
@@ -221,6 +255,8 @@ public class MainManager : MonoBehaviour
                     if (sNowGroundTag == "Ground_Vert")
                     {
                         CreateGround.enabled = true;//壁になーれ
+                        CreateGround.MoveEnd = false;
+                        CreateGround.endPosition = new Vector3(CreateGround.transform.position.x, 1, CreateGround.transform.position.z);
                         for (int i = 0; i < 3; i++)
                         {
                             if (MouseController.MouseController.WallType[i] == 1)
@@ -229,6 +265,67 @@ public class MainManager : MonoBehaviour
                                 enemyWarp.WallType = i;
                             }
                         }
+                    }
+                    break;
+            }
+        }
+    }
+
+    //============================================
+    // 壁が消せるかを判定する関数
+    //============================================
+
+    public static void IFDeleteCall()
+    {
+        if (sNowGround != sCreateGroundName)//立っている地面と作りたい地面が別か？
+        {
+            switch (LastKey)//最後に入力したキーと立っている地面のタグ（方向）が合理するか？
+            {
+                case LAST_KEY._KEY_RIGHT_:
+                    if (sNowGroundTag == "Ground_Hori")
+                    {
+                        //すべての要素を消す
+                        CreateGround.enabled = true;//壁になーれ
+                        CreateGround.MoveEnd = false;
+                        CreateGround.WallType = 0;
+                        enemyWarp.WallType = 0;
+                        CreateGround.endPosition = new Vector3(CreateGround.transform.position.x, -1, CreateGround.transform.position.z);
+                    }
+                    break;
+
+                case LAST_KEY._KEY_LEFT_:
+                    if (sNowGroundTag == "Ground_Hori")
+                    {
+                        //すべての要素を消す
+                        CreateGround.enabled = true;//壁になーれ
+                        CreateGround.MoveEnd = false;
+                        CreateGround.WallType = 0;
+                        enemyWarp.WallType = 0;
+                        CreateGround.endPosition = new Vector3(CreateGround.transform.position.x, -1, CreateGround.transform.position.z);
+                    }
+                    break;
+
+                case LAST_KEY._KEY_UP_:
+                    if (sNowGroundTag == "Ground_Vert")
+                    {
+                        //すべての要素を消す
+                        CreateGround.enabled = true;//壁になーれ
+                        CreateGround.MoveEnd = false;
+                        CreateGround.WallType = 0;
+                        enemyWarp.WallType = 0;
+                        CreateGround.endPosition = new Vector3(CreateGround.transform.position.x, -1, CreateGround.transform.position.z);
+                    }
+                    break;
+
+                case LAST_KEY._KEY_DOWN_:
+                    if (sNowGroundTag == "Ground_Vert")
+                    {
+                        //すべての要素を消す
+                        CreateGround.enabled = true;//壁になーれ
+                        CreateGround.MoveEnd = false;
+                        CreateGround.WallType = 0;
+                        enemyWarp.WallType = 0;
+                        CreateGround.endPosition = new Vector3(CreateGround.transform.position.x, -1, CreateGround.transform.position.z);
                     }
                     break;
             }

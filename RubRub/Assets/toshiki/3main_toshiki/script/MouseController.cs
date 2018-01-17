@@ -108,8 +108,8 @@ namespace MouseController
                         MouseX_UpFlg && MouseX_DownFlg && MouseY_UpFlg &&
                         MouseY_DownFlg && MouseVector_Total > 30.0f)
                     {
-                        WallType[0] = 1;
-                        MainManager.IFCreateCall();
+                        WallType[0] = 0;
+                        MainManager.IFDeleteCall();
                         
                     }
                     else if (MouseVector_Total_X > MouseVector_Total_Y && MouseVector_Total > 30.0f)

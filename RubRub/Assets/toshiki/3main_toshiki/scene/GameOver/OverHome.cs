@@ -8,6 +8,6 @@ public class OverHome : MonoBehaviour
 
     public void SceneChangeHome()
     {
-        SceneManager.LoadScene("GameOver");
+        SceneManager.LoadScene("HomeScene");
     }
 }

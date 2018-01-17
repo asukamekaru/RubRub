@@ -35,6 +35,11 @@ public class Yuko_Move : MonoBehaviour
     void Update()
     {
 
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow)) getControll(new Vector2(0, Input.GetAxis("Vertical")));
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) getControll(new Vector2(Input.GetAxis("Horizontal"), 0));
+        //fMoveX = Input.GetAxis("Horizontal") * fSpeed;
+        //fMoveZ = Input.GetAxis("Vertical") * fSpeed;
+
         //斜め移動阻止処理
         if (fMoveX != 0) fMoveZ = 0;
         if (fMoveZ != 0) fMoveX = 0;
@@ -68,6 +73,11 @@ public class Yuko_Move : MonoBehaviour
             float fStep = cfRotspeed * Time.deltaTime;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, cfDIRE_DOWN, 0), fStep);
         }
+        else
+        {
+            float fStep = 0 * Time.deltaTime;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, 0), fStep);
+        }
 
         //動いているときアニメ処理
         if (fMoveX != 0 || fMoveZ != 0)
@@ -81,16 +91,23 @@ public class Yuko_Move : MonoBehaviour
 
     }
 
-    public void getControll(Vector3 v)
+
+
+    public void getControll(Vector2 v)
     {
-        float backupx = v.x;
+        float x = v.x;
+        float z = v.y;
+        float buckupx = v.x;
         float buckupz = v.y;
 
-        
+        if (x < 0) x *= -1.0f;
+        if (z < 0) z *= -1.0f;
 
+        if(x > z) { fMoveZ = 0; fMoveX = buckupx * fSpeed; }
+        else { fMoveZ = buckupz * fSpeed; fMoveX = 0; }
     }
 
-    
+
 
     //回転処理
     void FixedUpdate()

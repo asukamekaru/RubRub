@@ -15,8 +15,7 @@ public class Scene_Migration : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("シーン移動 -開始-");
-            //SceneManager.LoadScene("");
+            SceneManager.LoadScene("HomeScene");
         }
 		
 	}

@@ -7,8 +7,8 @@ public class CubeControl : WallBase
     [SerializeField, Range(0, 10)]
     float time = 1;
 
-    [SerializeField]
-    Vector3 endPosition;
+    [HideInInspector]
+    public Vector3 endPosition;
 
     //[SerializeField]
     //AnimationCurve curve;
@@ -21,7 +21,8 @@ public class CubeControl : WallBase
     public ForceMode forceMode = ForceMode.VelocityChange;
 
     //翁長君作成変数
-    bool MoveEnd;
+    [HideInInspector]
+    public bool MoveEnd;
     // Use this for initialization
     void Start()
     {

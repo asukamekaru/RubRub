@@ -24,7 +24,7 @@ public class JoyCtrl : MonoBehaviour {
 	[SerializeField]
 	private RectTransform joystickArea;
 	private bool touchPresent = false;
-	private Vector3 movementVector;
+	private Vector2 movementVector;
 
     void Update()
     {
@@ -60,7 +60,7 @@ public class JoyCtrl : MonoBehaviour {
 		{
 			// convert the value between 1 0 to -1 +1
 			movementVector.x = ((1 - value.x) - 0.5f) * 2f;
-			movementVector.z = ((1 - value.y) - 0.5f) * 2f;
+			movementVector.y = ((1 - value.y) - 0.5f) * 2f;
 
 			if(TouchEvent != null)
 			{

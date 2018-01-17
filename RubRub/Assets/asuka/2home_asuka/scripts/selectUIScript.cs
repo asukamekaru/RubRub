@@ -17,10 +17,16 @@ public class selectUIScript : MonoBehaviour
     private homeManager homemanager;
 
     ////////////////////////////////////// 変数 //////////////////////////////////////
-    bool bBtnAnime;
+    //bool bBtnAnime;
 
     private Vector3 getVec;//取ってきた位置を保存するもの
     private float getSize;//取ってきたサイズを保存するもの
+
+    [SerializeField]
+    private string nextScene;
+
+    [HideInInspector]
+    public int iStageNum;//ステージ番号
 
     // Use this for initialization
     void Start()
@@ -49,7 +55,7 @@ public class selectUIScript : MonoBehaviour
         this.transform.localPosition = getVec;
     }
 
-    private void ClickBtn() { }//ボタンがクリックされたときの処理
+    private void ClickBtn() { if (nextScene == "NULL") return; SceneManager.LoadScene(nextScene); }//ボタンがクリックされたときの処理
 
     private float changeSign(float f) { if (f < 0) f *= -1.0f; return f; }//強制的に符号をプラスに変える
 

@@ -7,6 +7,6 @@ public class OverRetry : MonoBehaviour {
 
     public void SceneChangeRetry()
     {
-        SceneManager.LoadScene("GameOver");
+        SceneManager.LoadScene("GameMainScene");
     }
 }
