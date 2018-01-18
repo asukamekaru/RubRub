@@ -8,7 +8,7 @@ public class Flash_Text : MonoBehaviour {
  
     private GameObject p_FlashImage;
 
-    private float pf_Step = 0.0065f;    // alpah増減値(点滅スピード調整)
+    private float pf_Step = 0.0045f;    // alpah増減値(点滅スピード調整)
     static float sf_AlpahMax = 1.0f;    // alpahの最大値
     static float sf_AlpahMin = 0.2f;       // alpahの最小値
     
