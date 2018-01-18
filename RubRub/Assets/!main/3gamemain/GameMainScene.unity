@@ -1170,7 +1170,7 @@ Prefab:
     - target: {fileID: 114031722692516144, guid: 29ec3ae7659fd134e87f9baaefe917d0,
         type: 2}
       propertyPath: visibleDistance
-      value: 8
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 195064003241394860, guid: 29ec3ae7659fd134e87f9baaefe917d0,
         type: 2}
@@ -5006,6 +5006,14 @@ Prefab:
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
+    - target: {fileID: 4768220647447496, guid: 4922d2cdb39352f42b22981f6024373b, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768220647447496, guid: 4922d2cdb39352f42b22981f6024373b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4922d2cdb39352f42b22981f6024373b, type: 2}
   m_IsPrefabParent: 0
@@ -6132,6 +6140,11 @@ Prefab:
     - target: {fileID: 1076260165239484, guid: 1560cf8165f9dc1449195df80529228e, type: 2}
       propertyPath: m_TagString
       value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 23649292346835562, guid: 1560cf8165f9dc1449195df80529228e,
+        type: 2}
+      propertyPath: m_ReceiveShadows
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1560cf8165f9dc1449195df80529228e, type: 2}

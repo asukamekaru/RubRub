@@ -118,7 +118,7 @@ public class MainManager : MonoBehaviour
 
                 if (++fCount > fGOALINTERVAL)
                 {
-                    if (BlackOutPanel.gameObject.GetComponent<BlackOut>().GameBlackOut((int)BLACKOUT_COLOR._WHITE_ , "end")) ChangeScene("GameClear", 1);
+                    if (BlackOutPanel.gameObject.GetComponent<BlackOut>().GameBlackOut((int)BLACKOUT_COLOR._WHITE_, "end")) ChangeScene("GameClear", 1);
                 }
                 break;
 
