@@ -78,6 +78,7 @@ abstract public class WallBase : MonoBehaviour
         CubeControl obsTriggerNear;//検索対象オブジェクトの<CubeControl>一時的保管場所
         int ObjectCount = 0;
         GameObject TriggerObject = null; //検索結果のオブジェクトを入れるやつ
+        GameObject CreatePointObject = null;
 
         foreach (GameObject obs in GameObject.FindGameObjectsWithTag(TagName))
         {
@@ -87,8 +88,12 @@ abstract public class WallBase : MonoBehaviour
             {
                 TriggerObject = obs;
             }
+            if(obsTriggerNear.NearTriggerObject == -1)
+            {
+                CreatePointObject = obs;
+            }
         }
-
+        Debug.Log(CreatePointObject);
         //プレイヤーを参照し、敵に噴出する火の向きを設定する-------------------------------
         float DifferenceX;
         float DifferenceZ;
@@ -135,10 +140,10 @@ abstract public class WallBase : MonoBehaviour
 
         //検索結果が自分のオブジェクトではなく、同じタグのオブジェクトが2つ以上存在しており
         //自身の周りには対象のトリガーオブジェクトがない
-        if (thisGameObject != TriggerObject && ObjectCount >= 2 && ObjectCreateFlg == -1)
+        if (/*thisGameObject != TriggerObject &&*/ TriggerObject != null && ObjectCount >= 2 && CreatePointObject.gameObject.tag == "FireWall"  /*&& ObjectCreateFlg == -1*/)
         {
-            GameObject BigFire = (GameObject)Instantiate(BigFirePrefab, thisGameObject.transform.position, BigFireRote);
-            GameObject Fire = (GameObject)Instantiate(AttackFirePrefab, thisGameObject.transform.position, AttackFireRote);
+            GameObject BigFire = (GameObject)Instantiate(BigFirePrefab, CreatePointObject.transform.position, BigFireRote);
+            GameObject Fire = (GameObject)Instantiate(AttackFirePrefab, CreatePointObject.transform.position, AttackFireRote);
             BigFire.transform.parent = transform;
             Fire.transform.parent = transform;
         }
@@ -149,8 +154,6 @@ abstract public class WallBase : MonoBehaviour
         GameObject Enemy)
     {
         GameObject Player = GameObject.FindGameObjectWithTag("Player");
-
-        CubeControl obsTriggerNear;//検索対象オブジェクトの<CubeControl>一時的保管場所
         GameObject TriggerObject = null; //検索結果のオブジェクトを入れるやつ
         
         foreach (GameObject obs in GameObject.FindGameObjectsWithTag(TagName))

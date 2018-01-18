@@ -25,7 +25,6 @@ public class EnemyWarp : WallBase
             if (collision.gameObject.tag == "Enemy")
             {
                 Enemy = collision.gameObject;
-
                 EnemyCollisionFlg = true;
                 EnemyWarp(this.gameObject, WallName[WallType - 1], collision.gameObject);
             }
