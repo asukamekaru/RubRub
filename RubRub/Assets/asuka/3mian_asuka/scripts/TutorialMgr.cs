@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class TutorialMgr : MonoBehaviour {
 
     ////////////////////////////////////// 変数シンボル //////////////////////////////////////
+    [Header("各ポイントのオブジェクト")]
     const int MAXHINT = 6;
 
     [Header("各ポイントのオブジェクト")]
