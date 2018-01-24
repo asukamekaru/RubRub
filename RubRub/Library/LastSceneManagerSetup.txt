@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/asuka/3mian_asuka/scenes/tutorial.unity
+- path: Assets/!main/2gamehome/HomeScene.unity
   isLoaded: 1
   isActive: 1
