@@ -18,12 +18,14 @@ public class EnemyWarp : WallBase
     }
 
     //オブジェクトが衝突したとき
-    public void OnCollisionEnter(Collision collision)
+    public void OnCollisionStay(Collision collision)
     {
+       
         if (this.gameObject.tag == "EnemyWall")
-        {
-            if (collision.gameObject.tag == "Enemy")
+        { 
+            if (collision.gameObject.tag == "sakura")
             {
+               
                 Enemy = collision.gameObject;
                 EnemyCollisionFlg = true;
                 EnemyWarp(this.gameObject, WallName[WallType - 1], collision.gameObject);

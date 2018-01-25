@@ -7,6 +7,7 @@ public class DeadEnemy : MonoBehaviour
 
     private enum LAST_KEY { _NONE, _ANIMATION, _WAIT, _DESTROY };//ゲームの状態
     private LAST_KEY DeadAnime;
+    private bool FirstParticle;
 
     Animator _animator;
     AnimatorStateInfo animInfo;
@@ -36,7 +37,15 @@ public class DeadEnemy : MonoBehaviour
                 break;
 
             case LAST_KEY._WAIT://待つ
-                if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > fWaitingTime) DeadAnime = LAST_KEY._DESTROY;//待ち時間が終われば自分を消す
+                if(!FirstParticle)
+                {
+                    GameObject Prefab = (GameObject)Resources.Load("Prefab/Fire_Explosion_01");
+                    GameObject MakeSmoke = (GameObject)Instantiate(Prefab, new Vector3(this.transform.position.x, this.transform.position.y + 1
+                        , this.transform.position.z), Quaternion.Euler(-90.0f, 0.0f, 0.0f));
+                    //MakeSmoke.transform.parent = transform;
+                    FirstParticle = true;
+                }
+                if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > fWaitingTime)DeadAnime = LAST_KEY._DESTROY;//待ち時間が終われば自分を消す
                 break;
 
             case LAST_KEY._DESTROY://消す

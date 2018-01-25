@@ -43,8 +43,6 @@ public class BlackOut : MonoBehaviour {
             return true;
         }
 
-        Debug.Log(f_toColor);
-
         return false;
     }
 }
