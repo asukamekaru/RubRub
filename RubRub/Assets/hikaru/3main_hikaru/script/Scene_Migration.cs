@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Scene_Migration : MonoBehaviour {
 
+    [SerializeField]
+    [Header("ブラックアウトするパネル")]
+    private GameObject BlackOutPanel;
+
+    bool bPanelFlag = false;//パネルが出てるか否かのフラグ
+
 	// Use this for initialization
 	void Start () {
 		
@@ -15,8 +21,11 @@ public class Scene_Migration : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0))
         {
-            SceneManager.LoadScene("HomeScene");
+            BlackOutPanel.gameObject.SetActive(true);//パネルを出すついでに操作できなくする
+            bPanelFlag = true;
         }
+
+        if (bPanelFlag && BlackOutPanel.gameObject.GetComponent<BlackOut>().GameBlackOut(0, "end")) SceneManager.LoadScene("HomeScene");
 		
 	}
 }
