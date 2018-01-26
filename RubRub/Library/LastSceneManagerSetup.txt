@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/!main/3gamemain/GameMainScene.unity
+- path: Assets/keisuke/3main_keisuke/scene/Keiuske_Wall.unity
   isLoaded: 1
   isActive: 1

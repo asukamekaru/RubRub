@@ -21,12 +21,14 @@ public class CubeControl2 : MonoBehaviour {
     private Vector3 startPosition;
 
     private bool mode = true;   //trueなら壁を上げてfalseなら下げる
-    public GameObject up;
-    public GameObject down;
 
     Rigidbody rigidBody;
     public Vector3 force = new Vector3(0, 10, 0);
     public ForceMode forceMode = ForceMode.VelocityChange;
+
+   // public GameObject up;
+   // public GameObject down;
+
 
     // Use this for initialization
     void Start()
@@ -42,12 +44,12 @@ public class CubeControl2 : MonoBehaviour {
         if (mode)
         {
             posY = 1;
-            this.transform.parent = up.transform;   //upの子オブジェクトに登録
+           // this.transform.parent = GameObject.Find("up").transform;   //upの子オブジェクトに登録
         }
         else
         {
-            posY = -1;
-            this.transform.parent = down.transform;   //upの子オブジェクトに登録
+            posY = -2.1f;
+            //this.transform.parent = GameObject.Find("down").transform;   //downの子オブジェクトに登録
         }
 
         endPosition = new Vector3(this.transform.position.x, posY, this.transform.position.z);
@@ -72,7 +74,10 @@ public class CubeControl2 : MonoBehaviour {
 
     void Update()
     {
-       
+        if (this.gameObject.transform.position.y < -2)
+        {
+            Destroy(this.gameObject);
+        }
         var diff = Time.timeSinceLevelLoad - startTime;
         if (diff > time)
         {
