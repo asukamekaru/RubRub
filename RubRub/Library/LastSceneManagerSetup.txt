@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/!main/3gamemain/GameMainScene.unity
+- path: Assets/toshiki/3main_toshiki/scene/GameClear/GameClear.unity
   isLoaded: 1
   isActive: 1
