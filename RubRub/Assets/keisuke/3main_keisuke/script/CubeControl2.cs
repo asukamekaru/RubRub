@@ -4,7 +4,8 @@ using UnityEngine;
 using GroundC;
 
 
-public class CubeControl2 : MonoBehaviour {
+public class CubeControl2 : WallBase
+{
 
     [SerializeField, Range(0, 10)]
     float time = 1; //移動時間
@@ -25,6 +26,10 @@ public class CubeControl2 : MonoBehaviour {
     Rigidbody rigidBody;
     public Vector3 force = new Vector3(0, 10, 0);
     public ForceMode forceMode = ForceMode.VelocityChange;
+
+    //翁長君作成変数
+    [HideInInspector]
+    public bool MoveEnd;
 
    // public GameObject up;
    // public GameObject down;
@@ -94,6 +99,25 @@ public class CubeControl2 : MonoBehaviour {
 
         transform.position = Vector3.Lerp(startPosition, endPosition, rate);
         //transform.position = Vector3.Lerp (startPosition, endPosition, pos);
+        //翁長君が触った所-------------------------------------------------------------------
+        if (MoveEnd)
+        {
+            if (WallType != -1)
+            {
+                WallTagChange(WallType, this.gameObject);
+                if (WallType > 0)
+                {
+                    if (NearObjectRetrieval(this.gameObject, TagName[WallType - 1]))//TagNameの要素が２つしかないため　WallType - 1
+                    {
+                        NearTriggerObject = WallType;
+                    }
+                    ObjectCreate(this.gameObject, WallName[WallType - 1], NearTriggerObject);
+                }
+
+                WallType = -1;
+            }
+            enabled = false;
+        }
     }
 
     //ギズモ(移動ポインタ)の描画

@@ -109,19 +109,19 @@ namespace MouseController
                         MouseY_DownFlg && MouseVector_Total > 30.0f)
                     {
                         WallType[0] = 0;
-                        MainManager.IFDeleteCall();
+                        MainManager.IFDeleteCall();//壁を消す
                         
-                    }
+                    }//縦
                     else if (MouseVector_Total_X > MouseVector_Total_Y && MouseVector_Total > 30.0f)
                     {
                         WallType[1] = 1;
-                        MainManager.IFCreateCall();
+                        MainManager.IFCreateCall();//壁を作る
                        
-                    }
+                    }//横
                     else if (MouseVector_Total > 30.0f)
                     {
                         WallType[2] = 1;
-                        MainManager.IFCreateCall();
+                        MainManager.IFCreateCall();//壁を作る
                         
                     }
                     Start();

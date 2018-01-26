@@ -14,7 +14,7 @@ public class Player_Wall_Ray : MonoBehaviour {
     {
 
         // Rayを飛ばす（第1引数がRayの発射座標、第2引数がRayの向き）
-        Ray ray = new Ray(new Vector3(transform.position.x,0.3f,transform.position.z), transform.forward);
+        Ray ray = new Ray(new Vector3(transform.position.x,0.55f,transform.position.z), transform.forward);
 
         // シーンビューにRayを可視化するデバッグ（必要がなければ消してOK）
         Debug.DrawRay(ray.origin, ray.direction * RayLength, Color.blue);
@@ -27,7 +27,7 @@ public class Player_Wall_Ray : MonoBehaviour {
             // Rayが衝突したかどうか
             if (Physics.Raycast(ray, out hit, RayLength))
             {
-
+                //衝突してそれがすでに生成された壁なら
                 if (Physics.Raycast(ray, out hit, RayLength, visibleLayer))
                 {
                     //Destroy(hit.collider.gameObject);
