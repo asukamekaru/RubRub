@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using MouseController;
 
 public class PanelController : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class PanelController : MonoBehaviour
     const float PanelFulSizeY = 1.0f;   //サイズのY最大値
     const float Color_Alpha_Max = 225.0f;    //Alphaの最大値
     const float Color_Variable = Color_Alpha_Max/(PanelFulSizeX / VectolSize );//Alphaの可変率
-    // Use this for initialization
+    public static float MouseMoveTotal = 0.0f;
     void Start()
     {
         PanelSizeX = 0.0f;
@@ -81,7 +82,14 @@ public class PanelController : MonoBehaviour
                 //---------------------------------------
                 GetComponent<RectTransform>().localScale = new Vector3(PanelSizeX, PanelSizeY, 1);
                 GetComponent<Image>().color = new Color(red, green, blue, Color_Alpha / 255.0f);
-                //サイズ縮小トリガー
+                //サイズ縮小トリガ
+                if(MouseMoveTotal >= 30.0f)
+                {
+                    RubRubFlg = false;
+                    PanelStatus = PANEL_STATUS._GAME_SCALEDOWN_;
+
+                    MainManager.ChangeStatus(MainManager.STATUS._GAME_PLAY_);//ゲームモードをプレイに変える
+                }
                 if (Input.GetMouseButtonUp(0))
                 {
                     RubRubFlg = false;

@@ -6,7 +6,7 @@ public class CameraMove : MonoBehaviour
 {
     //回転の変数
     public float MoveTotalRotation = 0.0f;
-    float MoveRotationSpeed = 4.0f;
+    float MoveRotationSpeed = 2.0f;
     float MaxRotation = 360.0f;
     //接近するタイミング
     float MovePoint = 0.0f;

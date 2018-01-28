@@ -348,14 +348,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.578}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 0e1205d6f208fa842ac682bd8de810dd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 745299c9c318d124aaa65294cab1fd0c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -411,6 +411,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &385931581
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4980718582723458, guid: 08674f84b6479284b96b66fae3619413, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 640
+      objectReference: {fileID: 0}
+    - target: {fileID: 4980718582723458, guid: 08674f84b6479284b96b66fae3619413, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 4980718582723458, guid: 08674f84b6479284b96b66fae3619413, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4980718582723458, guid: 08674f84b6479284b96b66fae3619413, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4980718582723458, guid: 08674f84b6479284b96b66fae3619413, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4980718582723458, guid: 08674f84b6479284b96b66fae3619413, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4980718582723458, guid: 08674f84b6479284b96b66fae3619413, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4980718582723458, guid: 08674f84b6479284b96b66fae3619413, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 82530197567047692, guid: 08674f84b6479284b96b66fae3619413,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9f20dc33909661b42b63efb85b64d5f7, type: 3}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 08674f84b6479284b96b66fae3619413, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &459030135
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,7 +662,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ecf90bcb03c280842ab07e1116c37438, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a2ddef5776b06394c95040b7b9870fd8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -721,7 +768,7 @@ Transform:
   m_LocalScale: {x: 1, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1278377108
 MonoBehaviour:
@@ -931,7 +978,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a85b5a5a7cee97b4d95453d97ee00057, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a2ddef5776b06394c95040b7b9870fd8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -993,7 +1040,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400212, guid: 2f1b1cd2ad75fdf4e8ce86a27e47c4b0, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 13700004, guid: 2f1b1cd2ad75fdf4e8ce86a27e47c4b0, type: 3}
       propertyPath: m_AABB.m_Center.y
@@ -1030,6 +1077,10 @@ Prefab:
     - target: {fileID: 9500000, guid: 2f1b1cd2ad75fdf4e8ce86a27e47c4b0, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100212, guid: 2f1b1cd2ad75fdf4e8ce86a27e47c4b0, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f1b1cd2ad75fdf4e8ce86a27e47c4b0, type: 3}
@@ -1161,7 +1212,7 @@ Transform:
   m_LocalScale: {x: 20, y: 1, z: 20}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1552508306
 BoxCollider:

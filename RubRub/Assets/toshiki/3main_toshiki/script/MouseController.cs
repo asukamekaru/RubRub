@@ -20,7 +20,7 @@ namespace MouseController
 
         float MouseVector_Total_X;  //マウス移動量累積値.X
         float MouseVector_Total_Y;  //マウス移動量累積値.Y
-        float MouseVector_Total;    //マウス移動量蓄積値X.Y
+        public float MouseVector_Total;    //マウス移動量蓄積値X.Y
 
         public bool MouseX_UpFlg;      //マウスポジションXの累積値に加算処理があったか
         public bool MouseX_DownFlg;    //減算処理があったか
@@ -72,7 +72,7 @@ namespace MouseController
                     MouseVector_Total_X += MouseVector_X;
                     MouseVector_Total_Y += MouseVector_Y;
                     MouseVector_Total = MouseVector_Total_X + MouseVector_Total_Y;
-
+                    PanelController.MouseMoveTotal = MouseVector_Total;
                     //円の判定要素フラグ------------------------------------------------------
                     old_mouse_position_x = mouse_position_x;
                     old_mouse_position_y = mouse_position_y;
@@ -97,6 +97,8 @@ namespace MouseController
                         MouseY_DownFlg = true;
                     }
                     //--------------------------------------------------------------------------
+                    Debug.Log(MouseVector_Total);
+                    if (MouseVector_Total >= 30.0f) status = 2;
                     if (Input.GetMouseButtonUp(0)) status = 2;//判定へ移動
                     break;
 
@@ -106,13 +108,13 @@ namespace MouseController
                     if (MouseVector_Total_X / MouseVector_Total_Y >= 0.3f &&
                         MouseVector_Total_X / MouseVector_Total_Y <= 2.5f &&
                         MouseX_UpFlg && MouseX_DownFlg && MouseY_UpFlg &&
-                        MouseY_DownFlg && MouseVector_Total > 30.0f)
+                        MouseY_DownFlg && MouseVector_Total >= 30.0f)
                     {
                         WallType[0] = 0;
                         MainManager.IFDeleteCall();
                         
                     }
-                    else if (MouseVector_Total_X > MouseVector_Total_Y && MouseVector_Total > 30.0f)
+                    else if (MouseVector_Total_X > MouseVector_Total_Y && MouseVector_Total >= 30.0f)
                     {
                         WallType[1] = 1;
                         MainManager.IFCreateCall();
@@ -134,5 +136,5 @@ namespace MouseController
         {
             RubRubFlg = true;
         }
-    }
+}
 }
