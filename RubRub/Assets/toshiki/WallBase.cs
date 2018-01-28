@@ -70,10 +70,10 @@ abstract public class WallBase : MonoBehaviour
         //生成するインスタンスをPrefabで取得＆生成オブジェクトの角度を設定
         //壁が燃えている方のPrefab
         Quaternion BigFireRote = Quaternion.Euler(-90.0f, 0.0f, 0.0f);
-        GameObject BigFirePrefab = (GameObject)Resources.Load("Prefab/BigFire");
+        GameObject BigFirePrefab = (GameObject)Resources.Load("Prefab/Fire/BigFire");
         //プレイヤーの反対方向に噴出する方のPrefab
         Quaternion AttackFireRote = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-        GameObject AttackFirePrefab = (GameObject)Resources.Load("Prefab/Fire");
+        GameObject AttackFirePrefab = (GameObject)Resources.Load("Prefab/Fire/Fire");
 
         CubeControl2 obsTriggerNear;//検索対象オブジェクトの<CubeControl>一時的保管場所
         int ObjectCount = 0;

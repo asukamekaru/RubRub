@@ -7,6 +7,6 @@ public class ClearHome : MonoBehaviour {
 
     public void SceneChangeHome()
     {
-        SceneManager.LoadScene("GameClear");
+        SceneManager.LoadScene("HomeScene");
     }
 }
