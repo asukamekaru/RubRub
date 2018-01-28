@@ -23,7 +23,7 @@ public class CreateWallGround : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        MainManager.CreateGround = collision.gameObject.GetComponent<CubeControl>();
+        MainManager.CreateGround = collision.gameObject.GetComponent<CubeControl2>();
         MainManager.enemyWarp = collision.gameObject.GetComponent<EnemyWarp>();
         MainManager.sCreateGroundName = collision.gameObject.name;
     }

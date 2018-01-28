@@ -63,15 +63,22 @@ public class MainManager : MonoBehaviour
     public enum BLACKOUT_COLOR { _BLACK_, _WHITE_ = 255 };//ブラックアウト時の色
 
     public static string sNowGround, sNowGroundTag, sCreateGroundName;//今立っている地面 - 今立っている地面のタグ - 作りたい場所の地面
-    
-    public static CubeControl CreateGround;
+
+    public static CubeControl2 CreateGround;
     public static EnemyWarp enemyWarp;
 
+    Player_Wall_Ray PWR;
+    CubeControl2 cube;
+
     public static float fCount;//停止中のタイマー
+
+    // Rayが衝突したコライダーの情報を得る
+    RaycastHit hit;
 
     // Use this for initialization
     void Start()
     {
+        PWR = GameObject.Find("Yuko_sum_humanoid").GetComponent<Player_Wall_Ray>();
         Player.transform.position = StartPoint.transform.position;
         ChangeStatus(STATUS._GAME_START_);
     }
@@ -130,20 +137,16 @@ public class MainManager : MonoBehaviour
 
                 if (playerdead.DEAD() && ++fCount > fDEADINTERVAL)//死んだアニメーションが流され、指定の時間に到達した時シーンを以降させる
                 {
-                    if(BlackOutPanel.gameObject.GetComponent<BlackOut>().GameBlackOut((int)BLACKOUT_COLOR._BLACK_ , "end")) ChangeScene("GameOver", 1);//シーンを変える
+                    if (BlackOutPanel.gameObject.GetComponent<BlackOut>().GameBlackOut((int)BLACKOUT_COLOR._BLACK_, "end")) ChangeScene("GameOver", 1);//シーンを変える
                 }
                 break;
         }
     }
-
-    //============================================
-    // ブラックアウトさせる関数
-    //============================================
-
+    
     //===============================================================================================
     // シーンを変える時に通過する関数　(シーン名と時間の流れを指定 1 = 時間を進める 2 = 時間を止める)
     //===============================================================================================
-    public void ChangeScene(string SceneName,int time)
+    public void ChangeScene(string SceneName, int time)
     {
         Time.timeScale = time;
         SceneManager.LoadScene(SceneName);
@@ -194,9 +197,32 @@ public class MainManager : MonoBehaviour
     //============================================
     // 壁が作れるかを判定する関数
     //============================================
-    public static void IFCreateCall()
+    public void IFCreateCall()
     {
-        if (sNowGround != sCreateGroundName)//立っている地面と作りたい地面が別か？
+        // Rayが衝突したかどうか
+        if (!Physics.Raycast(PWR.ray, out hit, PWR.RayLength))
+        {
+            //Instantiate( 生成するオブジェクト,  場所, 回転 );  回転はそのままなら↓
+            if (MainManager.LastKey == MainManager.LAST_KEY._KEY_UP_ || MainManager.LastKey == MainManager.LAST_KEY._KEY_DOWN_)
+            {
+                Instantiate(PWR.wall,
+                            new Vector3(Mathf.RoundToInt(PWR.Point.transform.position.x),
+                                        this.transform.position.y - 2,
+                                        PWR.Point.transform.position.z),
+                            Quaternion.identity);
+            }
+
+            if (MainManager.LastKey == MainManager.LAST_KEY._KEY_LEFT_ || MainManager.LastKey == MainManager.LAST_KEY._KEY_RIGHT_)
+            {
+                Instantiate(PWR.wall,
+                            new Vector3(PWR.Point.transform.position.x,
+                                        this.transform.position.y - 2,
+                                        Mathf.RoundToInt(PWR.Point.transform.position.z)),
+                            Quaternion.identity);
+            }
+        }
+
+        /*if (sNowGround != sCreateGroundName)//立っている地面と作りたい地面が別か？
         {
             switch (LastKey)//最後に入力したキーと立っている地面のタグ（方向）が合理するか？
             {
@@ -268,16 +294,30 @@ public class MainManager : MonoBehaviour
                     }
                     break;
             }
-        }
+        }*/
     }
 
     //============================================
     // 壁が消せるかを判定する関数
     //============================================
-
-    public static void IFDeleteCall()
+    public void IFDeleteCall()
     {
-        if (sNowGround != sCreateGroundName)//立っている地面と作りたい地面が別か？
+        // Rayが衝突したかどうか
+        if (Physics.Raycast(PWR.ray, out hit, PWR.RayLength))
+        {
+            //衝突してそれがすでに生成された壁なら
+            if (Physics.Raycast(PWR.ray, out hit, PWR.RayLength, PWR.visibleLayer))
+            {
+                //Destroy(hit.collider.gameObject);
+                cube = hit.collider.GetComponent<CubeControl2>();
+                cube.enabled = true;
+                cube.MoveEnd = false;
+                cube.WallType = 0;
+
+            }
+
+        }
+        /*if (sNowGround != sCreateGroundName)//立っている地面と作りたい地面が別か？
         {
             switch (LastKey)//最後に入力したキーと立っている地面のタグ（方向）が合理するか？
             {
@@ -328,7 +368,6 @@ public class MainManager : MonoBehaviour
                         CreateGround.endPosition = new Vector3(CreateGround.transform.position.x, -1, CreateGround.transform.position.z);
                     }
                     break;
-            }
-        }
+            }*/
     }
 }

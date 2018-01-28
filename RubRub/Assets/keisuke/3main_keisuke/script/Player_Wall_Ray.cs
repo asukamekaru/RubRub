@@ -10,24 +10,23 @@ public class Player_Wall_Ray : MonoBehaviour {
     public GameObject Point;
     private CubeControl2 cube;
 
+    public Ray ray;
+
     void Update()
     {
 
         // Rayを飛ばす（第1引数がRayの発射座標、第2引数がRayの向き）
-        Ray ray = new Ray(new Vector3(transform.position.x,0.3f,transform.position.z), transform.forward);
+        ray = new Ray(new Vector3(transform.position.x,0.55f,transform.position.z), transform.forward);
 
         // シーンビューにRayを可視化するデバッグ（必要がなければ消してOK）
         Debug.DrawRay(ray.origin, ray.direction * RayLength, Color.blue);
 
-        // Rayが衝突したコライダーの情報を得る
-        RaycastHit hit;
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             // Rayが衝突したかどうか
             if (Physics.Raycast(ray, out hit, RayLength))
             {
-
+                //衝突してそれがすでに生成された壁なら
                 if (Physics.Raycast(ray, out hit, RayLength, visibleLayer))
                 {
                     //Destroy(hit.collider.gameObject);
@@ -58,6 +57,6 @@ public class Player_Wall_Ray : MonoBehaviour {
                                 Quaternion.identity);
                 }
             }
-        }
+        }*/
     }
 }

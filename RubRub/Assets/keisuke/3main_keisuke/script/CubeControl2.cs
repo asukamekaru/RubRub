@@ -4,7 +4,8 @@ using UnityEngine;
 using GroundC;
 
 
-public class CubeControl2 : MonoBehaviour {
+public class CubeControl2 : WallBase
+{
 
     [SerializeField, Range(0, 10)]
     float time = 1; //移動時間
@@ -26,8 +27,14 @@ public class CubeControl2 : MonoBehaviour {
     public Vector3 force = new Vector3(0, 10, 0);
     public ForceMode forceMode = ForceMode.VelocityChange;
 
-   // public GameObject up;
-   // public GameObject down;
+    public EnemyWarp enemyWarp;
+
+    //翁長君作成変数
+    [HideInInspector]
+    public bool MoveEnd;
+
+    // public GameObject up;
+    // public GameObject down;
 
 
     // Use this for initialization
@@ -35,7 +42,7 @@ public class CubeControl2 : MonoBehaviour {
     {
         rigidBody = gameObject.GetComponent<Rigidbody>();
         endPosition = new Vector3(this.transform.position.x, posY, this.transform.position.z);
-
+        enemyWarp = this.gameObject.GetComponent<EnemyWarp>();
     }
     //このスクリプトがtrueになったとき1度のみ行う処理
     void OnEnable()
@@ -44,7 +51,16 @@ public class CubeControl2 : MonoBehaviour {
         if (mode)
         {
             posY = 1;
-           // this.transform.parent = GameObject.Find("up").transform;   //upの子オブジェクトに登録
+            // this.transform.parent = GameObject.Find("up").transform;   //upの子オブジェクトに登録
+            for (int i = 0; i < 3; i++)
+            {
+                if (MouseController.MouseController.WallType[i] == 1)
+                {
+                    WallType = i;
+                    this.gameObject.GetComponent<EnemyWarp>().WallType = i;
+                }
+            }
+            //MoveEnd = true;//上がってるなら壁に要素を付ける
         }
         else
         {
@@ -62,12 +78,9 @@ public class CubeControl2 : MonoBehaviour {
             transform.position = endPosition;
             //GroundC.GroundCount.GCFlg = true;
             mode = !mode;//modeのflagを反転
-            //this.transform.parent = up.transform;   //upの子オブジェクトに登録
-            enabled = false;    //このスクリプトをfalseに
-
+                         //this.transform.parent = up.transform;   //upの子オブジェクトに登録
             return;
         }
-
         startTime = Time.timeSinceLevelLoad;
         startPosition = transform.position;
     }
@@ -76,6 +89,7 @@ public class CubeControl2 : MonoBehaviour {
     {
         if (this.gameObject.transform.position.y < -2)
         {
+            this.gameObject.GetComponent<EnemyWarp>().WallType = 0;
             Destroy(this.gameObject);
         }
         var diff = Time.timeSinceLevelLoad - startTime;
@@ -85,15 +99,37 @@ public class CubeControl2 : MonoBehaviour {
             mode = !mode;
             //GroundC.GroundCount.GCFlg = true;
             //this.transform.parent = up.transform;   //upの子オブジェクトに登録
-            enabled = false;    //このスクリプトをfalseに
-            
+
+            MoveEnd = true;    //このスクリプトをfalseに
+                                //MoveEnd = true;
+
+        }
+
+        //翁長君が触った所-------------------------------------------------------------------
+        //壁が上がった後に要素を付ける
+        if (MoveEnd)
+        {
+            if (WallType != -1)
+            {
+                WallTagChange(WallType, this.gameObject);
+                if (WallType > 0)
+                {
+                    if (NearObjectRetrieval(this.gameObject, TagName[WallType - 1]))//TagNameの要素が２つしかないため　WallType - 1
+                    {
+                        NearTriggerObject = WallType;
+                    }
+                    ObjectCreate(this.gameObject, WallName[WallType - 1], NearTriggerObject);
+                }
+
+                WallType = -1;
+            }
+
+            Debug.Log("a");
+            enabled = false;
         }
 
         var rate = diff / time;
-        //var pos = curve.Evaluate(rate);
-
         transform.position = Vector3.Lerp(startPosition, endPosition, rate);
-        //transform.position = Vector3.Lerp (startPosition, endPosition, pos);
     }
 
     //ギズモ(移動ポインタ)の描画

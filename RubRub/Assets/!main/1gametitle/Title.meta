@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:RubRub/Assets/!main/1gametitle/Title.meta
 guid: f967c6786326a934bb7c85da69125483
 folderAsset: yes
 timeCreated: 1517137797
+=======
+guid: 32652e075a1364948a5d141e0dc1faa9
+folderAsset: yes
+timeCreated: 1517033419
+>>>>>>> asuka:RubRub/Assets/hikaru/1title_hikaru/scene.meta
 licenseType: Free
 DefaultImporter:
   userData: 

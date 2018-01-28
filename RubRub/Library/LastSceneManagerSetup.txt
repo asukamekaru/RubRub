@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/!main/1gametitle/TitleScene.unity
+=======
+- path: Assets/!main/3gamemain/GameMainScene.unity
+>>>>>>> asuka
   isLoaded: 1
   isActive: 1

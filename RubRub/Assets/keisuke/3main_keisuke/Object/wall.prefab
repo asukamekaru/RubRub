@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 65326633510259686}
   - component: {fileID: 23967428695270014}
   - component: {fileID: 114656066480529488}
+  - component: {fileID: 114334260851459824}
   m_Layer: 14
   m_Name: wall
   m_TagString: Untagged
@@ -38,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1756145500535936}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 3, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -94,6 +95,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114334260851459824
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1756145500535936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1656d1757bef3a48b85c3eb68de301a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WallType: -1
+  NearTriggerObject: -1
+  TagName:
+  - Fire
+  - Enemy
+  WallName:
+  - FireWall
+  - EnemyWall
 --- !u!114 &114656066480529488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -105,7 +125,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01facaa4a007d70469b5f049e16cb059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WallType: -1
+  NearTriggerObject: -1
+  TagName:
+  - Fire
+  - Enemy
+  WallName:
+  - FireWall
+  - EnemyWall
   time: 1
   posY: 0
   force: {x: 0, y: 10, z: 0}
   forceMode: 2
+  enemyWarp: {fileID: 0}
+  MoveEnd: 0

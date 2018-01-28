@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:RubRub/Assets/MasterCube.meta
 guid: d6ea5d2fa349ca6468302a9ad362ed33
 folderAsset: yes
 timeCreated: 1517042648
+=======
+guid: 42f106c7f488fca458e685fe46f2b749
+folderAsset: yes
+timeCreated: 1517033419
+>>>>>>> asuka:RubRub/Assets/asuka/4clear_asuka.meta
 licenseType: Free
 DefaultImporter:
   userData: 

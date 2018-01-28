@@ -75,7 +75,7 @@ abstract public class WallBase : MonoBehaviour
         Quaternion AttackFireRote = Quaternion.Euler(0.0f, 0.0f, 0.0f);
         GameObject AttackFirePrefab = (GameObject)Resources.Load("Prefab/Fire");
 
-        CubeControl obsTriggerNear;//検索対象オブジェクトの<CubeControl>一時的保管場所
+        CubeControl2 obsTriggerNear;//検索対象オブジェクトの<CubeControl>一時的保管場所
         int ObjectCount = 0;
         GameObject TriggerObject = null; //検索結果のオブジェクトを入れるやつ
         GameObject CreatePointObject = null;
@@ -83,7 +83,7 @@ abstract public class WallBase : MonoBehaviour
         foreach (GameObject obs in GameObject.FindGameObjectsWithTag(TagName))
         {
             ObjectCount++;
-            obsTriggerNear = obs.GetComponent<CubeControl>();
+            obsTriggerNear = obs.GetComponent<CubeControl2>();
             if (obsTriggerNear.NearTriggerObject != -1)
             {
                 TriggerObject = obs;
