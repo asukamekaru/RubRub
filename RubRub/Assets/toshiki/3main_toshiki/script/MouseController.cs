@@ -29,6 +29,8 @@ namespace MouseController
 
         bool RubRubFlg;
 
+        MainManager mainmanager;
+
         public static int[] WallType = new int[] { 0, 0, 0 }; //0.通常壁　1.火吸収＆放出　2.水吸収＆放出
 
         void Start()
@@ -42,6 +44,7 @@ namespace MouseController
             RubRubFlg = false;
             MouseVector_Total = MouseVector_Total_X = MouseVector_Total_Y = 0.0f;
             MouseX_UpFlg = MouseX_DownFlg = MouseY_UpFlg = MouseY_DownFlg = false;
+            mainmanager = GameObject.Find("MainManager").GetComponent<MainManager>();
         }
 
         void Update()
@@ -111,19 +114,19 @@ namespace MouseController
                         MouseY_DownFlg && MouseVector_Total >= 30.0f)
                     {
                         WallType[0] = 0;
-                        MainManager.IFDeleteCall();
+                        mainmanager.IFDeleteCall();
                         
                     }
                     else if (MouseVector_Total_X > MouseVector_Total_Y && MouseVector_Total >= 30.0f)
                     {
                         WallType[1] = 1;
-                        MainManager.IFCreateCall();
+                        mainmanager.IFCreateCall();
                        
                     }
                     else if (MouseVector_Total > 30.0f)
                     {
                         WallType[2] = 1;
-                        MainManager.IFCreateCall();
+                        mainmanager.IFCreateCall();
                         
                     }
                     Start();
