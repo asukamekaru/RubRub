@@ -297,7 +297,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3611bc69496b7b409ca9eaffb466004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seList: []
+  seList:
+  - seClip: {fileID: 8300000, guid: 40aa6d8243189a44182f23b3414e619f, type: 3}
+    volume: 10
+  - seClip: {fileID: 8300000, guid: 40aa6d8243189a44182f23b3414e619f, type: 3}
+    volume: 10
   bgmSource: {fileID: 535121595}
   seSource: {fileID: 535121598}
   bgmClip: []
@@ -324,7 +328,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 40aa6d8243189a44182f23b3414e619f, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

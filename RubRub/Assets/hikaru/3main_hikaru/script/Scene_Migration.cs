@@ -10,17 +10,20 @@ public class Scene_Migration : MonoBehaviour {
     private GameObject BlackOutPanel;
 
     bool bPanelFlag = false;//パネルが出てるか否かのフラグ
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+    GameObject BGMmanager;
+    // Use this for initialization
+    void Start () {
+        BGMmanager = GameObject.Find("SoundManager");
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
         if (Input.GetMouseButtonDown(0))
         {
+           
+            soundManager SM = BGMmanager.GetComponent<soundManager>();
+            SM.PlaySound(0,false);
             BlackOutPanel.gameObject.SetActive(true);//パネルを出すついでに操作できなくする
             bPanelFlag = true;
         }

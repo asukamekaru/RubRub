@@ -21,9 +21,10 @@ public class PanelController : MonoBehaviour
     const float PanelFulSizeY = 1.0f;   //サイズのY最大値
     const float Color_Alpha_Max = 225.0f;    //Alphaの最大値
     const float Color_Variable = Color_Alpha_Max/(PanelFulSizeX / VectolSize );//Alphaの可変率
-    public static float MouseMoveTotal = 0.0f;
+    public static float MouseMoveTotal;
     void Start()
     {
+        MouseMoveTotal = 0.0f;
         PanelSizeX = 0.0f;
         PanelSizeY = 0.0f;
         //Color(R,G,B.A)の初期化----------------
