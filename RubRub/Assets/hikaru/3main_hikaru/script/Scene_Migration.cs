@@ -23,6 +23,7 @@ public class Scene_Migration : MonoBehaviour {
         {
            
             soundManager SM = BGMmanager.GetComponent<soundManager>();
+            SM.StopBgm();
             SM.PlaySound(0,false);
             BlackOutPanel.gameObject.SetActive(true);//パネルを出すついでに操作できなくする
             bPanelFlag = true;

@@ -7,6 +7,6 @@ public class ClearRetry : MonoBehaviour {
 
     public void SceneChangeRetry()
     {
-        SceneManager.LoadScene("GameClear");
+        SceneManager.LoadScene("GameMainScene");
     }
 }
