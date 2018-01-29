@@ -12,6 +12,8 @@ public class Mummy_Move : MonoBehaviour
     Animator anim;
     NavMeshAgent nav;
 
+    soundManager soundmanager;
+
     public float visibleDistance;   // 可視距離
     float targetDistance;           // ターゲットとの距離
 
@@ -45,6 +47,7 @@ public class Mummy_Move : MonoBehaviour
     // --- 初期化 ----------------------------------------------------------
     private void Start()
     {
+        soundmanager = GameObject.Find("SoundManager").GetComponent<soundManager>();
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
@@ -132,7 +135,7 @@ public class Mummy_Move : MonoBehaviour
     // --- ターゲットを発見したときの処理 ----------------------------------------------------------
     void TargetFound()
     {
-        Debug.Log("Target Found");
+        soundmanager.PlaySound(3,true);
         anim.SetTrigger("run");
         nav.Resume();
         nav.SetDestination(target.position);

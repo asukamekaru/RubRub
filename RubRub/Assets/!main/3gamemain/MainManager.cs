@@ -73,6 +73,7 @@ public class MainManager : MonoBehaviour
     Player_Wall_Ray PWR;
     CubeControl2 cube;
     StartEndUIScript SEUS;
+    soundManager soundmanager;
 
     public static float fCount;//停止中のタイマー
 
@@ -82,6 +83,7 @@ public class MainManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        soundmanager = GameObject.Find("SoundManager").GetComponent<soundManager>();
         SEUS = GameObject.Find("StartEndUIImg").GetComponent<StartEndUIScript>();
         PWR = GameObject.Find("Yuko_sum_humanoid").GetComponent<Player_Wall_Ray>();
         Player.transform.position = StartPoint.transform.position;
@@ -95,6 +97,7 @@ public class MainManager : MonoBehaviour
         {
             case STATUS._GAME_START_:
 
+                soundmanager.ChangeBgm(4);
                 BlackOutPanel.gameObject.SetActive(true);//パネルを出すついでに操作できなくする
 
                 if (BlackOutPanel.gameObject.GetComponent<BlackOut>().GameBlackOut((int)BLACKOUT_COLOR._BLACK_, "start"))
@@ -154,6 +157,7 @@ public class MainManager : MonoBehaviour
     public void ChangeScene(string SceneName, int time)
     {
         Time.timeScale = time;
+        soundmanager.StopBgm();
         SceneManager.LoadScene(SceneName);
     }
 
