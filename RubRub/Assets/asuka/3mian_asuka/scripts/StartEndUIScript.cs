@@ -12,7 +12,7 @@ public class StartEndUIScript : MonoBehaviour
 {
 
     ////////////////////////////////////// 変数シンボル //////////////////////////////////////
-    private enum SEUI_STATUS { _PANEL_START_, _PANEL_SCALEUP_, _PANEL_FIRST_INTERVAL_, _PANEL_SCALEDOWN_, _PANEL_LAST_INTERVAL_ };//ゲームの状態
+    private enum SEUI_STATUS { _PANEL_START_, _PANEL_SCALEUP_, _PANEL_FIRST_INTERVAL_, _PANEL_SCALEDOWN_, _PANEL_END_ };//ゲームの状態
     private SEUI_STATUS seuistatus;
 
     [Header("UI画像START")]
@@ -36,6 +36,7 @@ public class StartEndUIScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        seuistatus = SEUI_STATUS._PANEL_START_;
         iIntervalTime = 0;//インターバルの時間を初期化
         fNowScale = MINSCALE;//最小値を設定↓
         GetComponent<RectTransform>().localScale = new Vector2(fNowScale, fNowScale);//自身のオブジェクトに当てる
@@ -48,7 +49,7 @@ public class StartEndUIScript : MonoBehaviour
     }
 
     //UIを表示させる
-    public bool ScaleChange(string imagetype, int time, float speed, bool flag)//使う画像 - インターバル - 速さ - 途中で終わるかのフラグ
+    public bool ScaleChange(string imagetype, float time, float speed, bool flag)//使う画像 - インターバル - 速さ - 途中で終わるかのフラグ
     {
         switch (seuistatus)
         {
@@ -65,6 +66,8 @@ public class StartEndUIScript : MonoBehaviour
                         this.gameObject.GetComponent<Image>().sprite = OVER;
                         break;
                 }
+                seuistatus = SEUI_STATUS._PANEL_SCALEUP_;//移る
+                Debug.Log("a");
                 break;
 
             case SEUI_STATUS._PANEL_SCALEUP_://拡大させる
@@ -72,24 +75,23 @@ public class StartEndUIScript : MonoBehaviour
                 {
                     fNowScale += speed;//拡大
                 }
-                else if(!flag)//最大値以上になれば↓
+                else
                 {
                     fNowScale = MAXSCALE;//サイズ修正
                     seuistatus = SEUI_STATUS._PANEL_FIRST_INTERVAL_;//インターバルを挟む
                 }
-                else
-                {
-                    seuistatus = SEUI_STATUS._PANEL_START_;//インターバルの時間を経過すればスケールを縮小させる
-                    iIntervalTime = 0;//インターバルの時間の初期化
-                    return true;//終わる
-                }
+                Debug.Log("b");
                 break;
             case SEUI_STATUS._PANEL_FIRST_INTERVAL_:
 
-                if (++iIntervalTime >= time)//インターバル中
+                if (!flag)
                 {
-                    seuistatus = SEUI_STATUS._PANEL_SCALEDOWN_;//インターバルの時間を経過すればスケールを縮小させる
-                    iIntervalTime = 0;//インターバルの時間の初期化
+                    //インターバル中 インターバルの時間を経過すればスケールを縮小させる
+                    if (++iIntervalTime >= time) seuistatus = SEUI_STATUS._PANEL_SCALEDOWN_;
+                }
+                else
+                {
+                    seuistatus = SEUI_STATUS._PANEL_END_;
                 }
                 break;
 
@@ -101,19 +103,15 @@ public class StartEndUIScript : MonoBehaviour
                 else//最小値以上になれば↓
                 {
                     fNowScale = MINSCALE;//サイズ修正
-                    seuistatus = SEUI_STATUS._PANEL_LAST_INTERVAL_;//インターバルを挟む
+                    seuistatus = SEUI_STATUS._PANEL_END_;//終わらせる準備に入る
                 }
                 break;
 
-            case SEUI_STATUS._PANEL_LAST_INTERVAL_:
+            case SEUI_STATUS._PANEL_END_:
 
-                if (++iIntervalTime >= time)//インターバル中
-                {
-                    seuistatus = SEUI_STATUS._PANEL_START_;//インターバルの時間を経過すればスケールを縮小させる
-                    iIntervalTime = 0;//インターバルの時間の初期化
-                    return true;//終わり
-                }
-                break;
+                seuistatus = SEUI_STATUS._PANEL_START_;//ステータスの初期化
+                iIntervalTime = 0;//インターバルの時間の初期化
+                return true;//終わり
         }
         GetComponent<RectTransform>().localScale = new Vector2(fNowScale, fNowScale);//自身のオブジェクトに当てる
         return false;
