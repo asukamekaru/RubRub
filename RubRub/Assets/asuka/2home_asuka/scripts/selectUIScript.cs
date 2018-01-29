@@ -30,12 +30,14 @@ public class selectUIScript : MonoBehaviour
     [HideInInspector]
     public int iStageNum;//ステージ番号
 
+    GameObject SEManager = null;
     // Use this for initialization
     void Start()
     {
         mySize = this.transform.GetComponent<RectTransform>().sizeDelta.x;
         myVec = this.transform.localPosition;
         this.gameObject.GetComponent<Button>().onClick.AddListener(ClickBtn);
+        SEManager = GameObject.Find("SoundManager");
     }
 
     // Update is called once per frame
@@ -96,7 +98,15 @@ public class selectUIScript : MonoBehaviour
 
     }
 
-    private void ClickBtn() { if (nextScene == "NULL") return; SceneManager.LoadScene(nextScene); }//ボタンがクリックされたときの処理
+    private void ClickBtn() {
+        if (SEManager != null)
+        {
+            soundManager SM = SEManager.GetComponent<soundManager>();
+            SM.PlaySound(0, false);
+        }
+      
+        if (nextScene == "NULL") return; SceneManager.LoadScene(nextScene);
+    }//ボタンがクリックされたときの処理
 
     private float changeSign(float f) { if (f < 0) f *= -1.0f; return f; }//強制的に符号をプラスに変える
 
