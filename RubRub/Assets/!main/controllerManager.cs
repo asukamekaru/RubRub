@@ -23,6 +23,7 @@ public class controllerManager : MonoBehaviour
     [Header("メインシーンならココにプレイヤーキャラを入れる")]
     private Yuko_Move yukomove;
 
+    GameObject SEManager = null;
     // Use this for initialization
     void Start()
     {
@@ -32,6 +33,7 @@ public class controllerManager : MonoBehaviour
         getControllerDown.onClick.AddListener(Down);
 
         getControllerLeft.onClick.AddListener(Update);
+        SEManager = GameObject.Find("SoundManager");
     }
 
     // Update is called once per frame
@@ -48,6 +50,11 @@ public class controllerManager : MonoBehaviour
             case "HomeScene":
             case "home_test_asuka":
                 homemanager.getControll("left");
+                if (SEManager != null)
+                {
+                    soundManager SM = SEManager.GetComponent<soundManager>();
+                    SM.PlaySound(1, false);
+                }
                 break;
             //ゲームメインシーンなら
             case "GameMainScene":
@@ -64,6 +71,11 @@ public class controllerManager : MonoBehaviour
             case "HomeScene":
             case "home_test_asuka":
                 homemanager.getControll("right");
+                if (SEManager != null)
+                {
+                    soundManager SM = SEManager.GetComponent<soundManager>();
+                    SM.PlaySound(1, false);
+                }
                 break;
 
             //ゲームメインシーンなら
