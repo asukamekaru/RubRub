@@ -97,7 +97,7 @@ public class MainManager : MonoBehaviour
         {
             case STATUS._GAME_START_:
 
-                soundmanager.ChangeBgm(4);
+                soundmanager.ChangeBgm(4);//ゲームメインの　BGMを流す
                 BlackOutPanel.gameObject.SetActive(true);//パネルを出すついでに操作できなくする
 
                 if (BlackOutPanel.gameObject.GetComponent<BlackOut>().GameBlackOut((int)BLACKOUT_COLOR._BLACK_, "start"))

@@ -15,6 +15,8 @@ public class StartEndUIScript : MonoBehaviour
     private enum SEUI_STATUS { _PANEL_START_, _PANEL_SCALEUP_, _PANEL_FIRST_INTERVAL_, _PANEL_SCALEDOWN_, _PANEL_END_ };//ゲームの状態
     private SEUI_STATUS seuistatus;
 
+    soundManager soundmanager;
+
     [Header("UI画像START")]
     [SerializeField]
     private Sprite START;
@@ -40,6 +42,7 @@ public class StartEndUIScript : MonoBehaviour
         iIntervalTime = 0;//インターバルの時間を初期化
         fNowScale = MINSCALE;//最小値を設定↓
         GetComponent<RectTransform>().localScale = new Vector2(fNowScale, fNowScale);//自身のオブジェクトに当てる
+        soundmanager = GameObject.Find("SoundManager").GetComponent<soundManager>();
     }
 
     // Update is called once per frame
@@ -58,12 +61,15 @@ public class StartEndUIScript : MonoBehaviour
                 {
                     case "START":
                         this.gameObject.GetComponent<Image>().sprite = START;
+                        soundmanager.PlaySound(8,false);//ゲームスタートSE
                         break;
                     case "GOAL":
                         this.gameObject.GetComponent<Image>().sprite = GOAL;
+                        soundmanager.PlaySound(9, false);//ゲームコンプリートSE
                         break;
                     case "OVER":
                         this.gameObject.GetComponent<Image>().sprite = OVER;
+                        soundmanager.PlaySound(10, false);//ゲームオーバーSE
                         break;
                 }
                 seuistatus = SEUI_STATUS._PANEL_SCALEUP_;//移る

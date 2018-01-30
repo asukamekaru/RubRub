@@ -7,6 +7,8 @@ public class AttackSakuraController : MonoBehaviour
     private enum SakuraAngle { Nonw, Right, Left, Up, Down };
     private SakuraAngle sakuraAngle;
     public float MoveSpeed = 0.01f;
+    soundManager soundmanager;
+
     // Update is called once per frame
     void Update()
     {
@@ -58,6 +60,8 @@ public class AttackSakuraController : MonoBehaviour
         Debug.Log("入った");
         if (collision.gameObject.tag == "Obstacle")
         {
+            soundmanager = GameObject.Find("SoundManager").GetComponent<soundManager>();
+            soundmanager.PlaySound(5, false);//吸う音
             Destroy(this.gameObject);
         }
     }

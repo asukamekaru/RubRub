@@ -28,6 +28,8 @@ public class posemgr : MonoBehaviour {
     [SerializeField]
     private Button poseRetryBbtn;
 
+    soundManager soundmanager;
+
     ////////////////////////////////////// 変数 //////////////////////////////////////
 
     // Use this for initialization
@@ -39,6 +41,8 @@ public class posemgr : MonoBehaviour {
         poseHomeBtn.gameObject.GetComponent<Button>().onClick.AddListener(OnPoseHomeBtn);
         posePlayBtn.gameObject.GetComponent<Button>().onClick.AddListener(OnPosePlayBtn);
         poseRetryBbtn.gameObject.GetComponent<Button>().onClick.AddListener(OnPoseRetryBtn);
+
+        soundmanager = GameObject.Find("SoundManager").GetComponent<soundManager>();
     }
 	
 	// Update is called once per frame
@@ -49,15 +53,29 @@ public class posemgr : MonoBehaviour {
     // *** 通常プレイ時からポーズに移る際の処理
 
     //ポーズボタンの処理
-    void OnPoseBtn() { MainManager.ChangeStatus(MainManager.STATUS._GAME_POSE_); posePanel.gameObject.SetActive(true); /*ステータスをポーズにする*/ }
+    void OnPoseBtn() { 
+        MainManager.ChangeStatus(MainManager.STATUS._GAME_POSE_); 
+        posePanel.gameObject.SetActive(true); /*ステータスをポーズにする*/
+        soundmanager.PlaySound(11, false);//システムサウンドを鳴らす
+    }
 
 
     // *** 以下ポーズ中の各ボタンの処理
 
     //ポーズ中のホームボタンの処理
-    void OnPoseHomeBtn() { mainmanager.ChangeScene("HomeScene",1); /*ホームシーンへ移動*/}
+    void OnPoseHomeBtn() { 
+        mainmanager.ChangeScene("HomeScene",1); /*ホームシーンへ移動*/
+        soundmanager.PlaySound(11, false);//システムサウンドを鳴らす
+    }
     //ポーズ中のプレイボタンの処理
-    void OnPosePlayBtn() { MainManager.ChangeStatus(MainManager.STATUS._GAME_PLAY_); posePanel.gameObject.SetActive(false); /*ステータスをプレイに戻す*/ }
+    void OnPosePlayBtn() { 
+        MainManager.ChangeStatus(MainManager.STATUS._GAME_PLAY_); 
+        posePanel.gameObject.SetActive(false); /*ステータスをプレイに戻す*/
+        soundmanager.PlaySound(11, false);//システムサウンドを鳴らす
+    }
     //ポーズ中のリトライボタンの処理
-    void OnPoseRetryBtn() { mainmanager.ChangeScene("GameMainScene", 1); /*ゲームメインシーンの再読込*/}
+    void OnPoseRetryBtn() { 
+        mainmanager.ChangeScene("GameMainScene", 1); /*ゲームメインシーンの再読込*/
+        soundmanager.PlaySound(11, false);//システムサウンドを鳴らす
+    }
 }
