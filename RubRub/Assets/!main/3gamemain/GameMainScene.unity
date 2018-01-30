@@ -6539,6 +6539,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451ee5e4e8159f2439f3570085c46029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rubrub1: {fileID: 21300000, guid: 3ecb0dee1c7cb2c47a0e42f20e3a1028, type: 3}
+  rubrub2: {fileID: 21300000, guid: 4c245d6a05d1c2c46b8b180fd7d56d46, type: 3}
   Panel: {fileID: 1771357969}
   RubRubFlg: 0
 --- !u!114 &1771357972
@@ -6560,7 +6562,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: e52931dec479581409ffd375d890e1e4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3ecb0dee1c7cb2c47a0e42f20e3a1028, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
