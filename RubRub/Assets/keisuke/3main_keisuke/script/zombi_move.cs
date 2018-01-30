@@ -10,7 +10,7 @@ public class zombi_move : MonoBehaviour
     GameObject[] targetNavMeshObjects;
 
     int targetNavMeshObjectCounts;
-    int targetNavMeshObjectNow = 0;
+    public int targetNavMeshObjectNow = 0;
     NavMeshAgent navMeshAgentCompornent;
 
     // Use this for initialization
