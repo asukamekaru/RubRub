@@ -6,9 +6,12 @@ using MouseController;
 
 public class PanelController : MonoBehaviour
 {
-    private enum PANEL_STATUS { _PANEL_STAY_, _GAME_SCALEUP_, _GAME_SCALEDOWN_};//ゲームの状態
+    private enum PANEL_STATUS { _PANEL_STAY_, _GAME_SCALEUP_, _GAME_SCALEDOWN_ };//ゲームの状態
     private PANEL_STATUS PanelStatus;
-
+    //画像
+    public Sprite rubrub1;
+    public Sprite rubrub2;
+    private Image image;
     //現在の処理進行度
     public GameObject Panel;        //panelとの関係付け
     public bool RubRubFlg;          //ボタンが押されたときのフラグ
@@ -20,10 +23,12 @@ public class PanelController : MonoBehaviour
     const float PanelFulSizeX = 1.0f;   //サイズのX最大値
     const float PanelFulSizeY = 1.0f;   //サイズのY最大値
     const float Color_Alpha_Max = 225.0f;    //Alphaの最大値
-    const float Color_Variable = Color_Alpha_Max/(PanelFulSizeX / VectolSize );//Alphaの可変率
+    const float Color_Variable = Color_Alpha_Max / (PanelFulSizeX / VectolSize);//Alphaの可変率
     public static float MouseMoveTotal;
     void Start()
     {
+        image = Panel.GetComponent<Image>();
+        image.sprite = rubrub1;
         MouseMoveTotal = 0.0f;
         PanelSizeX = 0.0f;
         PanelSizeY = 0.0f;
@@ -84,7 +89,11 @@ public class PanelController : MonoBehaviour
                 GetComponent<RectTransform>().localScale = new Vector3(PanelSizeX, PanelSizeY, 1);
                 GetComponent<Image>().color = new Color(red, green, blue, Color_Alpha / 255.0f);
                 //サイズ縮小トリガ
-                if(MouseMoveTotal >= 30.0f)
+                if (MouseMoveTotal >= 10.0f)
+                {
+                    image.sprite = rubrub2;
+                }
+                if (MouseMoveTotal >= 30.0f)
                 {
                     RubRubFlg = false;
                     PanelStatus = PANEL_STATUS._GAME_SCALEDOWN_;
