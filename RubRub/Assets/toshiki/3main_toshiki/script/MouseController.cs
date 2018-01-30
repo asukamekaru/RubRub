@@ -30,6 +30,7 @@ namespace MouseController
         bool RubRubFlg;
 
         MainManager mainmanager;
+        soundManager soundmanager;
 
         public static int[] WallType = new int[] { 0, 0, 0 }; //0.通常壁　1.火吸収＆放出　2.水吸収＆放出
 
@@ -45,6 +46,7 @@ namespace MouseController
             MouseVector_Total = MouseVector_Total_X = MouseVector_Total_Y = 0.0f;
             MouseX_UpFlg = MouseX_DownFlg = MouseY_UpFlg = MouseY_DownFlg = false;
             mainmanager = GameObject.Find("MainManager").GetComponent<MainManager>();
+            soundmanager = GameObject.Find("SoundManager").GetComponent<soundManager>();
         }
 
         void Update()
@@ -63,7 +65,7 @@ namespace MouseController
                             status = 1;//撫に移動
                             mouse_position_x = mousePosition.x;
                             mouse_position_y = mousePosition.y;
-
+                            soundmanager.PlaySound(16,false);
                         }
                     }
                     break;

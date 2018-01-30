@@ -25,8 +25,11 @@ public class PanelController : MonoBehaviour
     const float Color_Alpha_Max = 225.0f;    //Alphaの最大値
     const float Color_Variable = Color_Alpha_Max / (PanelFulSizeX / VectolSize);//Alphaの可変率
     public static float MouseMoveTotal;
+
+    soundManager soundmanager;
     void Start()
     {
+        soundmanager = GameObject.Find("SoundManager").GetComponent<soundManager>();
         image = Panel.GetComponent<Image>();
         image.sprite = rubrub1;
         MouseMoveTotal = 0.0f;
@@ -138,6 +141,7 @@ public class PanelController : MonoBehaviour
 
     public void PBottonDown()   //ボタンを押されたときに呼び出す関数
     {
+        soundmanager.PlaySound(14, true);//RubボタンSE
         RubRubFlg = true;
     }
 }

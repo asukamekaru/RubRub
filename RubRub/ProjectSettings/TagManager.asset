@@ -16,6 +16,7 @@ TagManager:
   - goal
   - sakura
   - AttackSkaura
+  - AttackSakura
   layers:
   - Default
   - TransparentFX
@@ -32,7 +33,7 @@ TagManager:
   - Enemy
   - Goal
   - PlayerWall
-  - 
+  - AttackSakura
   - 
   - 
   - 

@@ -21,7 +21,7 @@ public class CubeControl2 : WallBase
     private float startTime;
     private Vector3 startPosition;
 
-    private bool mode = true;   //trueなら壁を上げてfalseなら下げる
+    public bool mode = true;   //trueなら壁を上げてfalseなら下げる
 
     Rigidbody rigidBody;
     public Vector3 force = new Vector3(0, 10, 0);
@@ -53,7 +53,7 @@ public class CubeControl2 : WallBase
         soundmanager.PlaySound(2,false);
         if (mode)
         {
-            posY = 1;
+            posY = 0.5f;
             // this.transform.parent = GameObject.Find("up").transform;   //upの子オブジェクトに登録
             for (int i = 0; i < 3; i++)
             {

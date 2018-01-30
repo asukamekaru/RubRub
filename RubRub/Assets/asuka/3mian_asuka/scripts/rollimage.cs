@@ -14,10 +14,20 @@ public class rollimage : MonoBehaviour {
     [SerializeField]
     private float RollSpeed;
 
+    MainManager mainmanager = GameObject.Find("MainManager").GetComponent<MainManager>();
+
     // Update is called once per frame
     void Update () {
 
         transform.Rotate(new Vector3(0, RollSpeed, 0));
 
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+
+        }
     }
 }

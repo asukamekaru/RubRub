@@ -12,6 +12,8 @@ public class DeadEnemy : MonoBehaviour
     Animator _animator;
     AnimatorStateInfo animInfo;
 
+    soundManager soundmanager;
+
     [SerializeField]
     [Header("アニメーションが終わった後の時間")]
     private float fWaitingTime;
@@ -19,6 +21,7 @@ public class DeadEnemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        soundmanager = GameObject.Find("SoundManager").GetComponent<soundManager>();
         _animator = GetComponent<Animator>();
         animInfo = _animator.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
     }
@@ -58,8 +61,11 @@ public class DeadEnemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Fire")
         {
-            
-            Debug.Log("HIT");
+            DeadAnime = LAST_KEY._ANIMATION;
+        }
+        if (collision.gameObject.tag == "AttackSakura")
+        {
+            soundmanager.PlaySound(7,false);//アタック桜に当たったときの音
             DeadAnime = LAST_KEY._ANIMATION;
         }
     }
