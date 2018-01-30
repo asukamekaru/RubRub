@@ -39,7 +39,7 @@ public class soundManager : MonoBehaviour
     public AudioSource seSource;//SE's
     public AudioClip[] bgmClip;
 
-    //音を再生
+    //音を再生 //trueでループ再生
     public void PlaySound(int seNum, bool isPlaying)
     {
         if (isPlaying)

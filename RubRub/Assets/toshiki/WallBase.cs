@@ -234,6 +234,8 @@ abstract public class WallBase : MonoBehaviour
                         EnemyPosition.z -= WapePoint;
                         GameObject ASakura = (GameObject)Instantiate(AttackSakura, EnemyPosition, Quaternion.Euler(0.0f, 270.0f, 90.0f));
                     }
+                    //soundmanager = GameObject.Find("SoundManager").GetComponent<soundManager>();
+                    //soundmanager.PlaySound(5, true);//吸う音
                 }
                 else if (DifferenceX > DifferenceZ)
                 {
@@ -257,6 +259,8 @@ abstract public class WallBase : MonoBehaviour
                         EnemyPosition.x -= WapePoint;
                         GameObject ASakura = (GameObject)Instantiate(AttackSakura, EnemyPosition, Quaternion.Euler(0.0f, 0.0f, 90.0f));
                     }
+                    //soundmanager = GameObject.Find("SoundManager").GetComponent<soundManager>();
+                    //soundmanager.PlaySound(5, true);//吸う音
                 }
                 else
                 {

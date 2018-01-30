@@ -29,6 +29,8 @@ public class CubeControl2 : WallBase
 
     public EnemyWarp enemyWarp;
 
+    soundManager soundmanager;
+
     //翁長君作成変数
     [HideInInspector]
     public bool MoveEnd;
@@ -47,7 +49,8 @@ public class CubeControl2 : WallBase
     //このスクリプトがtrueになったとき1度のみ行う処理
     void OnEnable()
     {
-
+        soundmanager = GameObject.Find("SoundManager").GetComponent<soundManager>();
+        soundmanager.PlaySound(2,false);
         if (mode)
         {
             posY = 1;

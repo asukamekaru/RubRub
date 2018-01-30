@@ -25,6 +25,9 @@ public class MainManager : MonoBehaviour
     [SerializeField]
     [Header("死んでシーン以降するまでのインターバル")]
     private float fDEADINTERVAL;
+    [SerializeField]
+    [Header("スタートエンドのUIが飛び出す速さ")]
+    private float fSEUISPEED;
 
     //数字
     [SerializeField]
@@ -69,6 +72,8 @@ public class MainManager : MonoBehaviour
 
     Player_Wall_Ray PWR;
     CubeControl2 cube;
+    StartEndUIScript SEUS;
+    soundManager soundmanager;
 
     public static float fCount;//停止中のタイマー
 
@@ -78,6 +83,8 @@ public class MainManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        soundmanager = GameObject.Find("SoundManager").GetComponent<soundManager>();
+        SEUS = GameObject.Find("StartEndUIImg").GetComponent<StartEndUIScript>();
         PWR = GameObject.Find("Yuko_sum_humanoid").GetComponent<Player_Wall_Ray>();
         Player.transform.position = StartPoint.transform.position;
         ChangeStatus(STATUS._GAME_START_);
@@ -90,11 +97,12 @@ public class MainManager : MonoBehaviour
         {
             case STATUS._GAME_START_:
 
+                soundmanager.ChangeBgm(4);//ゲームメインの　BGMを流す
                 BlackOutPanel.gameObject.SetActive(true);//パネルを出すついでに操作できなくする
 
                 if (BlackOutPanel.gameObject.GetComponent<BlackOut>().GameBlackOut((int)BLACKOUT_COLOR._BLACK_, "start"))
                 {
-                    if (++fCount > fSTARTINTERVAL)
+                    if (SEUS.ScaleChange("START", fSTARTINTERVAL, fSEUISPEED, false))
                     {
                         BlackOutPanel.gameObject.SetActive(false);//パネルを消す
                         ChangeStatus(STATUS._GAME_PLAY_);//fSTARTTIMERミリ秒後スタート
@@ -123,7 +131,7 @@ public class MainManager : MonoBehaviour
 
                 BlackOutPanel.gameObject.SetActive(true);//パネルを出すついでに操作できなくする
 
-                if (++fCount > fGOALINTERVAL)
+                if (SEUS.ScaleChange("GOAL", fGOALINTERVAL, fSEUISPEED, true))
                 {
                     if (BlackOutPanel.gameObject.GetComponent<BlackOut>().GameBlackOut((int)BLACKOUT_COLOR._WHITE_, "end")) ChangeScene("GameClear", 1);
                 }
@@ -135,7 +143,7 @@ public class MainManager : MonoBehaviour
 
                 camerascript.UPCAMERA(1);//カメラズームイン
 
-                if (playerdead.DEAD() && ++fCount > fDEADINTERVAL)//死んだアニメーションが流され、指定の時間に到達した時シーンを以降させる
+                if (playerdead.DEAD() && SEUS.ScaleChange("OVER", fDEADINTERVAL, fSEUISPEED, true))//死んだアニメーションが流され、指定の時間に到達した時シーンを以降させる
                 {
                     if (BlackOutPanel.gameObject.GetComponent<BlackOut>().GameBlackOut((int)BLACKOUT_COLOR._BLACK_, "end")) ChangeScene("GameOver", 1);//シーンを変える
                 }
@@ -149,6 +157,7 @@ public class MainManager : MonoBehaviour
     public void ChangeScene(string SceneName, int time)
     {
         Time.timeScale = time;
+        soundmanager.StopBgm();
         SceneManager.LoadScene(SceneName);
     }
 
