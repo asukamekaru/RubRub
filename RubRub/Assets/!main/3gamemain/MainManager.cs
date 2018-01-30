@@ -133,6 +133,7 @@ public class MainManager : MonoBehaviour
 
                 if (SEUS.ScaleChange("GOAL", fGOALINTERVAL, fSEUISPEED, true))
                 {
+                    soundmanager.PlaySound(9, true);//ゲームコンプリートSE
                     if (BlackOutPanel.gameObject.GetComponent<BlackOut>().GameBlackOut((int)BLACKOUT_COLOR._WHITE_, "end")) ChangeScene("GameClear", 1);
                 }
                 break;
@@ -145,6 +146,7 @@ public class MainManager : MonoBehaviour
 
                 if (playerdead.DEAD() && SEUS.ScaleChange("OVER", fDEADINTERVAL, fSEUISPEED, true))//死んだアニメーションが流され、指定の時間に到達した時シーンを以降させる
                 {
+                    soundmanager.PlaySound(10, true);//ゲームオーバーSE
                     if (BlackOutPanel.gameObject.GetComponent<BlackOut>().GameBlackOut((int)BLACKOUT_COLOR._BLACK_, "end")) ChangeScene("GameOver", 1);//シーンを変える
                 }
                 break;

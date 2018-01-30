@@ -61,15 +61,13 @@ public class StartEndUIScript : MonoBehaviour
                 {
                     case "START":
                         this.gameObject.GetComponent<Image>().sprite = START;
-                        soundmanager.PlaySound(8,false);//ゲームスタートSE
+                        soundmanager.PlaySound(8,true);//ゲームスタートSE
                         break;
                     case "GOAL":
                         this.gameObject.GetComponent<Image>().sprite = GOAL;
-                        soundmanager.PlaySound(9, false);//ゲームコンプリートSE
                         break;
                     case "OVER":
                         this.gameObject.GetComponent<Image>().sprite = OVER;
-                        soundmanager.PlaySound(10, false);//ゲームオーバーSE
                         break;
                 }
                 seuistatus = SEUI_STATUS._PANEL_SCALEUP_;//移る
