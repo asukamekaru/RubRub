@@ -47,6 +47,7 @@ namespace MouseController
             MouseX_UpFlg = MouseX_DownFlg = MouseY_UpFlg = MouseY_DownFlg = false;
             mainmanager = GameObject.Find("MainManager").GetComponent<MainManager>();
             soundmanager = GameObject.Find("SoundManager").GetComponent<soundManager>();
+            this.transform.SetSiblingIndex(5);
         }
 
         void Update()

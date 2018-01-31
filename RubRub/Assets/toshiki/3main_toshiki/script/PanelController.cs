@@ -30,7 +30,7 @@ public class PanelController : MonoBehaviour
     void Start()
     {
         soundmanager = GameObject.Find("SoundManager").GetComponent<soundManager>();
-        image = Panel.GetComponent<Image>();
+        image = this.GetComponent<Image>();
         image.sprite = rubrub1;
         MouseMoveTotal = 0.0f;
         PanelSizeX = 0.0f;
