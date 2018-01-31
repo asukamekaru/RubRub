@@ -15,6 +15,7 @@ TagManager:
   - Obstacle
   - goal
   - sakura
+  - SetFire
   layers:
   - Default
   - TransparentFX

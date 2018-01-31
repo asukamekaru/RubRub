@@ -108,8 +108,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WallType: -1
   NearTriggerObject: -1
+  SetFire: {fileID: 0}
   TagName:
-  - Fire
+  - SetFire
   - Enemy
   WallName:
   - FireWall
@@ -127,8 +128,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WallType: -1
   NearTriggerObject: -1
+  SetFire: {fileID: 0}
   TagName:
-  - Fire
+  - SetFire
   - Enemy
   WallName:
   - FireWall

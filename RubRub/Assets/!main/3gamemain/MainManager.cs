@@ -80,6 +80,7 @@ public class MainManager : MonoBehaviour
     // Rayが衝突したコライダーの情報を得る
     RaycastHit hit;
 
+    private int RandomWall = 3;//かべこちゃんが出現する確率（100/RandomWall = 確率）
     // Use this for initialization
     void Start()
     {
@@ -216,20 +217,44 @@ public class MainManager : MonoBehaviour
             //Instantiate( 生成するオブジェクト,  場所, 回転 );  回転はそのままなら↓
             if (MainManager.LastKey == MainManager.LAST_KEY._KEY_UP_ || MainManager.LastKey == MainManager.LAST_KEY._KEY_DOWN_)
             {
-                Instantiate(PWR.wall,
-                            new Vector3(Mathf.RoundToInt(PWR.Point.transform.position.x),
-                                        this.transform.position.y - 2,
-                                        PWR.Point.transform.position.z),
-                            Quaternion.identity);
+                if (UnityEngine.Random.Range(0, RandomWall) == RandomWall -1)
+                {
+                    Debug.Log("壁子ちゃん");
+                    Instantiate(PWR.kabeko,
+                           new Vector3(Mathf.RoundToInt(PWR.Point.transform.position.x),
+                                       this.transform.position.y - 2,
+                                       PWR.Point.transform.position.z),
+                           Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(PWR.wall,
+                                new Vector3(Mathf.RoundToInt(PWR.Point.transform.position.x),
+                                            this.transform.position.y - 2,
+                                            PWR.Point.transform.position.z),
+                                Quaternion.identity);
+                }
             }
 
             if (MainManager.LastKey == MainManager.LAST_KEY._KEY_LEFT_ || MainManager.LastKey == MainManager.LAST_KEY._KEY_RIGHT_)
             {
-                Instantiate(PWR.wall,
+                if (UnityEngine.Random.Range(0, RandomWall) == RandomWall -1)
+                {
+                    Debug.Log("壁子ちゃん");
+                    Instantiate(PWR.kabeko,
                             new Vector3(PWR.Point.transform.position.x,
                                         this.transform.position.y - 2,
                                         Mathf.RoundToInt(PWR.Point.transform.position.z)),
                             Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(PWR.wall,
+                           new Vector3(PWR.Point.transform.position.x,
+                                       this.transform.position.y - 2,
+                                       Mathf.RoundToInt(PWR.Point.transform.position.z)),
+                           Quaternion.identity);
+                }
             }
         }
 
