@@ -32,14 +32,15 @@ public class homeManager : MonoBehaviour
 
 
     ////////////////////////////////////// 変数 //////////////////////////////////////
-    private int iNowSelectStage = 0;//ボタンを押したら飛ばされるステージの番号
+    public int iNowSelectStage = 0;//ボタンを押したら飛ばされるステージの番号
 
     // Use this for initialization
     void Start()
     {
         for (int i = 0; i < MAXSTAGE; i++)
         {
-            Stagebtn[i].gameObject.GetComponent<selectUIScript>().getMyNum(iNowSelectStage - i);//飛ばされるステージ番号の初期化
+            Stagebtn[i].gameObject.GetComponent<selectUIScript>().iStageNum = i;//ボタンに飛ぶステージの情報を渡す
+            Stagebtn[i].gameObject.GetComponent<selectUIScript>().getMyNum(-i);//飛ばされるステージ番号の初期化
         }
 
     }

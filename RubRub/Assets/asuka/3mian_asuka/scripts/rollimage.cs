@@ -14,7 +14,7 @@ public class rollimage : MonoBehaviour {
     [SerializeField]
     private float RollSpeed;
 
-    MainManager mainmanager = GameObject.Find("MainManager").GetComponent<MainManager>();
+   // MainManager mainmanager = GameObject.Find("MainManager").GetComponent<MainManager>();
 
     // Update is called once per frame
     void Update () {

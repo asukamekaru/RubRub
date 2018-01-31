@@ -27,7 +27,7 @@ public class selectUIScript : MonoBehaviour
     [SerializeField]
     private string nextScene;
 
-    [HideInInspector]
+    //[HideInInspector]
     public int iStageNum;//ステージ番号
 
     GameObject SEManager = null;
@@ -43,6 +43,7 @@ public class selectUIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         //ボタン移動のアニメーション
 
         //位置X
@@ -98,15 +99,18 @@ public class selectUIScript : MonoBehaviour
 
     }
 
-    private void ClickBtn() {
+    private void ClickBtn() {//ボタンがクリックされたときの処理
         if (SEManager != null)
         {
             soundManager SM = SEManager.GetComponent<soundManager>();
             SM.PlaySound(0, false);
         }
       
-        if (nextScene == "NULL") return; SceneManager.LoadScene(nextScene);
-    }//ボタンがクリックされたときの処理
+        if (nextScene == "NULL") return;
+
+        //今選んでいるステージの番号と自分のステージの番号が一致している場合指定のステージへ飛ぶ
+        if (iStageNum == homemanager.iNowSelectStage) SceneManager.LoadScene(nextScene);
+    }
 
     private float changeSign(float f) { if (f < 0) f *= -1.0f; return f; }//強制的に符号をプラスに変える
 
