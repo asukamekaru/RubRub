@@ -20,22 +20,10 @@ public class TutorialPoint : MonoBehaviour
     [SerializeField]
     private GameObject Player;
 
-    [Header("範囲")]
-    [SerializeField]
-    private float fRange;
-
     [Header("チュートリアルマネージャー")]
     [SerializeField]
     TutorialMgr tutorialmgr;
     ////////////////////////////////////// 変数 //////////////////////////////////////
-
-    float fWallXMin, fWallXMax, fWallZMin, fWallZMax;
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -43,12 +31,14 @@ public class TutorialPoint : MonoBehaviour
 
         transform.Rotate(new Vector3(0, RollSpeed, 0));//画像の回転
 
-        if (Player.transform.position.x >= this.transform.position.x - fRange &&
-                    Player.transform.position.x <= this.transform.position.x + fRange &&
-                    Player.transform.position.y >= this.transform.position.y - fRange &&
-                    Player.transform.position.y <= this.transform.position.y + fRange &&
-                    Player.transform.position.z >= this.transform.position.z - fRange &&
-                    Player.transform.position.z <= this.transform.position.z + fRange) tutorialmgr.active();
+    }
 
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            tutorialmgr.active();//当たればチュートリアルが表示される
+        }
     }
 }

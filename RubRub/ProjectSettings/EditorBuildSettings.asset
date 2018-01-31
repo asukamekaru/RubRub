@@ -12,17 +12,26 @@ EditorBuildSettings:
     path: Assets/!main/2gamehome/HomeScene.unity
     guid: 9d33650a53fbe8f4b9ec7f257b9fc703
   - enabled: 1
-    path: Assets/!main/3gamemain/GameMainScene.unity
-    guid: 740caeddc9be7e64e88bb9d0a9755dfb
-  - enabled: 0
-    path: 
-    guid: 0fc40c6d6131c5c4a8d7c7d17a3f4be5
+    path: Assets/!main/3gamemain/GameMainStage1.unity
+    guid: 1523225b1c77e89408172d6375190721
+  - enabled: 1
+    path: Assets/!main/3gamemain/GameMainStage2.unity
+    guid: 7b2f594bb47012044b1b274f5d4c481e
+  - enabled: 1
+    path: Assets/!main/3gamemain/GameMainStage3.unity
+    guid: c1a43d55972caab4b9bd0ea56aef327f
+  - enabled: 1
+    path: Assets/!main/4gameclear/GameClear.unity
+    guid: 09325520a368d174ea8570d51b270f39
   - enabled: 1
     path: Assets/!main/5gameover/GameOver.unity
     guid: 20bb54ee1b290594ca8c014dfcf56e7a
   - enabled: 0
     path: 
     guid: 12ed2474ecaf79f4ba352d20858cdc22
-  - enabled: 1
-    path: Assets/!main/4gameclear/GameClear.unity
-    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: Assets/!main/3gamemain/GameMainScene.unity
+    guid: 740caeddc9be7e64e88bb9d0a9755dfb
+  - enabled: 0
+    path: 
+    guid: 0fc40c6d6131c5c4a8d7c7d17a3f4be5

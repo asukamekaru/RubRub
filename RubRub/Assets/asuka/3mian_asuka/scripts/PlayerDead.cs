@@ -7,14 +7,17 @@ public class PlayerDead : MonoBehaviour
 
     Animator _animator;
     AnimatorStateInfo animInfo;
-
-    [SerializeField]
-    public cameraScript camerascript;
-    public MainManager mainmanager;
+    
+    cameraScript camerascript;
+    MainManager mainmanager;
+    soundManager soundmanager;
 
     // Use this for initialization
     void Start()
     {
+        soundmanager = GameObject.Find("SoundManager").GetComponent<soundManager>();
+        mainmanager = GameObject.Find("MainManager").GetComponent<MainManager>();
+        camerascript = GameObject.Find("Main Camera").GetComponent<cameraScript>();
         _animator = GetComponent<Animator>();
         animInfo = _animator.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
     }
@@ -26,19 +29,17 @@ public class PlayerDead : MonoBehaviour
         // ここに到達直後はnormalizedTimeが"Default"の経過時間を拾ってしまうので、Resultに遷移完了するまではreturnする。
         if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("GoDown"))
         {
-            Debug.Log("1");
             return false;
         }
         // 待機時間を作りたいならば、ここの値を大きくする。
         if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
         {
-            Debug.Log("2");
+            if(_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.2f) soundmanager.PlaySound(15, true);
             return false;
         }
         else
         {
             Time.timeScale = 0;//時間を止める
-            Debug.Log("3");
             return true;
         }
         //return false;

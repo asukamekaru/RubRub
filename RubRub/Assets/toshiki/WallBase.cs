@@ -202,7 +202,7 @@ abstract public class WallBase : MonoBehaviour
                 float DifferenceX;
                 float DifferenceZ;
                 //壁との接触を避けるため少し移動ポイントをずらす
-                float WapePoint = 1.0f;
+                float WapePoint = 1;
                 //X軸、Z軸のエネミーと壁の座標の差を取得
                 //差のより大きい方を優先とし向きを設定
                 DifferenceX = TargetEnemy.transform.position.x - TriggerObject.transform.position.x;

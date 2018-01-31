@@ -541,6 +541,7 @@ RectTransform:
   m_Children:
   - {fileID: 1611228191}
   - {fileID: 865269918}
+  - {fileID: 1328111997}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4694,7 +4695,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1036882256
 Prefab:
@@ -5625,6 +5626,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451ee5e4e8159f2439f3570085c46029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rubrub1: {fileID: 0}
+  rubrub2: {fileID: 0}
   Panel: {fileID: 0}
   RubRubFlg: 0
 --- !u!114 &1328111995
@@ -5670,13 +5673,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_Father: {fileID: 78800513}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 238, y: 134}
-  m_SizeDelta: {x: 799.99994, y: 450.42014}
+  m_AnchoredPosition: {x: 0.000015258789, y: -0.000015258789}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &1328194586 stripped
 Transform:

@@ -65,17 +65,17 @@ public class posemgr : MonoBehaviour {
     //ポーズ中のホームボタンの処理
     void OnPoseHomeBtn() { 
         mainmanager.ChangeScene("HomeScene",1); /*ホームシーンへ移動*/
-        soundmanager.PlaySound(11, false);//システムサウンドを鳴らす
+        soundmanager.PlaySound(12, false);//システムキャンセルサウンドを鳴らす
     }
     //ポーズ中のプレイボタンの処理
     void OnPosePlayBtn() { 
         MainManager.ChangeStatus(MainManager.STATUS._GAME_PLAY_); 
         posePanel.gameObject.SetActive(false); /*ステータスをプレイに戻す*/
-        soundmanager.PlaySound(11, false);//システムサウンドを鳴らす
+        soundmanager.PlaySound(12, false);//システムキャンセルサウンドを鳴らす
     }
     //ポーズ中のリトライボタンの処理
     void OnPoseRetryBtn() { 
         mainmanager.ChangeScene("GameMainScene", 1); /*ゲームメインシーンの再読込*/
-        soundmanager.PlaySound(11, false);//システムサウンドを鳴らす
+        soundmanager.PlaySound(12, false);//システムキャンセルサウンドを鳴らす
     }
 }
