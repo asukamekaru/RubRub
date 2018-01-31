@@ -151,8 +151,8 @@ abstract public class WallBase : MonoBehaviour
             {
                 GameObject BigFire = (GameObject)Instantiate(BigFirePrefab, CreatePointObject.transform.position, BigFireRote);
                 //GameObject Fire = (GameObject)Instantiate(AttackFirePrefab, CreatePointObject.transform.position, AttackFireRote);
-                BigFire.transform.parent = transform;
-                //Fire.transform.parent = transform;
+                BigFire.transform.parent = CreatePointObject.transform;
+                //Fire.transform.parent = CreatePointObject.transform;
             }
         }
     }

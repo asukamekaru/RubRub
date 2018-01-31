@@ -103,7 +103,7 @@ namespace MouseController
                         MouseY_DownFlg = true;
                     }
                     //--------------------------------------------------------------------------
-                    if (MouseVector_Total >= 30.0f) status = 2;
+                    if (MouseVector_Total >= 60.0f) status = 2;
                     if (Input.GetMouseButtonUp(0)) status = 2;//判定へ移動
                     break;
 
@@ -113,19 +113,19 @@ namespace MouseController
                     if (MouseVector_Total_X / MouseVector_Total_Y >= 0.3f &&
                         MouseVector_Total_X / MouseVector_Total_Y <= 2.5f &&
                         MouseX_UpFlg && MouseX_DownFlg && MouseY_UpFlg &&
-                        MouseY_DownFlg && MouseVector_Total >= 30.0f)
+                        MouseY_DownFlg && MouseVector_Total >= 60.0f)
                     {
                         WallType[0] = 0;
                         mainmanager.IFDeleteCall();
                         
                     }
-                    else if (MouseVector_Total_X > MouseVector_Total_Y && MouseVector_Total >= 30.0f)
+                    else if (MouseVector_Total_X > MouseVector_Total_Y && MouseVector_Total >= 60.0f)
                     {
                         WallType[1] = 1;
                         mainmanager.IFCreateCall();
                        
                     }
-                    else if (MouseVector_Total > 30.0f)
+                    else if (MouseVector_Total > 60.0f)
                     {
                         WallType[2] = 1;
                         mainmanager.IFCreateCall();

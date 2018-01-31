@@ -74,8 +74,10 @@ public class posemgr : MonoBehaviour {
         soundmanager.PlaySound(12, false);//システムキャンセルサウンドを鳴らす
     }
     //ポーズ中のリトライボタンの処理
-    void OnPoseRetryBtn() { 
-        mainmanager.ChangeScene("GameMainScene", 1); /*ゲームメインシーンの再読込*/
+    void OnPoseRetryBtn() {
+        // 現在のScene名を取得する
+        Scene loadScene = SceneManager.GetActiveScene();
+        mainmanager.ChangeScene(loadScene.name, 1); /*ゲームメインシーンの再読込*/
         soundmanager.PlaySound(12, false);//システムキャンセルサウンドを鳴らす
     }
 }

@@ -34,10 +34,12 @@ public class StartEndUIScript : MonoBehaviour
 
     float fNowScale;//今のスケール
     int iIntervalTime;//インターバルの時間
+    bool bStartFlg, bGoalFlg, bOverFlg;//一度だけ通るようにさせるフラグ
 
     // Use this for initialization
     void Start()
     {
+         bStartFlg = bGoalFlg = bOverFlg = true;
         seuistatus = SEUI_STATUS._PANEL_START_;
         iIntervalTime = 0;//インターバルの時間を初期化
         fNowScale = MINSCALE;//最小値を設定↓
@@ -52,26 +54,34 @@ public class StartEndUIScript : MonoBehaviour
     }
 
     //UIを表示させる
-    public bool ScaleChange(string imagetype, float time, float speed, bool flag)//使う画像 - インターバル - 速さ - 途中で終わるかのフラグ
+    public bool ScaleChange(string type, float time, float speed)//使う画像 - インターバル - 速さ
     {
         switch (seuistatus)
         {
             case SEUI_STATUS._PANEL_START_:
-                switch (imagetype)//使う画像を変える
+
+                if (type == "START" && bStartFlg)
                 {
-                    case "START":
-                        this.gameObject.GetComponent<Image>().sprite = START;
-                        soundmanager.PlaySound(8,true);//ゲームスタートSE
-                        break;
-                    case "GOAL":
-                        this.gameObject.GetComponent<Image>().sprite = GOAL;
-                        break;
-                    case "OVER":
-                        this.gameObject.GetComponent<Image>().sprite = OVER;
-                        break;
+                    bStartFlg = false;//一度だけ実行させるため
+                    soundmanager.PlaySound(8, true);//ゲームスタートSE
+                    this.gameObject.GetComponent<Image>().sprite = START;//画像を変える
+                    seuistatus = SEUI_STATUS._PANEL_SCALEUP_;//移る
                 }
-                seuistatus = SEUI_STATUS._PANEL_SCALEUP_;//移る
-                Debug.Log("a");
+                else if (type == "GOAL" && bGoalFlg)
+                {
+                    bGoalFlg = false;//一度だけ実行させるため
+                    soundmanager.PlaySound(9, true);//ゲームコンプリートSE
+                    this.gameObject.GetComponent<Image>().sprite = GOAL;//画像を変える
+                    seuistatus = SEUI_STATUS._PANEL_SCALEUP_;//移る
+                }
+                else if (type == "OVER" && bOverFlg)
+                {
+                    bOverFlg = false;//一度だけ実行させるため
+                    soundmanager.PlaySound(10, true);//ゲームオーバーSE
+                    this.gameObject.GetComponent<Image>().sprite = OVER;//画像を変える
+                    seuistatus = SEUI_STATUS._PANEL_SCALEUP_;//移る
+                }
+                else { return true; }
                 break;
 
             case SEUI_STATUS._PANEL_SCALEUP_://拡大させる
@@ -88,7 +98,8 @@ public class StartEndUIScript : MonoBehaviour
                 break;
             case SEUI_STATUS._PANEL_FIRST_INTERVAL_:
 
-                if (!flag)
+                //スタート以外ならスケールダウンさせない
+                if (type == "START")
                 {
                     //インターバル中 インターバルの時間を経過すればスケールを縮小させる
                     if (++iIntervalTime >= time) seuistatus = SEUI_STATUS._PANEL_SCALEDOWN_;

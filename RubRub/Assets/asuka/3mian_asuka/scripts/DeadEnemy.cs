@@ -61,6 +61,7 @@ public class DeadEnemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Fire")
         {
+            soundmanager.PlaySound(6, false);//死んだ音
             DeadAnime = LAST_KEY._ANIMATION;
         }
         if (collision.gameObject.tag == "AttackSakura")
