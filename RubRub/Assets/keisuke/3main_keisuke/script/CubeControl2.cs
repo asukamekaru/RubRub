@@ -47,7 +47,6 @@ public class CubeControl2 : WallBase
     //このスクリプトがtrueになったとき1度のみ行う処理
     void OnEnable()
     {
-
         if (mode)
         {
             posY = 1;
@@ -120,7 +119,6 @@ public class CubeControl2 : WallBase
                     }
                     ObjectCreate(this.gameObject, WallName[WallType - 1], NearTriggerObject);
                 }
-
                 WallType = -1;
             }
 

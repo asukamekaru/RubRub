@@ -100,7 +100,6 @@ namespace MouseController
                         MouseY_DownFlg = true;
                     }
                     //--------------------------------------------------------------------------
-                    Debug.Log(MouseVector_Total);
                     if (MouseVector_Total >= 30.0f) status = 2;
                     if (Input.GetMouseButtonUp(0)) status = 2;//判定へ移動
                     break;

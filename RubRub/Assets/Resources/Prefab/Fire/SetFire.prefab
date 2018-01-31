@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 4067013317877850}
   - component: {fileID: 198496696916567210}
   - component: {fileID: 199944662144453098}
+  - component: {fileID: 114517938358762090}
   m_Layer: 0
   m_Name: SetFire
   m_TagString: Fire
@@ -103,6 +104,17 @@ Transform:
   m_Father: {fileID: 4067013317877850}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114517938358762090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1628166276400508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 103124a25fffbcd4a9b6eab490c3a464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198496696916567210
 ParticleSystem:
   m_ObjectHideFlags: 1

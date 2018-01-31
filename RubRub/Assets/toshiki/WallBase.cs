@@ -6,7 +6,8 @@ abstract public class WallBase : MonoBehaviour
 {
     public int WallType = -1;    //0、普通の壁　1、ファイアウォール　2、エネミーウォール
     public int NearTriggerObject = -1; //近くにあるオブジェクト -1、なし　1、ファイア　2、エネミー
-    public string[] TagName = new string[] { "Fire", "Enemy" };
+    public GameObject SetFire = null;
+    public string[] TagName = new string[] { "SetFire", "Enemy" };
     public string[] WallName = new string[] { "FireWall", "EnemyWall" };
 
 
@@ -29,7 +30,7 @@ abstract public class WallBase : MonoBehaviour
     }
 
 
-    //指定されたタグの中で最も近いものを取得
+    //指定されたタグ(火、敵)の中で最も近いものを取得
     public bool NearObjectRetrieval(GameObject nowObj, string tagName)
     {
         float ObjectNeardistance = 2.3f;    //近いの判定基準
@@ -50,8 +51,12 @@ abstract public class WallBase : MonoBehaviour
             {
                 nearDistance = tmpDistance;
                 targetObj = obs;
-            }
+                if (obs.transform.tag=="SetFire")
+                {
+                    SetFire = obs;
 
+                }
+            }
         }
         if (nearDistance <= ObjectNeardistance && nearDistance != 0)
         {
@@ -61,10 +66,11 @@ abstract public class WallBase : MonoBehaviour
         return TriggerObjectNear;
     }
 
-    //インスタンスを生成
+    //()インスタンスを生成
     public void ObjectCreate(GameObject thisGameObject/*自身のオブジェクト*/, string TagName/*タグの名前*/
         , int ObjectCreateFlg/*近くにあるオブジェクト　-1 何もなし, 0　fire, 1 enemy*/)
     {
+  
         GameObject Player = GameObject.FindGameObjectWithTag("Player");
 
         //生成するインスタンスをPrefabで取得＆生成オブジェクトの角度を設定
@@ -144,9 +150,9 @@ abstract public class WallBase : MonoBehaviour
             if (CreatePointObject.gameObject.tag == "FireWall")
             {
                 GameObject BigFire = (GameObject)Instantiate(BigFirePrefab, CreatePointObject.transform.position, BigFireRote);
-                GameObject Fire = (GameObject)Instantiate(AttackFirePrefab, CreatePointObject.transform.position, AttackFireRote);
+                //GameObject Fire = (GameObject)Instantiate(AttackFirePrefab, CreatePointObject.transform.position, AttackFireRote);
                 BigFire.transform.parent = transform;
-                Fire.transform.parent = transform;
+                //Fire.transform.parent = transform;
             }
         }
     }

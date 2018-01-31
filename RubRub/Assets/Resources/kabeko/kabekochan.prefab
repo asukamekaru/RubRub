@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 33952590092871280}
   - component: {fileID: 65556888772620166}
   - component: {fileID: 23055082501364890}
-  - component: {fileID: 114548752710955604}
   - component: {fileID: 114581528403740214}
-  m_Layer: 8
+  - component: {fileID: 114721280502972394}
+  - component: {fileID: 114351942961008208}
+  m_Layer: 14
   m_Name: kabekochan
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -41,7 +42,7 @@ GameObject:
   - component: {fileID: 4600650074149594}
   - component: {fileID: 212362429089824166}
   - component: {fileID: 114158008786394868}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,8 +56,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1712270373257188}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.51}
-  m_LocalScale: {x: 1, y: 0.33333334, z: 1}
+  m_LocalPosition: {x: 0, y: -1, z: -0.51}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4998480316028492}
   m_RootOrder: 0
@@ -68,8 +69,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1063868629586022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 10, z: 10}
-  m_LocalScale: {x: 1, y: 3, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4600650074149594}
   m_Father: {fileID: 0}
@@ -137,34 +138,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f57b26b65d5862140bfa392b501100f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sprite1: {fileID: 21300000, guid: d70c27023b9bc4e42afaa1bd40b96a7d, type: 3}
-  Sprite2: {fileID: 21300000, guid: 881668a90e250fb4988bd0bb933cc723, type: 3}
-  Sprite3: {fileID: 21300000, guid: a94f4ae4627f1664c82eda46c775b116, type: 3}
-  Sprite4: {fileID: 21300000, guid: ec1c74fa8adee014bbde774f63f0189f, type: 3}
---- !u!114 &114548752710955604
+  Sprite1: {fileID: 21300000, guid: f6f73a867eddac94b8a0171aaac12260, type: 3}
+  Sprite2: {fileID: 21300000, guid: 70afc8a565d565b4797640ed04443d15, type: 3}
+  Sprite3: {fileID: 21300000, guid: 0013f3d436cf8e94f92e2532c49b1671, type: 3}
+  Sprite4: {fileID: 21300000, guid: 8d972402c09d7414a8914f746709ab83, type: 3}
+--- !u!114 &114351942961008208
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1063868629586022}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2d869fffb7b71c4e9c3a283d59cf766, type: 3}
+  m_Script: {fileID: 11500000, guid: a1656d1757bef3a48b85c3eb68de301a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   WallType: -1
   NearTriggerObject: -1
+  SetFire: {fileID: 0}
   TagName:
-  - Fire
+  - SetFire
   - Enemy
   WallName:
   - FireWall
   - EnemyWall
-  time: 1
-  endPosition: {x: 2, y: 0, z: 0}
-  force: {x: 0, y: 10, z: 0}
-  forceMode: 2
-  MoveEnd: 0
 --- !u!114 &114581528403740214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -176,6 +173,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6b7080607ad1047814c01629b66ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114721280502972394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1063868629586022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01facaa4a007d70469b5f049e16cb059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WallType: -1
+  NearTriggerObject: -1
+  SetFire: {fileID: 0}
+  TagName:
+  - SetFire
+  - Enemy
+  WallName:
+  - FireWall
+  - EnemyWall
+  time: 1
+  posY: 0
+  force: {x: 0, y: 10, z: 0}
+  forceMode: 2
+  enemyWarp: {fileID: 0}
+  MoveEnd: 0
 --- !u!212 &212362429089824166
 SpriteRenderer:
   m_ObjectHideFlags: 1

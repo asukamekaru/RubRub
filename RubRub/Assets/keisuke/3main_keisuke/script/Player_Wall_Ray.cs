@@ -7,6 +7,7 @@ public class Player_Wall_Ray : MonoBehaviour {
     public float RayLength = 1.0f;  //Rayの長さ
     public LayerMask visibleLayer;
     public GameObject wall;
+    public GameObject kabeko;
     public GameObject Point;
     private CubeControl2 cube;
 
