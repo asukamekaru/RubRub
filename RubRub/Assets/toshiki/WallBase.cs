@@ -176,7 +176,7 @@ abstract public class WallBase : MonoBehaviour
         if (TriggerObject != null)
         {
             //ワープ先から近いエネミーを検索用変数
-            float NearEnemyDistance = 3.0f;
+            float NearEnemyDistance = 1.3f;
             float tmpDistance = 0.0f;           //距離用一時変数
             float nearDistance = 0.0f;          //最も近いオブジェクトの距離
             GameObject TargetEnemy = null;
