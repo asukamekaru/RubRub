@@ -15,6 +15,8 @@ public class MainManager : MonoBehaviour
 {
     ////////////////////////////////////// 変数シンボル //////////////////////////////////////
 
+    private GameObject obj; //生成した壁を入れるためのもの
+
     //時間
     [SerializeField]
     [Header("ゲームが始まるまでのインターバル")]
@@ -152,6 +154,14 @@ public class MainManager : MonoBehaviour
                 }
                 break;
         }
+
+        if (this.transform.childCount >= 4)
+        {
+            cube = transform.GetChild(0).GetComponent<CubeControl2>();
+            cube.enabled = true;
+            cube.MoveEnd = false;
+            cube.WallType = 0;
+        }
     }
     
     //===============================================================================================
@@ -220,15 +230,16 @@ public class MainManager : MonoBehaviour
                 if (UnityEngine.Random.Range(0, RandomWall) == RandomWall -1)
                 {
                     Debug.Log("壁子ちゃん");
-                    Instantiate(PWR.kabeko,
-                           new Vector3(Mathf.RoundToInt(PWR.Point.transform.position.x),
+                    obj = Instantiate(PWR.kabeko,
+                          new Vector3(Mathf.RoundToInt(PWR.Point.transform.position.x),
                                        this.transform.position.y - 2,
                                        PWR.Point.transform.position.z),
                            Quaternion.identity);
+                    obj.transform.parent = this.transform;
                 }
                 else
                 {
-                    Instantiate(PWR.wall,
+                    obj = Instantiate(PWR.wall,
                                 new Vector3(Mathf.RoundToInt(PWR.Point.transform.position.x),
                                             this.transform.position.y - 2,
                                             PWR.Point.transform.position.z),
@@ -241,7 +252,7 @@ public class MainManager : MonoBehaviour
                 if (UnityEngine.Random.Range(0, RandomWall) == RandomWall -1)
                 {
                     Debug.Log("壁子ちゃん");
-                    Instantiate(PWR.kabeko,
+                    obj = Instantiate(PWR.kabeko,
                             new Vector3(PWR.Point.transform.position.x,
                                         this.transform.position.y - 2,
                                         Mathf.RoundToInt(PWR.Point.transform.position.z)),
@@ -249,13 +260,15 @@ public class MainManager : MonoBehaviour
                 }
                 else
                 {
-                    Instantiate(PWR.wall,
+                    obj = Instantiate(PWR.wall,
                            new Vector3(PWR.Point.transform.position.x,
                                        this.transform.position.y - 2,
                                        Mathf.RoundToInt(PWR.Point.transform.position.z)),
                            Quaternion.identity);
                 }
             }
+            obj.transform.parent = this.transform;
+           
         }
 
         /*if (sNowGround != sCreateGroundName)//立っている地面と作りたい地面が別か？

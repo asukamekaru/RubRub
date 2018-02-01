@@ -6128,9 +6128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b42b8883934595148b230283f2cb8999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fSTARTINTERVAL: 120
-  fGOALINTERVAL: 120
-  fDEADINTERVAL: 120
+  fSTARTINTERVAL: 60
+  fGOALINTERVAL: 60
+  fDEADINTERVAL: 60
   fSEUISPEED: 0.05
   iClearPoint: 1
   camerascript: {fileID: 2033159424}
