@@ -96,7 +96,7 @@ public class PanelController : MonoBehaviour
                 {
                     image.sprite = rubrub2;
                 }
-                if (MouseMoveTotal >= 30.0f)
+                if (MouseMoveTotal >= 60.0f)
                 {
                     RubRubFlg = false;
                     PanelStatus = PANEL_STATUS._GAME_SCALEDOWN_;

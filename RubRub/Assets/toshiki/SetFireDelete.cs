@@ -9,6 +9,7 @@ public class SetFireDelete : MonoBehaviour {
     private float DeleteTime = 0.0f;
     // Use this for initialization
     void Start () {
+        DeleteFlg = false;
         particle = this.GetComponent<ParticleSystem>();
     }
 	

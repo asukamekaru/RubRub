@@ -8429,7 +8429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fDefPosition: 750
-  fMoveSpeed: 10
+  fMoveSpeed: 60
   tutorialmgr: {fileID: 2131325069}
 --- !u!114 &1765018943
 MonoBehaviour:

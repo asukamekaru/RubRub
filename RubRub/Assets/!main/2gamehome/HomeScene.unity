@@ -442,7 +442,7 @@ MonoBehaviour:
   homemanager: {fileID: 846356044}
   myVec: {x: 0, y: 0, z: 0}
   mySize: 0
-  nextScene: GameMainStage1
+  nextScene: GameMainStage2
   iStageNum: 0
 --- !u!1 &624495887
 GameObject:
@@ -2171,5 +2171,5 @@ MonoBehaviour:
   homemanager: {fileID: 846356044}
   myVec: {x: 0, y: 0, z: 0}
   mySize: 0
-  nextScene: GameMainStage3
+  nextScene: GameMainStage2
   iStageNum: 0
