@@ -33,7 +33,7 @@ abstract public class WallBase : MonoBehaviour
     //指定されたタグ(火、敵)の中で最も近いものを取得
     public bool NearObjectRetrieval(GameObject nowObj, string tagName)
     {
-        float ObjectNeardistance = 2.3f;    //近いの判定基準
+        float ObjectNeardistance = 1.7f;    //近いの判定基準
         float tmpDistance = 0;           //距離用一時変数
         float nearDistance = 0;          //最も近いオブジェクトの距離
         GameObject targetObj = null; //Debug用オブジェクト

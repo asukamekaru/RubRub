@@ -55,10 +55,10 @@ public class AttackSakuraController : MonoBehaviour
                 break;
         }
     }
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider other)
     {
         Debug.Log("入った");
-        if (collision.gameObject.tag == "Untagged")
+        if (other.gameObject.tag == "Untagged")
         {
             soundmanager = GameObject.Find("SoundManager").GetComponent<soundManager>();
             soundmanager.PlaySound(5, false);//吸う音

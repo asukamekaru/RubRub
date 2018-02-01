@@ -70,4 +70,12 @@ public class DeadEnemy : MonoBehaviour
             DeadAnime = LAST_KEY._ANIMATION;
         }
     }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "AttackSakura")
+        {
+            soundmanager.PlaySound(7, false);//アタック桜に当たったときの音
+            DeadAnime = LAST_KEY._ANIMATION;
+        }
+    }
 }

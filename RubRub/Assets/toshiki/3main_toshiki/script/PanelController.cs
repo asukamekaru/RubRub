@@ -92,7 +92,7 @@ public class PanelController : MonoBehaviour
                 GetComponent<RectTransform>().localScale = new Vector3(PanelSizeX, PanelSizeY, 1);
                 GetComponent<Image>().color = new Color(red, green, blue, Color_Alpha / 255.0f);
                 //サイズ縮小トリガ
-                if (MouseMoveTotal >= 10.0f)
+                if (MouseMoveTotal >= 40.0f)
                 {
                     image.sprite = rubrub2;
                 }

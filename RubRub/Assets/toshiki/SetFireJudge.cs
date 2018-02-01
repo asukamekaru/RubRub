@@ -19,6 +19,7 @@ public class SetFireJudge : MonoBehaviour
                     if (cubeControl2.SetFire != null)
                     {
                         DeleteObject = cubeControl2.SetFire;
+                        cubeControl2.NearTriggerObject = -1;
                     }
                 }
             }

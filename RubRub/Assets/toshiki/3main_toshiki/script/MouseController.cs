@@ -21,6 +21,7 @@ namespace MouseController
         float MouseVector_Total_X;  //マウス移動量累積値.X
         float MouseVector_Total_Y;  //マウス移動量累積値.Y
         public float MouseVector_Total;    //マウス移動量蓄積値X.Y
+        public static float VectorMax = 60.0f;
 
         public bool MouseX_UpFlg;      //マウスポジションXの累積値に加算処理があったか
         public bool MouseX_DownFlg;    //減算処理があったか
@@ -103,7 +104,7 @@ namespace MouseController
                         MouseY_DownFlg = true;
                     }
                     //--------------------------------------------------------------------------
-                    if (MouseVector_Total >= 60.0f) status = 2;
+                    if (MouseVector_Total >= VectorMax) status = 2;
                     if (Input.GetMouseButtonUp(0)) status = 2;//判定へ移動
                     break;
 
@@ -113,21 +114,21 @@ namespace MouseController
                     if (MouseVector_Total_X / MouseVector_Total_Y >= 0.3f &&
                         MouseVector_Total_X / MouseVector_Total_Y <= 2.5f &&
                         MouseX_UpFlg && MouseX_DownFlg && MouseY_UpFlg &&
-                        MouseY_DownFlg && MouseVector_Total >= 60.0f)
+                        MouseY_DownFlg && MouseVector_Total >= VectorMax)
                     {
                         Debug.Log("1"); 
                         WallType[0] = 0;
                         mainmanager.IFDeleteCall();
                         
                     }
-                    else if (MouseVector_Total_X > MouseVector_Total_Y && MouseVector_Total >= 60.0f)
+                    else if (MouseVector_Total_X > MouseVector_Total_Y && MouseVector_Total >= VectorMax)
                     {
                         Debug.Log("2"); 
                         WallType[1] = 1;
                         mainmanager.IFCreateCall();
                        
                     }
-                    else if (MouseVector_Total > 60.0f)
+                    else if (MouseVector_Total > VectorMax)
                     {
                         Debug.Log("3"); 
                         WallType[2] = 1;
