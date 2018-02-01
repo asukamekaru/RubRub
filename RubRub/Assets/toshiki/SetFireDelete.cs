@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SetFireDelete : MonoBehaviour {
 
-    public static bool DeleteFlg;
+    public bool DeleteFlg;
     private ParticleSystem particle;
     private float DeleteTime = 0.0f;
     // Use this for initialization
@@ -19,7 +19,7 @@ public class SetFireDelete : MonoBehaviour {
         {
             particle.Stop();
             DeleteTime += Time.deltaTime;
-            if (DeleteTime >= 10.0f)
+            if (DeleteTime >= 5.0f)
             {
                 Destroy(gameObject);
             }
