@@ -93,7 +93,7 @@ f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 50bc42aec0324e8da9962d40b2a714a9 Assembly-CSharp.dll:.ParticleMenu
 3ecea0c2e43f5d97a17c441bfcf59a7d Assembly-CSharp.dll:UnityEngine.PostProcessing.PostProcessingBehaviour
 8e854baebf2901de92dde7a2399b8f6c Assembly-CSharp.dll:.zombi_move
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SetFireDelete
+b061e697572c75d1d68a486b9b0717c8 Assembly-CSharp.dll:.SetFireDelete
 d38c0b15b5e9573cc0ed5bda039b578b Assembly-CSharp.dll:UnityChan.AutoBlink
 69b01ee008bb2d9c32cda3a649944eea Assembly-CSharp.dll:.Player_Wall_Ray
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SetFireJudge

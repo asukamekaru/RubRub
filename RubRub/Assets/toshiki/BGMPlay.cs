@@ -24,11 +24,11 @@ public class BGMPlay : MonoBehaviour
             {
                 case 0:
                     SM = BGMmanager.GetComponent<soundManager>();
-                    SM.StopBgm();
+                    //SM.StopBgm();
                     NowTask = 1;
                     break;
                 case 1:
-                    SM.ChangeBgm(PlayBGM_Number);
+                    //SM.ChangeBgm(PlayBGM_Number);
                     NowTask = 2;
                     break;
                 case 2:

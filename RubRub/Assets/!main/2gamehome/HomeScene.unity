@@ -1310,6 +1310,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114981760771888088, guid: cad02744db54fe0408a0b17270e76d6a,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cad02744db54fe0408a0b17270e76d6a, type: 2}
   m_IsPrefabParent: 0
@@ -2171,5 +2176,5 @@ MonoBehaviour:
   homemanager: {fileID: 846356044}
   myVec: {x: 0, y: 0, z: 0}
   mySize: 0
-  nextScene: GameMainStage2
+  nextScene: GameMainStage3
   iStageNum: 0

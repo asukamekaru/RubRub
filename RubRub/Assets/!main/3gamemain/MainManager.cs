@@ -100,7 +100,7 @@ public class MainManager : MonoBehaviour
         {
             case STATUS._GAME_START_:
 
-                soundmanager.ChangeBgm(4);//ゲームメインの　BGMを流す
+                //soundmanager.ChangeBgm(4);//ゲームメインの　BGMを流す
                 BlackOutPanel.gameObject.SetActive(true);//パネルを出すついでに操作できなくする
 
                 if (BlackOutPanel.gameObject.GetComponent<BlackOut>().GameBlackOut((int)BLACKOUT_COLOR._BLACK_, "start"))
@@ -170,7 +170,7 @@ public class MainManager : MonoBehaviour
     public void ChangeScene(string SceneName, int time)
     {
         Time.timeScale = time;
-        soundmanager.StopBgm();
+        //soundmanager.StopBgm();
         SceneManager.LoadScene(SceneName);
     }
 
